@@ -83,10 +83,10 @@ Apple only builds iOS apps on macOS, so this project includes a workflow that bu
 (`.github/workflows/ios.yml`). You then install the result on your iPhone from Windows with Sideloadly.
 
 1. Make a free account at github.com and create a **new repository** (public builds are free; private ones use your monthly free minutes).
-2. In the repository, **Add file › Upload files** and drag in everything from this folder (`www`, `resources`, `package.json`,
+2. In the repository, **Add file › Upload files** and drag in everything from this folder (`www`, `resources`, `scripts`, `package.json`,
    `capacitor.config.json`, `README.md`). Commit.
 3. **Add file › Create new file**, name it `.github/workflows/ios.yml`, paste in the contents of the same file from this folder, and commit.
-   (Windows can hide folders starting with a dot when uploading, which is why this one is created by hand.)
+   It's only 15 lines; the spaces at the start of each line matter, so paste it into the empty editor exactly as it is.
 4. Open the **Actions** tab › **Build iOS app** › **Run workflow**. It takes about 10–15 minutes.
 5. Open the finished run, download **Hive-ipa** under Artifacts, and unzip it: inside is `Hive-unsigned.ipa`.
 6. On your PC, install **iTunes** and **iCloud from Apple's website** (not the Microsoft Store versions), then install **Sideloadly** (sideloadly.io).

@@ -1,6 +1,6 @@
 {
   "appId": "com.yourname.hive",
-  "appName": "Hive",
+  "appName": "HIVE",
   "webDir": "www",
   "backgroundColor": "#0A0A10",
   "ios": {
@@ -9,8 +9,18 @@
     "scrollEnabled": false
   },
   "plugins": {
-    "SplashScreen": { "launchAutoHide": false, "backgroundColor": "#0A0A10", "showSpinner": false },
-    "Keyboard": { "resize": "native", "style": "dark" },
-    "LocalNotifications": { "iconColor": "#FF5C7A" }
+    "SplashScreen": {
+      "launchAutoHide": false,
+      "backgroundColor": "#0A0A10",
+      "showSpinner": false
+    },
+    "Keyboard": {
+      "resize": "none",
+      "style": "dark",
+      "resizeOnFullScreen": false
+    },
+    "LocalNotifications": {
+      "iconColor": "#FF5C7A"
+    }
   }
 }
