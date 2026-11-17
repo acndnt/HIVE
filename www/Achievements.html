@@ -23,7 +23,7 @@ a{color:var(--tx, #F2F2F3)}a:hover{color:var(--tx, #F2F2F3)}
 [data-ring][aria-pressed="true"]{outline:2px solid var(--tx, #F2F2F3);outline-offset:3px}
 [aria-pressed="false"] .ck{display:none}
 [data-sheet]{background-color:rgba(0,0,0,0);transition:background-color .28s ease}[data-sheet].up{background-color:rgba(0,0,0,.62)}
-[data-sheet]>*{transform:translateY(108%);transition:transform .46s cubic-bezier(.22,1.18,.32,1)}[data-sheet].up>*{transform:translateY(0)}
+[data-sheet]>*{transform:translateY(108%);transition:transform .5s cubic-bezier(.32,.72,0,1)}[data-sheet].up>*{transform:translateY(0)}
 @media (prefers-reduced-motion:reduce){[data-sheet],[data-sheet]>*{transition:none}}
 [data-root][data-past="1"] [data-act^="tick"]{pointer-events:none;opacity:.55}
 [data-day][aria-pressed="true"]{background:var(--w15, rgba(255,255,255,.15))!important}[data-day][aria-pressed="true"] .dn{color:var(--tx, #F2F2F3)!important}
@@ -639,7 +639,7 @@ g.setAttribute('data-homeguard', '1'); g.setAttribute('aria-hidden', 'true');
 g.style.cssText = 'position: absolute; left: 0; right: 0; bottom: 0; height: 100px; touch-action: none; -webkit-user-select: none; user-select: none';
 ['touchstart', 'touchmove', 'pointerdown', 'pointermove', 'mousedown', 'wheel', 'click'].forEach((ev) => g.addEventListener(ev, (e) => { e.stopPropagation(); if (e.cancelable && ev !== 'pointerdown' && ev !== 'mousedown') e.preventDefault(); }, { passive: false }));
 nav.parentNode.insertBefore(g, nav);
-if (!document.getElementById('hxguard')) { const st = document.createElement('style'); st.id = 'hxguard'; st.textContent = '[data-root]:has([data-sheet].up) [data-homeguard], [data-root]:has([data-crop]) [data-homeguard]{display:none}'; (document.head || document.documentElement).appendChild(st); }
+if (!document.getElementById('hxguard')) { const st = document.createElement('style'); st.id = 'hxguard'; st.textContent = '[data-root]:has([data-sheet].up) [data-homeguard], [data-root]:has([data-crop]) [data-homeguard]{display:none}[data-sheet]>section{will-change:transform;backface-visibility:hidden}'; (document.head || document.documentElement).appendChild(st); }
 }
 faqInit(root) {
 const h = (location.hash || '').slice(1);
@@ -1183,7 +1183,14 @@ if (!el.hasAttribute('data-over')) this.closeSheets(name);
 el.style.display = 'flex';
 void el.offsetHeight;
 el.classList.add('up');
-if (name === 'add') this.focusAdd(el);
+if (name === 'add') {
+// open the keyboard on a stand-in field that's already on screen, then hand focus to the real one once the sheet has slid in,
+// so the phone doesn't jump to an off-screen field while the sheet is still moving
+let px = document.querySelector('[data-kbproxy]');
+if (!px) { px = document.createElement('input'); px.type = 'text'; px.setAttribute('data-kbproxy', '1'); px.setAttribute('aria-hidden', 'true'); px.tabIndex = -1; px.style.cssText = 'position: fixed; left: 0; top: 0; width: 1px; height: 1px; opacity: 0; border: 0; padding: 0; font-size: 14px; pointer-events: none'; document.body.appendChild(px); }
+try { px.focus({ preventScroll: true }); } catch (e) {}
+clearTimeout(this._faT); this._faT = setTimeout(() => { if (el.classList.contains('up')) this.focusAdd(el); }, 430);
+}
 } else {
 el.classList.remove('up');
 el._t = setTimeout(() => { el.style.display = 'none'; }, 300);
