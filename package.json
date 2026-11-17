@@ -1,0 +1,24 @@
+{
+  "name": "hive-self-improvement",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Hive: a self-improvement app built on the DREAM (intangible goal) > TANGIBLE GOALS > STRATEGY > DAILY ACTIONS > CHECKPOINTS system.",
+  "scripts": {
+    "ios": "npx cap sync ios && npx cap open ios",
+    "assets": "npx @capacitor/assets generate --ios",
+    "serve": "npx http-server www -p 8080 -c-1"
+  },
+  "dependencies": {
+    "@capacitor/core": "^8.0.0",
+    "@capacitor/ios": "^8.0.0",
+    "@capacitor/haptics": "^8.0.0",
+    "@capacitor/keyboard": "^8.0.0",
+    "@capacitor/local-notifications": "^8.0.0",
+    "@capacitor/splash-screen": "^8.0.0",
+    "@capacitor/status-bar": "^8.0.0"
+  },
+  "devDependencies": {
+    "@capacitor/assets": "^3.0.5",
+    "@capacitor/cli": "^8.0.0"
+  }
+}

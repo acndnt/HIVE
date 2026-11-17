@@ -1,0 +1,16 @@
+{
+  "appId": "com.yourname.hive",
+  "appName": "Hive",
+  "webDir": "www",
+  "backgroundColor": "#0A0A10",
+  "ios": {
+    "contentInset": "never",
+    "backgroundColor": "#0A0A10",
+    "scrollEnabled": false
+  },
+  "plugins": {
+    "SplashScreen": { "launchAutoHide": false, "backgroundColor": "#0A0A10", "showSpinner": false },
+    "Keyboard": { "resize": "native", "style": "dark" },
+    "LocalNotifications": { "iconColor": "#FF5C7A" }
+  }
+}
