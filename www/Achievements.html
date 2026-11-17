@@ -1,0 +1,1653 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Hive">
+<meta name="theme-color" content="#0A0A10">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<title>Achievements</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Source+Code+Pro:wght@500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#F2F2F3}a:hover{color:#F2F2F3}
+.gt{-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.glass{-webkit-backdrop-filter:blur(22px) saturate(1.5);backdrop-filter:blur(22px) saturate(1.5)}
+[data-row] .on{display:none}[data-row][data-done="1"] .on{display:flex}[data-row][data-done="1"] .off{display:none}
+[data-row][data-done="1"] [data-t]{color:#8E8E93!important}
+[role=switch][aria-checked=false]{background:rgba(255,255,255,.16)!important;justify-content:flex-start!important}
+[data-ring][aria-pressed="true"]{outline:2px solid #F2F2F3;outline-offset:3px}
+[aria-pressed="false"] .ck{display:none}
+[data-sheet]{background-color:rgba(0,0,0,0);transition:background-color .28s ease}[data-sheet].up{background-color:rgba(0,0,0,.62)}
+[data-sheet]>*{transform:translateY(108%);transition:transform .46s cubic-bezier(.22,1.18,.32,1)}[data-sheet].up>*{transform:translateY(0)}
+@media (prefers-reduced-motion:reduce){[data-sheet],[data-sheet]>*{transition:none}}
+[data-root][data-past="1"] [data-act^="tick"]{pointer-events:none;opacity:.55}
+[data-day][aria-pressed="true"]{background:rgba(255,255,255,.15)!important}[data-day][aria-pressed="true"] .dn{color:#F2F2F3!important}
+.noscr::-webkit-scrollbar{display:none}.noscr{scrollbar-width:none}
+input::placeholder,textarea::placeholder{color:#6E6E73}
+input[data-in]:focus{outline:none;border-bottom:2px solid #F2F2F3!important}[data-sheet="add"] input[data-in]:focus{border-bottom:0!important}textarea[data-in]:focus{outline:none;border-color:#F2F2F3!important}
+@keyframes tkpop{0%{transform:scale(.35)}55%{transform:scale(1.22)}100%{transform:scale(1)}}@keyframes tkring{0%{opacity:.85;transform:scale(.7)}100%{opacity:0;transform:scale(2)}}@keyframes tkbump{0%{transform:scale(1)}40%{transform:scale(1.07)}100%{transform:scale(1)}}[data-pop] .on{position:relative;animation:tkpop .45s cubic-bezier(.2,1.5,.4,1)}[data-pop] .on::after{content:"";position:absolute;inset:-3px;border-radius:50%;border:2px solid rgba(255,255,255,.85);animation:tkring .55s ease-out forwards}[data-pop] [data-cap]{animation:tkbump .45s ease}[data-list="ms"] > [data-pop] > span:first-child > *{animation:tkpop .45s cubic-bezier(.2,1.5,.4,1)}@media (prefers-reduced-motion: reduce){[data-pop] *,[data-pop] *::after{animation:none!important}}
+
+html,body{margin:0;height:100%;background:#0A0A10;overflow:hidden;overscroll-behavior:none;-webkit-text-size-adjust:100%;
+-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
+input,textarea{-webkit-user-select:text;user-select:text}
+#root{position:fixed;left:0;top:0;width:390px;transform-origin:0 0;overflow:hidden}
+[data-sheet]>section{max-height:calc(var(--appH, 844px) - 24px);overflow-y:auto;overscroll-behavior:contain;box-sizing:border-box}[data-sheet]>section::-webkit-scrollbar{display:none}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/plain" id="tpl">
+
+<div data-root="1" data-ref="rootRef" style="width: 390px; height: var(--appH, 844px); box-sizing: border-box; position: relative; z-index: 0; overflow: hidden; background: var(--bg, #0A0A10); color: #F2F2F3; font-family: Inter, system-ui, sans-serif">
+<div style="position: absolute; left: 24px; top: 64px; display: flex; align-items: center; gap: 14px"><a href="Profile.html" aria-label="Back to profile" class="glass" style="width: 44px; height: 44px; flex: none; box-sizing: border-box; border-radius: 22px; background: var(--glass, rgba(40, 40, 52, 0.7)); border: 1px solid var(--line, rgba(255, 255, 255, 0.13)); display: flex; align-items: center; justify-content: center; color: #F2F2F3"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6l6 6"></path></svg></a><span style="font-size: 13.5px; font-weight: 600; color: var(--sec, #8E8E93)">Profile</span></div>
+<div style="position: absolute; left: 24px; right: 24px; top: 128px; display: flex; flex-direction: column; gap: 12px">
+<h1 style="margin: 0; display: flex; align-items: center; gap: 6px; font-size: 19px; line-height: 1.15; font-weight: 700; letter-spacing: -0.01em"><span>Achievements</span></h1>
+<h2 style="margin: 0; font-size: 11px; font-weight: 600; color: var(--sec, #8E8E93); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 6px">Titles</h2>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<span data-title="The Consistent" style="height: 44px; box-sizing: border-box; padding: 0 16px; border-radius: 14px; border: 2px dotted var(--line, rgba(255, 255, 255, 0.13)); color: var(--sec, #8E8E93); font-size: 13.5px; font-weight: 600; display: flex; align-items: center; gap: 6px"><span data-lock="1" style="display: flex"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6"></path><path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"></path><path d="M8 11v-4a4 4 0 1 1 8 0v4"></path></svg></span>The Consistent</span>
+<span data-title="Early Riser" style="height: 44px; box-sizing: border-box; padding: 0 16px; border-radius: 14px; border: 2px dotted var(--line, rgba(255, 255, 255, 0.13)); color: var(--sec, #8E8E93); font-size: 13.5px; font-weight: 600; display: flex; align-items: center; gap: 6px"><span data-lock="1" style="display: flex"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6"></path><path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"></path><path d="M8 11v-4a4 4 0 1 1 8 0v4"></path></svg></span>Early Riser</span>
+<span data-title="Iron Will" style="height: 44px; box-sizing: border-box; padding: 0 16px; border-radius: 14px; border: 2px dotted var(--line, rgba(255, 255, 255, 0.13)); color: var(--sec, #8E8E93); font-size: 13.5px; font-weight: 600; display: flex; align-items: center; gap: 6px"><span data-lock="1" style="display: flex"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6"></path><path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"></path><path d="M8 11v-4a4 4 0 1 1 8 0v4"></path></svg></span>Iron Will</span>
+<span data-title="Balanced" style="height: 44px; box-sizing: border-box; padding: 0 16px; border-radius: 14px; border: 2px dotted var(--line, rgba(255, 255, 255, 0.13)); color: var(--sec, #8E8E93); font-size: 13.5px; font-weight: 600; display: flex; align-items: center; gap: 6px"><span data-lock="1" style="display: flex"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6"></path><path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"></path><path d="M8 11v-4a4 4 0 1 1 8 0v4"></path></svg></span>Balanced</span>
+</div>
+<p style="margin: 0; font-size: 12px; line-height: 1.4; color: var(--sec, #8E8E93)">Titles unlock as you go. The one you equip shows on your profile and the leaderboard.</p>
+<div aria-hidden="true" style="height: 0; border-top: 2px dotted var(--line, rgba(255, 255, 255, 0.13)); margin-top: 4px"></div>
+<div style="display: flex; justify-content: space-between; align-items: baseline">
+<h2 style="margin: 0; font-size: 11px; font-weight: 600; color: var(--sec, #8E8E93); letter-spacing: 0.08em; text-transform: uppercase; ">Badges</h2>
+<span style="font-family: 'Source Code Pro', ui-monospace, monospace; font-size: 12px; font-weight: 600; color: var(--sec, #8E8E93)"><span data-bind="badgeN" style="color: #F2F2F3">0</span> of 10</span>
+</div>
+</div>
+<div style="position: absolute; left: 0; top: 418px; width: 390px; height: 386px">
+<div data-badge="First Cell" style="position: absolute; left: 41.5px; top: 0px; width: 97px; height: 112px; clip-path: path('M44.1 2.5 Q48.5 0.0 52.9 2.5 L92.6 25.5 Q97.0 28.0 97.0 33.0 L97.0 79.0 Q97.0 84.0 92.6 86.5 L52.9 109.5 Q48.5 112.0 44.1 109.5 L4.4 86.5 Q0.0 84.0 0.0 79.0 L0.0 33.0 Q0.0 28.0 4.4 25.5 Z'); background: var(--card, rgba(255, 255, 255, 0.08)); color: var(--sec, #8E8E93); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-align: center"><span data-lock="1" style="display: flex"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6"></path><path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"></path><path d="M8 11v-4a4 4 0 1 1 8 0v4"></path></svg></span><span style="font-size: 11px; line-height: 1.15; font-weight: 700; max-width: 78px">First Cell</span><span style="font-family: 'Source Code Pro', ui-monospace, monospace; font-size: 11px; font-weight: 600; max-width: 80px; line-height: 1.1">1 dream</span></div>
+<div data-badge="7 Day Streak" style="position: absolute; left: 146.5px; top: 0px; width: 97px; height: 112px; clip-path: path('M44.1 2.5 Q48.5 0.0 52.9 2.5 L92.6 25.5 Q97.0 28.0 97.0 33.0 L97.0 79.0 Q97.0 84.0 92.6 86.5 L52.9 109.5 Q48.5 112.0 44.1 109.5 L4.4 86.5 Q0.0 84.0 0.0 79.0 L0.0 33.0 Q0.0 28.0 4.4 25.5 Z'); background: var(--card, rgba(255, 255, 255, 0.08)); color: var(--sec, #8E8E93); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-align: center"><span data-lock="1" style="display: flex"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6"></path><path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"></path><path d="M8 11v-4a4 4 0 1 1 8 0v4"></path></svg></span><span style="font-size: 11px; line-height: 1.15; font-weight: 700; max-width: 78px">7 Day<br>Streak</span><span style="font-family: 'Source Code Pro', ui-monospace, monospace; font-size: 11px; font-weight: 600; max-width: 80px; line-height: 1.1">7 days</span></div>
+<div data-badge="30 Day Streak" style="position: absolute; left: 251.5px; top: 0px; width: 97px; height: 112px; clip-path: path('M44.1 2.5 Q48.5 0.0 52.9 2.5 L92.6 25.5 Q97.0 28.0 97.0 33.0 L97.0 79.0 Q97.0 84.0 92.6 86.5 L52.9 109.5 Q48.5 112.0 44.1 109.5 L4.4 86.5 Q0.0 84.0 0.0 79.0 L0.0 33.0 Q0.0 28.0 4.4 25.5 Z'); background: var(--card, rgba(255, 255, 255, 0.08)); color: var(--sec, #8E8E93); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-align: center"><span data-lock="1" style="display: flex"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6"></path><path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"></path><path d="M8 11v-4a4 4 0 1 1 8 0v4"></path></svg></span><span style="font-size: 11px; line-height: 1.15; font-weight: 700; max-width: 78px">30 Day<br>Streak</span><span style="font-family: 'Source Code Pro', ui-monospace, monospace; font-size: 11px; font-weight: 600; max-width: 80px; line-height: 1.1">30 days</span></div>
+<div data-badge="Reviewer" style="position: absolute; left: 94.0px; top: 91px; width: 97px; height: 112px; clip-path: path('M44.1 2.5 Q48.5 0.0 52.9 2.5 L92.6 25.5 Q97.0 28.0 97.0 33.0 L97.0 79.0 Q97.0 84.0 92.6 86.5 L52.9 109.5 Q48.5 112.0 44.1 109.5 L4.4 86.5 Q0.0 84.0 0.0 79.0 L0.0 33.0 Q0.0 28.0 4.4 25.5 Z'); background: var(--card, rgba(255, 255, 255, 0.08)); color: var(--sec, #8E8E93); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-align: center"><span data-lock="1" style="display: flex"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6"></path><path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"></path><path d="M8 11v-4a4 4 0 1 1 8 0v4"></path></svg></span><span style="font-size: 11px; line-height: 1.15; font-weight: 700; max-width: 78px">Reviewer</span><span style="font-family: 'Source Code Pro', ui-monospace, monospace; font-size: 11px; font-weight: 600; max-width: 80px; line-height: 1.1">3 checkpoints</span></div>
+<div data-badge="Strong Start" style="position: absolute; left: 199.0px; top: 91px; width: 97px; height: 112px; clip-path: path('M44.1 2.5 Q48.5 0.0 52.9 2.5 L92.6 25.5 Q97.0 28.0 97.0 33.0 L97.0 79.0 Q97.0 84.0 92.6 86.5 L52.9 109.5 Q48.5 112.0 44.1 109.5 L4.4 86.5 Q0.0 84.0 0.0 79.0 L0.0 33.0 Q0.0 28.0 4.4 25.5 Z'); background: var(--card, rgba(255, 255, 255, 0.08)); color: var(--sec, #8E8E93); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-align: center"><span data-lock="1" style="display: flex"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6"></path><path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"></path><path d="M8 11v-4a4 4 0 1 1 8 0v4"></path></svg></span><span style="font-size: 11px; line-height: 1.15; font-weight: 700; max-width: 78px">Strong<br>Start</span><span style="font-family: 'Source Code Pro', ui-monospace, monospace; font-size: 11px; font-weight: 600; max-width: 80px; line-height: 1.1">PHY 60</span></div>
+<div data-badge="First Goal" style="position: absolute; left: 41.5px; top: 182px; width: 97px; height: 112px; clip-path: path('M44.1 2.5 Q48.5 0.0 52.9 2.5 L92.6 25.5 Q97.0 28.0 97.0 33.0 L97.0 79.0 Q97.0 84.0 92.6 86.5 L52.9 109.5 Q48.5 112.0 44.1 109.5 L4.4 86.5 Q0.0 84.0 0.0 79.0 L0.0 33.0 Q0.0 28.0 4.4 25.5 Z'); background: var(--card, rgba(255, 255, 255, 0.08)); color: var(--sec, #8E8E93); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-align: center"><span data-lock="1" style="display: flex"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6"></path><path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"></path><path d="M8 11v-4a4 4 0 1 1 8 0v4"></path></svg></span><span style="font-size: 11px; line-height: 1.15; font-weight: 700; max-width: 78px">First Goal</span><span style="font-family: 'Source Code Pro', ui-monospace, monospace; font-size: 11px; font-weight: 600; max-width: 80px; line-height: 1.1">1 goal</span></div>
+<div data-badge="Balanced Hex" style="position: absolute; left: 146.5px; top: 182px; width: 97px; height: 112px; clip-path: path('M44.1 2.5 Q48.5 0.0 52.9 2.5 L92.6 25.5 Q97.0 28.0 97.0 33.0 L97.0 79.0 Q97.0 84.0 92.6 86.5 L52.9 109.5 Q48.5 112.0 44.1 109.5 L4.4 86.5 Q0.0 84.0 0.0 79.0 L0.0 33.0 Q0.0 28.0 4.4 25.5 Z'); background: var(--card, rgba(255, 255, 255, 0.08)); color: var(--sec, #8E8E93); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-align: center"><span data-lock="1" style="display: flex"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6"></path><path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"></path><path d="M8 11v-4a4 4 0 1 1 8 0v4"></path></svg></span><span style="font-size: 11px; line-height: 1.15; font-weight: 700; max-width: 78px">Balanced<br>Hex</span><span style="font-family: 'Source Code Pro', ui-monospace, monospace; font-size: 11px; font-weight: 600; max-width: 80px; line-height: 1.1">all at 70</span></div>
+<div data-badge="Centurion" style="position: absolute; left: 251.5px; top: 182px; width: 97px; height: 112px; clip-path: path('M44.1 2.5 Q48.5 0.0 52.9 2.5 L92.6 25.5 Q97.0 28.0 97.0 33.0 L97.0 79.0 Q97.0 84.0 92.6 86.5 L52.9 109.5 Q48.5 112.0 44.1 109.5 L4.4 86.5 Q0.0 84.0 0.0 79.0 L0.0 33.0 Q0.0 28.0 4.4 25.5 Z'); background: var(--card, rgba(255, 255, 255, 0.08)); color: var(--sec, #8E8E93); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-align: center"><span data-lock="1" style="display: flex"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6"></path><path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"></path><path d="M8 11v-4a4 4 0 1 1 8 0v4"></path></svg></span><span style="font-size: 11px; line-height: 1.15; font-weight: 700; max-width: 78px">Centurion</span><span style="font-family: 'Source Code Pro', ui-monospace, monospace; font-size: 11px; font-weight: 600; max-width: 80px; line-height: 1.1">100 days</span></div>
+<div data-badge="Rank A" style="position: absolute; left: 94.0px; top: 273px; width: 97px; height: 112px; clip-path: path('M44.1 2.5 Q48.5 0.0 52.9 2.5 L92.6 25.5 Q97.0 28.0 97.0 33.0 L97.0 79.0 Q97.0 84.0 92.6 86.5 L52.9 109.5 Q48.5 112.0 44.1 109.5 L4.4 86.5 Q0.0 84.0 0.0 79.0 L0.0 33.0 Q0.0 28.0 4.4 25.5 Z'); background: var(--card, rgba(255, 255, 255, 0.08)); color: var(--sec, #8E8E93); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-align: center"><span data-lock="1" style="display: flex"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6"></path><path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"></path><path d="M8 11v-4a4 4 0 1 1 8 0v4"></path></svg></span><span style="font-size: 11px; line-height: 1.15; font-weight: 700; max-width: 78px">Rank A</span><span style="font-family: 'Source Code Pro', ui-monospace, monospace; font-size: 11px; font-weight: 600; max-width: 80px; line-height: 1.1">440 points</span></div>
+<div data-badge="Dream Realised" style="position: absolute; left: 199.0px; top: 273px; width: 97px; height: 112px; clip-path: path('M44.1 2.5 Q48.5 0.0 52.9 2.5 L92.6 25.5 Q97.0 28.0 97.0 33.0 L97.0 79.0 Q97.0 84.0 92.6 86.5 L52.9 109.5 Q48.5 112.0 44.1 109.5 L4.4 86.5 Q0.0 84.0 0.0 79.0 L0.0 33.0 Q0.0 28.0 4.4 25.5 Z'); background: var(--card, rgba(255, 255, 255, 0.08)); color: var(--sec, #8E8E93); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-align: center"><span data-lock="1" style="display: flex"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6"></path><path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"></path><path d="M8 11v-4a4 4 0 1 1 8 0v4"></path></svg></span><span style="font-size: 11px; line-height: 1.15; font-weight: 700; max-width: 78px">Dream<br>Realised</span><span style="font-family: 'Source Code Pro', ui-monospace, monospace; font-size: 11px; font-weight: 600; max-width: 80px; line-height: 1.1">1 dream done</span></div>
+</div>
+</div>
+</script>
+<script>
+(function(){
+  var r = document.getElementById('root');
+  function fit(){
+    var W = window.innerWidth, H = window.innerHeight, k = W / 390;
+    if (W > 600) k = Math.min(W / 390, H / 844);
+    var h = H / k, x = Math.max(0, (W - 390 * k) / 2);
+    document.documentElement.style.setProperty('--appH', h + 'px');
+    r.style.height = h + 'px';
+    r.style.transform = 'translate(' + x + 'px,0) scale(' + k + ')';
+  }
+  fit();
+  window.addEventListener('resize', fit);
+  window.addEventListener('orientationchange', function(){ setTimeout(fit, 120); });
+})();
+</script>
+<script>
+class DCLogic { constructor(){ this.props = {}; this.state = {}; } setState(o){ this.state = Object.assign({}, this.state, o); window.__apply(); } }
+
+class Component extends DCLogic {
+fresh() { return true; }
+K() { return this.fresh() ? 'hexhive.fresh.v1' : 'hexhive.v1'; }
+blank() { if (this.fresh()) return { done: {}, focus: {}, sw: {}, ch: {}, num: {}, txt: {}, pos: {}, xg: {}, xm: {}, dreams: [], rem: [], stats: {}, tasks: [], ddv: 3, dd: {}, me: {} }; return { done: { run: 1, design: 1, read: 1, cold: 1 }, focus: { studio: 1, tri: 1 }, sw: { remind: 1 }, ch: {}, num: {}, txt: {}, pos: {}, xg: {}, xm: {}, dreams: [], rem: null, stats: {}, tasks: null }; }
+store() {
+if (window.__hx) return window.__hx;
+let s = null;
+try { s = JSON.parse(localStorage.getItem(this.K())); } catch (e) {}
+const b = this.blank();
+if (!s || typeof s !== 'object') s = b;
+['done', 'focus', 'sw', 'ch', 'num', 'txt', 'pos', 'xg', 'xm'].forEach((k) => { if (!s[k] || typeof s[k] !== 'object') s[k] = b[k]; });
+if (!Array.isArray(s.dreams)) s.dreams = [];
+if (!s.me || typeof s.me !== 'object') s.me = {};
+if (!s.stats || typeof s.stats !== 'object') s.stats = {};
+if (!Array.isArray(s.tasks)) {
+s.tasks = [{ id: 'cold', t: 'Cold shower', stat: 'DSC', pts: 2, time: '06:45', len: 0 }, { id: 'read', t: 'Read 20 pages', stat: 'INT', pts: 3, time: '07:30', len: 20 }, { id: 'gym', t: 'Gym: push day', stat: 'PHY', pts: 5, time: '18:00', len: 60 }];
+if (s.txt.custTask) s.tasks.push({ id: 'ctask', t: s.txt.custTask, stat: s.ch.cstat || 'PHY', pts: s.num.cpts ?? 5, time: s.txt.ctTime || '', len: s.num.ctLen || 0, made: 1 });
+}
+if (!s.num.rv) { delete s.num.rings; s.num.rv = 1; }
+if (!Array.isArray(s.rem)) { const on = s.sw.remind === 0 ? 0 : 1; s.rem = [{ t: 'Plan the day', time: '07:30', days: [1, 1, 1, 1, 1, 1, 1], about: 'act', nudge: 0, on: on }, { t: 'Evening review', time: '21:00', days: [1, 1, 1, 1, 1, 1, 1], about: 'review', nudge: 0, on: on }, { t: 'Stat tasks', time: '18:00', days: [1, 0, 1, 0, 1, 0, 0], about: 'task', nudge: 30, on: 0 }]; }
+if (!s.log || typeof s.log !== 'object') s.log = {};
+if (s.txt.dreamName) { s.dreams.push({ id: 'new', name: s.txt.dreamName, logo: +(s.ch.logo ?? 0), col: +(s.ch.col ?? 0), x: s.num.dx ?? 680, y: s.num.dy ?? 649.28 }); delete s.txt.dreamName; }
+window.__hx = s;
+this.rollDay();
+return s;
+}
+save() { try { localStorage.setItem(this.K(), JSON.stringify(this.store())); } catch (e) {} }
+themes() { return { sunset: ['#FF5C7A', '#FFA24D'], gold: ['#F0B81E', '#FFE66B'], mint: ['#19E6A8', '#8AF8D6'], ocean: ['#3B8FF0', '#7CE8FF'], violet: ['#8F73FF', '#FF7AD9'], mono: ['#E8E8EE', '#9A9AA6'] }; }
+cols() { return ['', 'linear-gradient(135deg, #FFF285 0%, #F0D21E 100%)', 'linear-gradient(135deg, #8AF8D6 0%, #19E6A8 100%)', 'linear-gradient(135deg, #86C8FF 0%, #3B8FF0 100%)', 'linear-gradient(135deg, #CDB0FF 0%, #9B6DFF 100%)', 'linear-gradient(135deg, #FFBB66 0%, #E87A1E 100%)']; }
+statDef() { return { PHY: ['Physicality', '#19E6A8'], SPD: ['Speed', '#3B8FF0'], STA: ['Stamina', '#F2542D'], DSC: ['Discipline', '#F0D21E'], PUR: ['Purpose', '#E87A1E'], INT: ['Intellect', '#9B6DFF'] }; }
+statKeys() { return ['PHY', 'SPD', 'STA', 'DSC', 'PUR', 'INT']; }
+statOf(k) {
+const d = this.statDef()[k] || this.statDef().PHY, u = (this.store().stats || {})[k] || {}, col = /^#[0-9a-f]{6}$/i.test(u.col || '') ? u.col : d[1];
+const code = ((u.code || '').trim() || k).toUpperCase().slice(0, 4);
+return { k: k, name: (u.name || '').trim() || d[0], code: code, col: col, grad: 'linear-gradient(135deg, ' + this.mixRgb(col, '#FFFFFF', 0.45) + ' 0%, ' + col + ' 100%)', deep: this.shade(col), tint: this.mixRgb(col, col, 0, 0.15) };
+}
+statCol() { const o = {}; this.statKeys().forEach((k) => { o[k] = this.statOf(k).col; }); return o; }
+shade(c, k) {
+const m = /^#([0-9a-f]{6})$/i.exec(c || '');
+if (!m) return '#0B0B12';
+const n = parseInt(m[1], 16), h = (v) => Math.round(v * (k ?? 0.5));
+return 'rgb(' + h(n >> 16) + ', ' + h((n >> 8) & 255) + ', ' + h(n & 255) + ')';
+}
+mix(c) {
+const m = /^#([0-9a-f]{6})$/i.exec(c || '');
+if (!m) return '#D2D2DE';
+const n = parseInt(m[1], 16), h = (v) => Math.round((v + 255) / 2);
+return 'rgb(' + h(n >> 16) + ', ' + h((n >> 8) & 255) + ', ' + h(n & 255) + ')';
+}
+dreamData() { return this.fresh() ? {} : {"studio": {"name": "Open my own studio", "short": "Studio", "logo": 0, "goals": [["Build a portfolio of 12 projects", [["Take 1 project from brief to delivery", 1], ["Publish 3 case studies", 1], ["Reach 6 projects, 2 for real clients", 6], ["Reach 9 projects, one over £1k", 3], ["12 projects and a live portfolio site", 1]], 2, 4], ["Save a £15,000 runway", [["Open a separate runway account", 1], ["Save the first £5,000", 5], ["Reach £10,000", 5], ["Hit £15,000", 5]], 1, 3], ["Land 3 paying clients", [["Pitch 10 local businesses", 10], ["Publish a services page", 1], ["Sign the first paying client", 1], ["Three clients signed", 3]], 0, 8]], "acts": [["Design for 45 min", "Every day", "08:00"], ["Post work in progress", "Tue, Thu and Sat", "21:30"]], "strat": ["If I miss the morning, do 20 minutes before bed", "Sunday evening: line up the week’s briefs"], "wk": [8, 10], "pos": [640, 580]}, "tri": {"name": "Finish a triathlon", "short": "Triathlon", "logo": 1, "goals": [["Finish a sprint triathlon", [["Run 5 km without walking", 1], ["Swim 400 m in open water", 1], ["Complete 4 brick sessions", 4], ["Finish a practice sprint distance", 2], ["Race day", 1]], 2, 2], ["Swim 1,500 m without stopping", [["Ten pool sessions of 400 m", 10], ["Swim 800 m without stopping", 3], ["Swim the full 1,500 m", 1]], 0, 9], ["Ride 40 km in under 90 minutes", [["Two 20 km rides without stopping", 2], ["Ride 40 km at any pace", 3], ["40 km in under 90 minutes", 1]], 0, 1]], "acts": [["Morning run", "Every day", "06:30"], ["Swim 30 lengths", "Mon, Wed and Sat", "18:00"]], "strat": ["Kit laid out the night before", "Bad weather means the indoor bike, not a day off"], "wk": [7, 10], "pos": [600, 510.72]}, "jp": {"name": "Fluent in Japanese", "short": "Japanese", "logo": 2, "goals": [["Pass the JLPT N4 exam", [["Learn hiragana and katakana", 1], ["Finish 300 core words", 1], ["Complete 10 graded lessons", 10], ["Sit a mock N4 paper", 3], ["Pass the N4 exam", 1]], 2, 7], ["Hold a 15 minute conversation", [["Ten sessions with a tutor", 10], ["Five minutes with no English", 3], ["A full 15 minute conversation", 1]], 0, 3], ["Read a manga volume unaided", [["Five chapters with a dictionary", 5], ["One chapter unaided", 1], ["Half a volume unaided", 3], ["Finish the whole volume", 1]], 0, 1]], "acts": [["Learn 20 new words", "Every day", "13:00"], ["Shadow a 10 minute dialogue", "Mon, Wed and Fri", "19:00"]], "strat": ["On a missed day, review old cards only", "Book the exam date early"], "wk": [5, 7], "pos": [680, 510.72]}, "music": {"name": "Play a full set live", "short": "Live set", "logo": 3, "goals": [["Learn 8 songs start to finish", [["Play 2 songs without stopping", 1], ["Memorise 4 songs", 1], ["Reach 8 songs at full tempo", 8], ["Run the whole set twice in a row", 3], ["Play the set for friends", 1]], 2, 5], ["Play an open mic night", [["Play for two friends", 1], ["Record a full run-through", 1], ["Five full rehearsals, then the open mic", 5]], 2, 2], ["Record a 3 track demo", [["Pick the three songs", 1], ["Set up a recording corner", 1], ["Track five good takes", 5], ["Mix and share the demo", 1]], 2, 3]], "acts": [["Practise for 30 min", "Every day", "19:30"], ["Record one full take", "Sunday", "17:00"]], "strat": ["The guitar stays out of its case", "Slow tempo beats skipping a day"], "wk": [4, 7], "pos": [720, 580]}, "home": {"name": "A home of my own", "short": "Home", "logo": 4, "goals": [["Save a 10% deposit", [["Open a dedicated savings pot", 1], ["Save the first £5,000", 1], ["Reach £12,000 saved", 6], ["Reach £20,000 saved", 3], ["Hit the full deposit", 1]], 2, 3], ["Clear the credit card", [["Stop using the card", 1], ["Pay it down to half", 1], ["Seven final payments to zero", 7]], 2, 6], ["Get a mortgage in principle", [["Check my credit report", 1], ["Gather six months of statements", 1], ["Collect the ten documents the broker needs", 10]], 2, 7]], "acts": [["Log today’s spending", "Every day", "21:00"], ["Move £50 into savings", "Friday", "09:00"]], "strat": ["Savings leave the account on payday", "One no-spend weekend a month"], "wk": [6, 7], "pos": [600, 649.28]}}; }
+iconList() { return [{"k": "pencil", "n": "Pencil", "b": "<path d=\"M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4\"></path><path d=\"M13.5 6.5l4 4\"></path>"}, {"k": "stopwatch", "n": "Stopwatch", "b": "<path d=\"M5 13a7 7 0 1 0 14 0a7 7 0 0 0 -14 0\"></path><path d=\"M14.5 10.5l-2.5 2.5\"></path><path d=\"M17 8l1 -1\"></path><path d=\"M14 3h-4\"></path>"}, {"k": "message", "n": "Message", "b": "<path d=\"M8 9h8\"></path><path d=\"M8 13h6\"></path><path d=\"M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12\"></path>"}, {"k": "music", "n": "Music", "b": "<path d=\"M3 17a3 3 0 1 0 6 0a3 3 0 0 0 -6 0\"></path><path d=\"M13 17a3 3 0 1 0 6 0a3 3 0 0 0 -6 0\"></path><path d=\"M9 17v-13h10v13\"></path><path d=\"M9 8h10\"></path>"}, {"k": "home", "n": "Home", "b": "<path d=\"M5 12l-2 0l9 -9l9 9l-2 0\"></path><path d=\"M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7\"></path><path d=\"M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6\"></path>"}, {"k": "mountain", "n": "Mountain", "b": "<path d=\"M3 20h18l-6.921 -14.612a2.3 2.3 0 0 0 -4.158 0l-6.921 14.612\"></path><path d=\"M7.5 11l2 2.5l2.5 -2.5l2 3l2.5 -2\"></path>"}, {"k": "brush", "n": "Brush", "b": "<path d=\"M3 21v-4a4 4 0 1 1 4 4h-4\"></path><path d=\"M21 3a16 16 0 0 0 -12.8 10.2\"></path><path d=\"M21 3a16 16 0 0 1 -10.2 12.8\"></path><path d=\"M10.6 9a9 9 0 0 1 4.4 4.4\"></path>"}, {"k": "palette", "n": "Palette", "b": "<path d=\"M12 21a9 9 0 0 1 0 -18c4.97 0 9 3.582 9 8c0 1.06 -.474 2.078 -1.318 2.828c-.844 .75 -1.989 1.172 -3.182 1.172h-2.5a2 2 0 0 0 -1 3.75a1.3 1.3 0 0 1 -1 2.25\"></path><path d=\"M7.5 10.5a1 1 0 1 0 2 0a1 1 0 1 0 -2 0\"></path><path d=\"M11.5 7.5a1 1 0 1 0 2 0a1 1 0 1 0 -2 0\"></path><path d=\"M15.5 10.5a1 1 0 1 0 2 0a1 1 0 1 0 -2 0\"></path>"}, {"k": "camera", "n": "Camera", "b": "<path d=\"M5 7h1a2 2 0 0 0 2 -2a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1a2 2 0 0 0 2 2h1a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-9a2 2 0 0 1 2 -2\"></path><path d=\"M9 13a3 3 0 1 0 6 0a3 3 0 0 0 -6 0\"></path>"}, {"k": "book", "n": "Book", "b": "<path d=\"M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0\"></path><path d=\"M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0\"></path><path d=\"M3 6l0 13\"></path><path d=\"M12 6l0 13\"></path><path d=\"M21 6l0 13\"></path>"}, {"k": "books", "n": "Books", "b": "<path d=\"M5 5a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1l0 -14\"></path><path d=\"M9 5a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1l0 -14\"></path><path d=\"M5 8h4\"></path><path d=\"M9 16h4\"></path><path d=\"M13.803 4.56l2.184 -.53c.562 -.135 1.133 .19 1.282 .732l3.695 13.418a1.02 1.02 0 0 1 -.634 1.219l-.133 .041l-2.184 .53c-.562 .135 -1.133 -.19 -1.282 -.732l-3.695 -13.418a1.02 1.02 0 0 1 .634 -1.219l.133 -.041\"></path><path d=\"M14 9l4 -1\"></path><path d=\"M16 16l3.923 -.98\"></path>"}, {"k": "school", "n": "School", "b": "<path d=\"M22 9l-10 -4l-10 4l10 4l10 -4v6\"></path><path d=\"M6 10.6v5.4a6 3 0 0 0 12 0v-5.4\"></path>"}, {"k": "certificate", "n": "Certificate", "b": "<path d=\"M12 15a3 3 0 1 0 6 0a3 3 0 1 0 -6 0\"></path><path d=\"M13 17.5v4.5l2 -1.5l2 1.5v-4.5\"></path><path d=\"M10 19h-5a2 2 0 0 1 -2 -2v-10c0 -1.1 .9 -2 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -1 1.73\"></path><path d=\"M6 9l12 0\"></path><path d=\"M6 12l3 0\"></path><path d=\"M6 15l2 0\"></path>"}, {"k": "code", "n": "Code", "b": "<path d=\"M7 8l-4 4l4 4\"></path><path d=\"M17 8l4 4l-4 4\"></path><path d=\"M14 4l-4 16\"></path>"}, {"k": "device-laptop", "n": "Device Laptop", "b": "<path d=\"M3 19l18 0\"></path><path d=\"M5 7a1 1 0 0 1 1 -1h12a1 1 0 0 1 1 1v8a1 1 0 0 1 -1 1h-12a1 1 0 0 1 -1 -1l0 -8\"></path>"}, {"k": "briefcase", "n": "Briefcase", "b": "<path d=\"M3 9a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2l0 -9\"></path><path d=\"M8 7v-2a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v2\"></path><path d=\"M12 12l0 .01\"></path><path d=\"M3 13a20 20 0 0 0 18 0\"></path>"}, {"k": "building-store", "n": "Building Store", "b": "<path d=\"M3 21l18 0\"></path><path d=\"M3 7v1a3 3 0 0 0 6 0v-1m0 1a3 3 0 0 0 6 0v-1m0 1a3 3 0 0 0 6 0v-1h-18l2 -4h14l2 4\"></path><path d=\"M5 21l0 -10.15\"></path><path d=\"M19 21l0 -10.15\"></path><path d=\"M9 21v-4a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v4\"></path>"}, {"k": "coin", "n": "Coin", "b": "<path d=\"M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0\"></path><path d=\"M14.8 9a2 2 0 0 0 -1.8 -1h-2a2 2 0 1 0 0 4h2a2 2 0 1 1 0 4h-2a2 2 0 0 1 -1.8 -1\"></path><path d=\"M12 7v10\"></path>"}, {"k": "pig-money", "n": "Pig Money", "b": "<path d=\"M15 11v.01\"></path><path d=\"M5.173 8.378a3 3 0 1 1 4.656 -1.377\"></path><path d=\"M16 4v3.803a6.019 6.019 0 0 1 2.658 3.197h1.341a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-1.342c-.336 .95 -.907 1.8 -1.658 2.473v2.027a1.5 1.5 0 0 1 -3 0v-.583a6.04 6.04 0 0 1 -1 .083h-4a6.04 6.04 0 0 1 -1 -.083v.583a1.5 1.5 0 0 1 -3 0v-2l0 -.027a6 6 0 0 1 4 -10.473h2.5l4.5 -3\"></path>"}, {"k": "chart-line", "n": "Chart Line", "b": "<path d=\"M4 19l16 0\"></path><path d=\"M4 15l4 -6l4 2l4 -5l4 4\"></path>"}, {"k": "rocket", "n": "Rocket", "b": "<path d=\"M4 13a8 8 0 0 1 7 7a6 6 0 0 0 3 -5a9 9 0 0 0 6 -8a3 3 0 0 0 -3 -3a9 9 0 0 0 -8 6a6 6 0 0 0 -5 3\"></path><path d=\"M7 14a6 6 0 0 0 -3 6a6 6 0 0 0 6 -3\"></path><path d=\"M14 9a1 1 0 1 0 2 0a1 1 0 1 0 -2 0\"></path>"}, {"k": "plane", "n": "Plane", "b": "<path d=\"M16 10h4a2 2 0 0 1 0 4h-4l-4 7h-3l2 -7h-4l-2 2h-3l2 -4l-2 -4h3l2 2h4l-2 -7h3l4 7\"></path>"}, {"k": "world", "n": "World", "b": "<path d=\"M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0\"></path><path d=\"M3.6 9h16.8\"></path><path d=\"M3.6 15h16.8\"></path><path d=\"M11.5 3a17 17 0 0 0 0 18\"></path><path d=\"M12.5 3a17 17 0 0 1 0 18\"></path>"}, {"k": "map-pin", "n": "Map Pin", "b": "<path d=\"M9 11a3 3 0 1 0 6 0a3 3 0 0 0 -6 0\"></path><path d=\"M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0\"></path>"}, {"k": "tent", "n": "Tent", "b": "<path d=\"M11 14l4 6h6l-9 -16l-9 16h6l4 -6\"></path>"}, {"k": "bike", "n": "Bike", "b": "<path d=\"M2 18a3 3 0 1 0 6 0a3 3 0 0 0 -6 0\"></path><path d=\"M16 18a3 3 0 1 0 6 0a3 3 0 0 0 -6 0\"></path><path d=\"M12 19v-4l-3 -3l5 -4l2 3h3\"></path><path d=\"M13.007 5a2 2 0 1 0 4 0a2 2 0 1 0 -4 0\"></path>"}, {"k": "run", "n": "Run", "b": "<path d=\"M11.007 5a2 2 0 1 0 4 0a2 2 0 1 0 -4 0\"></path><path d=\"M4 17l5 1l.75 -1.5\"></path><path d=\"M15 21v-4l-4 -3l1 -6\"></path><path d=\"M7 12v-3l5 -1l3 3l3 1\"></path>"}, {"k": "swimming", "n": "Swimming", "b": "<path d=\"M15 9a1 1 0 1 0 2 0a1 1 0 1 0 -2 0\"></path><path d=\"M6 11l4 -2l3.5 3l-1.5 2\"></path><path d=\"M3 16.75a2.4 2.4 0 0 0 1 .25a2.4 2.4 0 0 0 2 -1a2.4 2.4 0 0 1 2 -1a2.4 2.4 0 0 1 2 1a2.4 2.4 0 0 0 2 1a2.4 2.4 0 0 0 2 -1a2.4 2.4 0 0 1 2 -1a2.4 2.4 0 0 1 2 1a2.4 2.4 0 0 0 2 1a2.4 2.4 0 0 0 1 -.25\"></path>"}, {"k": "barbell", "n": "Barbell", "b": "<path d=\"M2 12h1\"></path><path d=\"M6 8h-2a1 1 0 0 0 -1 1v6a1 1 0 0 0 1 1h2\"></path><path d=\"M6 7v10a1 1 0 0 0 1 1h1a1 1 0 0 0 1 -1v-10a1 1 0 0 0 -1 -1h-1a1 1 0 0 0 -1 1\"></path><path d=\"M9 12h6\"></path><path d=\"M15 7v10a1 1 0 0 0 1 1h1a1 1 0 0 0 1 -1v-10a1 1 0 0 0 -1 -1h-1a1 1 0 0 0 -1 1\"></path><path d=\"M18 8h2a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-2\"></path><path d=\"M22 12h-1\"></path>"}, {"k": "yoga", "n": "Yoga", "b": "<path d=\"M4 20h4l1.5 -3\"></path><path d=\"M17 20l-1 -5h-5l1 -7\"></path><path d=\"M4 10l4 -1l4 -1l4 1.5l4 1.5\"></path><path d=\"M10.007 5a2 2 0 1 0 4 0a2 2 0 1 0 -4 0\"></path>"}, {"k": "heart", "n": "Heart", "b": "<path d=\"M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572\"></path>"}, {"k": "heartbeat", "n": "Heartbeat", "b": "<path d=\"M19.5 13.572l-7.5 7.428l-2.896 -2.868m-6.117 -8.104a5 5 0 0 1 9.013 -3.022a5 5 0 1 1 7.5 6.572\"></path><path d=\"M3 13h2l2 3l2 -6l1 3h3\"></path>"}, {"k": "apple", "n": "Apple", "b": "<path d=\"M4 11.319c0 3.102 .444 5.319 2.222 7.978c1.351 1.797 3.156 2.247 5.08 .988c.426 -.268 .97 -.268 1.397 0c1.923 1.26 3.728 .809 5.079 -.988c1.778 -2.66 2.222 -4.876 2.222 -7.977c0 -2.661 -1.99 -5.32 -4.444 -5.32c-1.267 0 -2.41 .693 -3.22 1.44a.5 .5 0 0 1 -.672 0c-.809 -.746 -1.953 -1.44 -3.22 -1.44c-2.454 0 -4.444 2.66 -4.444 5.319\"></path><path d=\"M7 12c0 -1.47 .454 -2.34 1.5 -3\"></path><path d=\"M12 7c0 -1.2 .867 -4 3 -4\"></path>"}, {"k": "salad", "n": "Salad", "b": "<path d=\"M4 11h16a1 1 0 0 1 1 1v.5c0 1.5 -2.517 5.573 -4 6.5v1a1 1 0 0 1 -1 1h-8a1 1 0 0 1 -1 -1v-1c-1.687 -1.054 -4 -5 -4 -6.5v-.5a1 1 0 0 1 1 -1\"></path><path d=\"M18.5 11c.351 -1.017 .426 -2.236 .5 -3.714v-1.286h-2.256c-2.83 0 -4.616 .804 -5.64 2.076\"></path><path d=\"M5.255 11.008a12.204 12.204 0 0 1 -.255 -2.008v-1h1.755c.98 0 1.801 .124 2.479 .35\"></path><path d=\"M8 8l1 -4l4 2.5\"></path><path d=\"M13 11v-.5a2.5 2.5 0 1 0 -5 0v.5\"></path>"}, {"k": "bed", "n": "Bed", "b": "<path d=\"M5 9a2 2 0 1 0 4 0a2 2 0 1 0 -4 0\"></path><path d=\"M22 17v-3h-20\"></path><path d=\"M2 8v9\"></path><path d=\"M12 14h10v-2a3 3 0 0 0 -3 -3h-7v5\"></path>"}, {"k": "moon", "n": "Moon", "b": "<path d=\"M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454l0 .008\"></path>"}, {"k": "sun", "n": "Sun", "b": "<path d=\"M8 12a4 4 0 1 0 8 0a4 4 0 1 0 -8 0\"></path><path d=\"M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7\"></path>"}, {"k": "plant", "n": "Plant", "b": "<path d=\"M7 15h10v4a2 2 0 0 1 -2 2h-6a2 2 0 0 1 -2 -2v-4\"></path><path d=\"M12 9a6 6 0 0 0 -6 -6h-3v2a6 6 0 0 0 6 6h3\"></path><path d=\"M12 11a6 6 0 0 1 6 -6h3v1a6 6 0 0 1 -6 6h-3\"></path><path d=\"M12 15l0 -6\"></path>"}, {"k": "tree", "n": "Tree", "b": "<path d=\"M12 13l-2 -2\"></path><path d=\"M12 12l2 -2\"></path><path d=\"M12 21v-13\"></path><path d=\"M9.824 16a3 3 0 0 1 -2.743 -3.69a3 3 0 0 1 .304 -4.833a3 3 0 0 1 4.615 -3.707a3 3 0 0 1 4.614 3.707a3 3 0 0 1 .305 4.833a3 3 0 0 1 -2.919 3.695h-4l-.176 -.005\"></path>"}, {"k": "paw", "n": "Paw", "b": "<path d=\"M14.7 13.5c-1.1 -2 -1.441 -2.5 -2.7 -2.5c-1.259 0 -1.736 .755 -2.836 2.747c-.942 1.703 -2.846 1.845 -3.321 3.291c-.097 .265 -.145 .677 -.143 .962c0 1.176 .787 2 1.8 2c1.259 0 3 -1 4.5 -1s3.241 1 4.5 1c1.013 0 1.8 -.823 1.8 -2c0 -.285 -.049 -.697 -.146 -.962c-.475 -1.451 -2.512 -1.835 -3.454 -3.538\"></path><path d=\"M20.188 8.082a1.039 1.039 0 0 0 -.406 -.082h-.015c-.735 .012 -1.56 .75 -1.993 1.866c-.519 1.335 -.28 2.7 .538 3.052c.129 .055 .267 .082 .406 .082c.739 0 1.575 -.742 2.011 -1.866c.516 -1.335 .273 -2.7 -.54 -3.052l-.001 0\"></path><path d=\"M9.474 9c.055 0 .109 0 .163 -.011c.944 -.128 1.533 -1.346 1.32 -2.722c-.203 -1.297 -1.047 -2.267 -1.932 -2.267c-.055 0 -.109 0 -.163 .011c-.944 .128 -1.533 1.346 -1.32 2.722c.204 1.293 1.048 2.267 1.933 2.267\"></path><path d=\"M16.456 6.733c.214 -1.376 -.375 -2.594 -1.32 -2.722a1.164 1.164 0 0 0 -.162 -.011c-.885 0 -1.728 .97 -1.93 2.267c-.214 1.376 .375 2.594 1.32 2.722c.054 .007 .108 .011 .162 .011c.885 0 1.73 -.974 1.93 -2.267\"></path><path d=\"M5.69 12.918c.816 -.352 1.054 -1.719 .536 -3.052c-.436 -1.124 -1.271 -1.866 -2.009 -1.866c-.14 0 -.277 .027 -.407 .082c-.816 .352 -1.054 1.719 -.536 3.052c.436 1.124 1.271 1.866 2.009 1.866c.14 0 .277 -.027 .407 -.082\"></path>"}, {"k": "microphone", "n": "Microphone", "b": "<path d=\"M9 5a3 3 0 0 1 3 -3a3 3 0 0 1 3 3v5a3 3 0 0 1 -3 3a3 3 0 0 1 -3 -3l0 -5\"></path><path d=\"M5 10a7 7 0 0 0 14 0\"></path><path d=\"M8 21l8 0\"></path><path d=\"M12 17l0 4\"></path>"}, {"k": "headphones", "n": "Headphones", "b": "<path d=\"M4 15a2 2 0 0 1 2 -2h1a2 2 0 0 1 2 2v3a2 2 0 0 1 -2 2h-1a2 2 0 0 1 -2 -2l0 -3\"></path><path d=\"M15 15a2 2 0 0 1 2 -2h1a2 2 0 0 1 2 2v3a2 2 0 0 1 -2 2h-1a2 2 0 0 1 -2 -2l0 -3\"></path><path d=\"M4 15v-3a8 8 0 0 1 16 0v3\"></path>"}, {"k": "movie", "n": "Movie", "b": "<path d=\"M4 6a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2l0 -12\"></path><path d=\"M8 4l0 16\"></path><path d=\"M16 4l0 16\"></path><path d=\"M4 8l4 0\"></path><path d=\"M4 16l4 0\"></path><path d=\"M4 12l16 0\"></path><path d=\"M16 8l4 0\"></path><path d=\"M16 16l4 0\"></path>"}, {"k": "device-gamepad-2", "n": "Device Gamepad2", "b": "<path d=\"M12 5h3.5a5 5 0 0 1 0 10h-5.5l-4.015 4.227a2.3 2.3 0 0 1 -3.923 -2.035l1.634 -8.173a5 5 0 0 1 4.904 -4.019h3.4\"></path><path d=\"M14 15l4.07 4.284a2.3 2.3 0 0 0 3.925 -2.023l-1.6 -8.232\"></path><path d=\"M8 9v2\"></path><path d=\"M7 10h2\"></path><path d=\"M14 10h2\"></path>"}, {"k": "chess", "n": "Chess", "b": "<path d=\"M12 3a3 3 0 0 1 3 3c0 1.113 -.6 2.482 -1.5 3l1.5 7h-6l1.5 -7c-.9 -.518 -1.5 -1.887 -1.5 -3a3 3 0 0 1 3 -3\"></path><path d=\"M8 9h8\"></path><path d=\"M6.684 16.772a1 1 0 0 0 -.684 .949v1.279a1 1 0 0 0 1 1h10a1 1 0 0 0 1 -1v-1.28a1 1 0 0 0 -.684 -.948l-2.316 -.772h-6l-2.316 .772\"></path>"}, {"k": "puzzle", "n": "Puzzle", "b": "<path d=\"M4 7h3a1 1 0 0 0 1 -1v-1a2 2 0 0 1 4 0v1a1 1 0 0 0 1 1h3a1 1 0 0 1 1 1v3a1 1 0 0 0 1 1h1a2 2 0 0 1 0 4h-1a1 1 0 0 0 -1 1v3a1 1 0 0 1 -1 1h-3a1 1 0 0 1 -1 -1v-1a2 2 0 0 0 -4 0v1a1 1 0 0 1 -1 1h-3a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1h1a2 2 0 0 0 0 -4h-1a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1\"></path>"}, {"k": "language", "n": "Language", "b": "<path d=\"M9 6.371c0 4.418 -2.239 6.629 -5 6.629\"></path><path d=\"M4 6.371h7\"></path><path d=\"M5 9c0 2.144 2.252 3.908 6 4\"></path><path d=\"M12 20l4 -9l4 9\"></path><path d=\"M19.1 18h-6.2\"></path><path d=\"M6.694 3l.793 .582\"></path>"}, {"k": "trophy", "n": "Trophy", "b": "<path d=\"M8 21l8 0\"></path><path d=\"M12 17l0 4\"></path><path d=\"M7 4l10 0\"></path><path d=\"M17 4v8a5 5 0 0 1 -10 0v-8\"></path><path d=\"M3 9a2 2 0 1 0 4 0a2 2 0 1 0 -4 0\"></path><path d=\"M17 9a2 2 0 1 0 4 0a2 2 0 1 0 -4 0\"></path>"}, {"k": "medal", "n": "Medal", "b": "<path d=\"M12 4v3m-4 -3v6m8 -6v6\"></path><path d=\"M12 18.5l-3 1.5l.5 -3.5l-2 -2l3 -.5l1.5 -3l1.5 3l3 .5l-2 2l.5 3.5l-3 -1.5\"></path>"}, {"k": "star", "n": "Star", "b": "<path d=\"M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873l-6.158 -3.245\"></path>"}, {"k": "flame", "n": "Flame", "b": "<path d=\"M12 10.941c2.333 -3.308 .167 -7.823 -1 -8.941c0 3.395 -2.235 5.299 -3.667 6.706c-1.43 1.408 -2.333 3.294 -2.333 5.588c0 3.704 3.134 6.706 7 6.706c3.866 0 7 -3.002 7 -6.706c0 -1.712 -1.232 -4.403 -2.333 -5.588c-2.084 3.353 -3.257 3.353 -4.667 2.235\"></path>"}, {"k": "bolt", "n": "Bolt", "b": "<path d=\"M13 3l0 7l6 0l-8 11l0 -7l-6 0l8 -11\"></path>"}, {"k": "target", "n": "Target", "b": "<path d=\"M11 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0\"></path><path d=\"M7 12a5 5 0 1 0 10 0a5 5 0 1 0 -10 0\"></path><path d=\"M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0\"></path>"}, {"k": "flag", "n": "Flag", "b": "<path d=\"M5 5a5 5 0 0 1 7 0a5 5 0 0 0 7 0v9a5 5 0 0 1 -7 0a5 5 0 0 0 -7 0v-9\"></path><path d=\"M5 21v-7\"></path>"}, {"k": "compass", "n": "Compass", "b": "<path d=\"M8 16l2 -6l6 -2l-2 6l-6 2\"></path><path d=\"M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0\"></path><path d=\"M12 3l0 2\"></path><path d=\"M12 19l0 2\"></path><path d=\"M3 12l2 0\"></path><path d=\"M19 12l2 0\"></path>"}, {"k": "anchor", "n": "Anchor", "b": "<path d=\"M12 9v12m-8 -8a8 8 0 0 0 16 0m1 0h-2m-14 0h-2\"></path><path d=\"M9 6a3 3 0 1 0 6 0a3 3 0 1 0 -6 0\"></path>"}, {"k": "sailboat", "n": "Sailboat", "b": "<path d=\"M2 20a2.4 2.4 0 0 0 2 1a2.4 2.4 0 0 0 2 -1a2.4 2.4 0 0 1 2 -1a2.4 2.4 0 0 1 2 1a2.4 2.4 0 0 0 2 1a2.4 2.4 0 0 0 2 -1a2.4 2.4 0 0 1 2 -1a2.4 2.4 0 0 1 2 1a2.4 2.4 0 0 0 2 1a2.4 2.4 0 0 0 2 -1\"></path><path d=\"M4 18l-1 -3h18l-1 3\"></path><path d=\"M11 12h7l-7 -9v9\"></path><path d=\"M8 7l-2 5\"></path>"}, {"k": "car", "n": "Car", "b": "<path d=\"M5 17a2 2 0 1 0 4 0a2 2 0 1 0 -4 0\"></path><path d=\"M15 17a2 2 0 1 0 4 0a2 2 0 1 0 -4 0\"></path><path d=\"M5 17h-2v-6l2 -5h9l4 5h1a2 2 0 0 1 2 2v4h-2m-4 0h-6m-6 -6h15m-6 0v-5\"></path>"}, {"k": "key", "n": "Key", "b": "<path d=\"M16.555 3.843l3.602 3.602a2.877 2.877 0 0 1 0 4.069l-2.643 2.643a2.877 2.877 0 0 1 -4.069 0l-.301 -.301l-6.558 6.558a2 2 0 0 1 -1.239 .578l-.175 .008h-1.172a1 1 0 0 1 -.993 -.883l-.007 -.117v-1.172a2 2 0 0 1 .467 -1.284l.119 -.13l.414 -.414h2v-2h2v-2l2.144 -2.144l-.301 -.301a2.877 2.877 0 0 1 0 -4.069l2.643 -2.643a2.877 2.877 0 0 1 4.069 0\"></path><path d=\"M15 9h.01\"></path>"}, {"k": "diamond", "n": "Diamond", "b": "<path d=\"M6 5h12l3 5l-8.5 9.5a.7 .7 0 0 1 -1 0l-8.5 -9.5l3 -5\"></path><path d=\"M10 12l-2 -2.2l.6 -1\"></path>"}, {"k": "crown", "n": "Crown", "b": "<path d=\"M12 6l4 6l5 -4l-2 10h-14l-2 -10l5 4l4 -6\"></path>"}, {"k": "users", "n": "Users", "b": "<path d=\"M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0\"></path><path d=\"M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2\"></path><path d=\"M16 3.13a4 4 0 0 1 0 7.75\"></path><path d=\"M21 21v-2a4 4 0 0 0 -3 -3.85\"></path>"}, {"k": "friends", "n": "Friends", "b": "<path d=\"M5 5a2 2 0 1 0 4 0a2 2 0 1 0 -4 0\"></path><path d=\"M5 22v-5l-1 -1v-4a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4l-1 1v5\"></path><path d=\"M15 5a2 2 0 1 0 4 0a2 2 0 1 0 -4 0\"></path><path d=\"M15 22v-4h-2l2 -6a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1l2 6h-2v4\"></path>"}, {"k": "heart-handshake", "n": "Heart Handshake", "b": "<path d=\"M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572\"></path><path d=\"M12 6l-3.293 3.293a1 1 0 0 0 0 1.414l.543 .543c.69 .69 1.81 .69 2.5 0l1 -1a3.182 3.182 0 0 1 4.5 0l2.25 2.25\"></path><path d=\"M12.5 15.5l2 2\"></path><path d=\"M15 13l2 2\"></path>"}, {"k": "tools", "n": "Tools", "b": "<path d=\"M3 21h4l13 -13a1.5 1.5 0 0 0 -4 -4l-13 13v4\"></path><path d=\"M14.5 5.5l4 4\"></path><path d=\"M12 8l-5 -5l-4 4l5 5\"></path><path d=\"M7 8l-1.5 1.5\"></path><path d=\"M16 12l5 5l-4 4l-5 -5\"></path><path d=\"M16 17l-1.5 1.5\"></path>"}, {"k": "hammer", "n": "Hammer", "b": "<path d=\"M11.414 10l-7.383 7.418a2.091 2.091 0 0 0 0 2.967a2.11 2.11 0 0 0 2.976 0l7.407 -7.385\"></path><path d=\"M18.121 15.293l2.586 -2.586a1 1 0 0 0 0 -1.414l-7.586 -7.586a1 1 0 0 0 -1.414 0l-2.586 2.586a1 1 0 0 0 0 1.414l7.586 7.586a1 1 0 0 0 1.414 0\"></path>"}, {"k": "scissors", "n": "Scissors", "b": "<path d=\"M3 7a3 3 0 1 0 6 0a3 3 0 1 0 -6 0\"></path><path d=\"M3 17a3 3 0 1 0 6 0a3 3 0 1 0 -6 0\"></path><path d=\"M8.6 8.6l10.4 10.4\"></path><path d=\"M8.6 15.4l10.4 -10.4\"></path>"}, {"k": "chef-hat", "n": "Chef Hat", "b": "<path d=\"M12 3c1.918 0 3.52 1.35 3.91 3.151a4 4 0 0 1 2.09 7.723l0 7.126h-12v-7.126a4 4 0 1 1 2.092 -7.723a4 4 0 0 1 3.908 -3.151\"></path><path d=\"M6.161 17.009l11.839 -.009\"></path>"}, {"k": "coffee", "n": "Coffee", "b": "<path d=\"M3 14c.83 .642 2.077 1.017 3.5 1c1.423 .017 2.67 -.358 3.5 -1c.83 -.642 2.077 -1.017 3.5 -1c1.423 -.017 2.67 .358 3.5 1\"></path><path d=\"M8 3a2.4 2.4 0 0 0 -1 2a2.4 2.4 0 0 0 1 2\"></path><path d=\"M12 3a2.4 2.4 0 0 0 -1 2a2.4 2.4 0 0 0 1 2\"></path><path d=\"M3 10h14v5a6 6 0 0 1 -6 6h-2a6 6 0 0 1 -6 -6v-5\"></path><path d=\"M16.746 16.726a3 3 0 1 0 .252 -5.555\"></path>"}, {"k": "ball-football", "n": "Ball Football", "b": "<path d=\"M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0\"></path><path d=\"M12 7l4.76 3.45l-1.76 5.55h-6l-1.76 -5.55l4.76 -3.45\"></path><path d=\"M12 7v-4m3 13l2.5 3m-.74 -8.55l3.74 -1.45m-11.44 7.05l-2.56 2.95m.74 -8.55l-3.74 -1.45\"></path>"}, {"k": "ball-basketball", "n": "Ball Basketball", "b": "<path d=\"M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0\"></path><path d=\"M5.65 5.65l12.7 12.7\"></path><path d=\"M5.65 18.35l12.7 -12.7\"></path><path d=\"M12 3a9 9 0 0 0 9 9\"></path><path d=\"M3 12a9 9 0 0 1 9 9\"></path>"}, {"k": "ball-tennis", "n": "Ball Tennis", "b": "<path d=\"M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0\"></path><path d=\"M6 5.3a9 9 0 0 1 0 13.4\"></path><path d=\"M18 5.3a9 9 0 0 0 0 13.4\"></path>"}, {"k": "skateboard", "n": "Skateboard", "b": "<path d=\"M5 15a2 2 0 1 0 4 0a2 2 0 1 0 -4 0\"></path><path d=\"M15 15a2 2 0 1 0 4 0a2 2 0 1 0 -4 0\"></path><path d=\"M3 9a2 1 0 0 0 2 1h14a2 1 0 0 0 2 -1\"></path>"}, {"k": "bulb", "n": "Bulb", "b": "<path d=\"M3 12h1m8 -9v1m8 8h1m-15.4 -6.4l.7 .7m12.1 -.7l-.7 .7\"></path><path d=\"M9 16a5 5 0 1 1 6 0a3.5 3.5 0 0 0 -1 3a2 2 0 0 1 -4 0a3.5 3.5 0 0 0 -1 -3\"></path><path d=\"M9.7 17l4.6 0\"></path>"}, {"k": "brain", "n": "Brain", "b": "<path d=\"M15.5 13a3.5 3.5 0 0 0 -3.5 3.5v1a3.5 3.5 0 0 0 7 0v-1.8\"></path><path d=\"M8.5 13a3.5 3.5 0 0 1 3.5 3.5v1a3.5 3.5 0 0 1 -7 0v-1.8\"></path><path d=\"M17.5 16a3.5 3.5 0 0 0 0 -7h-.5\"></path><path d=\"M19 9.3v-2.8a3.5 3.5 0 0 0 -7 0\"></path><path d=\"M6.5 16a3.5 3.5 0 0 1 0 -7h.5\"></path><path d=\"M5 9.3v-2.8a3.5 3.5 0 0 1 7 0v10\"></path>"}, {"k": "atom", "n": "Atom", "b": "<path d=\"M12 12v.01\"></path><path d=\"M19.071 4.929c-1.562 -1.562 -6 .337 -9.9 4.243c-3.905 3.905 -5.804 8.337 -4.242 9.9c1.562 1.561 6 -.338 9.9 -4.244c3.905 -3.905 5.804 -8.337 4.242 -9.9\"></path><path d=\"M4.929 4.929c-1.562 1.562 .337 6 4.243 9.9c3.905 3.905 8.337 5.804 9.9 4.242c1.561 -1.562 -.338 -6 -4.244 -9.9c-3.905 -3.905 -8.337 -5.804 -9.9 -4.242\"></path>"}, {"k": "microscope", "n": "Microscope", "b": "<path d=\"M5 21h14\"></path><path d=\"M6 18h2\"></path><path d=\"M7 18v3\"></path><path d=\"M9 11l3 3l6 -6l-3 -3l-6 6\"></path><path d=\"M10.5 12.5l-1.5 1.5\"></path><path d=\"M17 3l3 3\"></path><path d=\"M12 21a6 6 0 0 0 3.715 -10.712\"></path>"}, {"k": "stethoscope", "n": "Stethoscope", "b": "<path d=\"M6 4h-1a2 2 0 0 0 -2 2v3.5a5.5 5.5 0 0 0 11 0v-3.5a2 2 0 0 0 -2 -2h-1\"></path><path d=\"M8 15a6 6 0 1 0 12 0v-3\"></path><path d=\"M11 3v2\"></path><path d=\"M6 3v2\"></path><path d=\"M18 10a2 2 0 1 0 4 0a2 2 0 1 0 -4 0\"></path>"}, {"k": "first-aid-kit", "n": "First Aid Kit", "b": "<path d=\"M8 8v-2a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v2\"></path><path d=\"M4 10a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2l0 -8\"></path><path d=\"M10 14h4\"></path><path d=\"M12 12v4\"></path>"}, {"k": "leaf", "n": "Leaf", "b": "<path d=\"M5 21c.5 -4.5 2.5 -8 7 -10\"></path><path d=\"M9 18c6.218 0 10.5 -3.288 11 -12v-2h-4.014c-9 0 -11.986 4 -12 9c0 1 0 3 2 5h3l.014 0\"></path>"}, {"k": "feather", "n": "Feather", "b": "<path d=\"M4 20l10 -10m0 -5v5h5m-9 -1v5h5m-9 -1v5h5m-5 -5l4 -4l4 -4\"></path><path d=\"M19 10c.638 -.636 1 -1.515 1 -2.486a3.515 3.515 0 0 0 -3.517 -3.514c-.97 0 -1.847 .367 -2.483 1m-3 13l4 -4l4 -4\"></path>"}, {"k": "piano", "n": "Piano", "b": "<path d=\"M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10\"></path><path d=\"M9 19v-6\"></path><path d=\"M8 5v8h2v-8\"></path><path d=\"M15 19v-6\"></path><path d=\"M14 5v8h2v-8\"></path>"}, {"k": "pizza", "n": "Pizza", "b": "<path d=\"M12 21.5c-3.04 0 -5.952 -.714 -8.5 -1.983l8.5 -16.517l8.5 16.517a19.09 19.09 0 0 1 -8.5 1.983\"></path><path d=\"M5.38 15.866a14.94 14.94 0 0 0 6.815 1.634a14.944 14.944 0 0 0 6.502 -1.479\"></path><path d=\"M13 11.01v-.01\"></path><path d=\"M11 14v-.01\"></path>"}, {"k": "meat", "n": "Meat", "b": "<path d=\"M13.62 8.382l1.966 -1.967a2 2 0 1 1 3.414 -1.415a2 2 0 1 1 -1.413 3.414l-1.82 1.821\"></path><path d=\"M5.904 18.596c2.733 2.734 5.9 4 7.07 2.829c1.172 -1.172 -.094 -4.338 -2.828 -7.071c-2.733 -2.734 -5.9 -4 -7.07 -2.829c-1.172 1.172 .094 4.338 2.828 7.071\"></path><path d=\"M7.5 16l1 1\"></path><path d=\"M12.975 21.425c3.905 -3.906 4.855 -9.288 2.121 -12.021c-2.733 -2.734 -8.115 -1.784 -12.02 2.121\"></path>"}, {"k": "bottle", "n": "Bottle", "b": "<path d=\"M10 5h4v-2a1 1 0 0 0 -1 -1h-2a1 1 0 0 0 -1 1v2\"></path><path d=\"M14 3.5c0 1.626 .507 3.212 1.45 4.537l.05 .07a8.093 8.093 0 0 1 1.5 4.694v6.199a2 2 0 0 1 -2 2h-6a2 2 0 0 1 -2 -2v-6.2c0 -1.682 .524 -3.322 1.5 -4.693l.05 -.07a7.823 7.823 0 0 0 1.45 -4.537\"></path><path d=\"M7 14.803a2.4 2.4 0 0 0 1 -.803a2.4 2.4 0 0 1 2 -1a2.4 2.4 0 0 1 2 1a2.4 2.4 0 0 0 2 1a2.4 2.4 0 0 0 2 -1a2.4 2.4 0 0 1 1 -.805\"></path>"}, {"k": "shirt", "n": "Shirt", "b": "<path d=\"M15 4l6 2v5h-3v8a1 1 0 0 1 -1 1h-10a1 1 0 0 1 -1 -1v-8h-3v-5l6 -2a3 3 0 0 0 6 0\"></path>"}, {"k": "hanger", "n": "Hanger", "b": "<path d=\"M14 6a2 2 0 1 0 -4 0c0 1.667 .67 3 2 4h-.008l7.971 4.428a2 2 0 0 1 1.029 1.749v.823a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-.823a2 2 0 0 1 1.029 -1.749l7.971 -4.428\"></path>"}, {"k": "gift", "n": "Gift", "b": "<path d=\"M3 9a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-16a1 1 0 0 1 -1 -1l0 -2\"></path><path d=\"M12 8l0 13\"></path><path d=\"M19 12v7a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-7\"></path><path d=\"M7.5 8a2.5 2.5 0 0 1 0 -5a4.8 8 0 0 1 4.5 5a4.8 8 0 0 1 4.5 -5a2.5 2.5 0 0 1 0 5\"></path>"}, {"k": "confetti", "n": "Confetti", "b": "<path d=\"M4 5h2\"></path><path d=\"M5 4v2\"></path><path d=\"M11.5 4l-.5 2\"></path><path d=\"M18 5h2\"></path><path d=\"M19 4v2\"></path><path d=\"M15 9l-1 1\"></path><path d=\"M18 13l2 -.5\"></path><path d=\"M18 19h2\"></path><path d=\"M19 18v2\"></path><path d=\"M14 16.518l-6.518 -6.518l-4.39 9.58a1 1 0 0 0 1.329 1.329l9.579 -4.39\"></path>"}, {"k": "mail", "n": "Mail", "b": "<path d=\"M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10\"></path><path d=\"M3 7l9 6l9 -6\"></path>"}]; }
+iconBody(k) { if (!this._ib) { this._ib = {}; this.iconList().forEach((i) => { this._ib[i.k] = i.b; }); } return this._ib[k] || this._ib.pencil; }
+iconKey(v) { const L = ['pencil', 'stopwatch', 'message', 'music', 'home', 'mountain']; return typeof v === 'string' && isNaN(+v) && v ? v : L[+v || 0] || 'pencil'; }
+hsv(h, s, v) {
+const f = (n) => { const k = (n + h / 60) % 6; return Math.round(255 * (v - v * s * Math.max(0, Math.min(k, 4 - k, 1)))); };
+return '#' + [f(5), f(3), f(1)].map((x) => ('0' + x.toString(16)).slice(-2)).join('').toUpperCase();
+}
+toHsv(hex) {
+const m = /^#([0-9a-f]{6})$/i.exec(hex || '');
+if (!m) return [0, 0, 1];
+const n = parseInt(m[1], 16), r = (n >> 16) / 255, g = ((n >> 8) & 255) / 255, b = (n & 255) / 255, mx = Math.max(r, g, b), d = mx - Math.min(r, g, b);
+let h = 0;
+if (d) h = mx === r ? ((g - b) / d + 6) % 6 : (mx === g ? (b - r) / d + 2 : (r - g) / d + 4);
+return [h * 60, mx ? d / mx : 0, mx];
+}
+partner(hex) { const c = this.toHsv(hex); return this.hsv((c[0] + 34) % 360, Math.max(0.3, c[1] * 0.8), Math.min(1, c[2] + 0.06)); }
+gradOf(hex) { const c = this.toHsv(hex); return 'linear-gradient(135deg, ' + this.hsv(c[0], c[1] * 0.5, Math.min(1, c[2] + 0.15)) + ' 0%, ' + hex + ' 100%)'; }
+wheelFor() { const w = this.store().ch.wheelFor; return w === 'dream' || w === 'cdream' ? w : 'theme'; }
+wheelTarget(w) { const a = w && w.getAttribute('data-wheel'); return a === 'theme' || a === 'stat' ? a : this.wheelFor(); }
+wheelHex(w) { const s = this.store(), tg = this.wheelTarget(w); return tg === 'stat' ? this.statOf(s.txt.stCur || 'PHY').col : tg === 'cdream' ? this.dreamSolid(this.curId()) : (tg === 'dream' ? (s.txt.chex || this.theme().accent) : (s.txt.themeHex || this.theme().accent)); }
+paintWheel(hex, only) {
+const root = this._root;
+if (!root) return;
+Array.prototype.slice.call(root.querySelectorAll('[data-wheel]')).forEach((w) => {
+if (only && w !== only) return;
+const hx = (only && hex) || this.wheelHex(w), c = this.toHsv(hx), a = c[0] * Math.PI / 180, k = w.querySelector('[data-knob]'), box = w.closest('[data-wheelbox]') || w.closest('section');
+if (k) { k.style.left = (50 + 50 * c[1] * Math.sin(a)) + '%'; k.style.top = (50 - 50 * c[1] * Math.cos(a)) + '%'; k.style.background = hx; }
+if (box) {
+Array.prototype.slice.call(box.querySelectorAll('[data-wheelhex]')).forEach((e) => { e.textContent = hx.toUpperCase(); });
+Array.prototype.slice.call(box.querySelectorAll('[data-wheelsw]')).forEach((e) => { e.style.background = hx; });
+}
+});
+}
+wheelAt(e) {
+const w = this._wh, r = w.getBoundingClientRect(), dx = e.clientX - (r.left + r.width / 2), dy = e.clientY - (r.top + r.height / 2);
+const d = Math.min(1, Math.sqrt(dx * dx + dy * dy) / (r.width / 2)), h = (Math.atan2(dx, -dy) * 180 / Math.PI + 360) % 360, hex = this.hsv(h, d, 1), s = this.store();
+const tg = this.wheelTarget(w);
+if (tg === 'stat') { const k = s.txt.stCur || 'PHY'; s.stats[k] = Object.assign({}, s.stats[k], { col: hex }); } else if (tg === 'cdream') this.setDream(this.curId(), 'hex', hex); else if (tg === 'dream') s.txt.chex = hex; else { s.txt.themeHex = hex; s.ch.theme = 'custom'; }
+this.paintWheel(hex, w);
+}
+pop(sel) {
+// a short celebration on the thing that was just completed; it lives one beat and goes
+setTimeout(() => {
+const e = this._root && this._root.querySelector(sel);
+if (!e) return;
+e.removeAttribute('data-pop'); void e.offsetWidth; e.setAttribute('data-pop', '1');
+setTimeout(() => e.removeAttribute('data-pop'), 700);
+try { if (navigator.vibrate) navigator.vibrate(10); } catch (err) {}
+}, 0);
+}
+keepOpen(name) {
+// a theme change can redraw the page; put the sheet straight back without replaying its slide
+const el = this._root && this._root.querySelector('[data-sheet="' + name + '"]');
+if (!el || el.classList.contains('up')) return;
+const sec = el.firstElementChild;
+el.style.transition = 'none'; if (sec) sec.style.transition = 'none';
+el.style.display = 'flex'; el.classList.add('up');
+void el.offsetHeight;
+el.style.transition = ''; if (sec) sec.style.transition = '';
+}
+stripLabel(st) {
+const first = st.querySelector('[data-sday]'), box = st.closest('section') || this._root, lab = box && box.querySelector('[data-striplab]');
+if (!first || !lab || !st.clientWidth) return;
+const i = Math.round(st.scrollLeft / st.clientWidth), wk = +first.getAttribute('data-sday') + 7 * i, n = Math.round(st.scrollWidth / st.clientWidth);
+lab.textContent = this.weekLabel(wk);
+// near either end of the loaded weeks: load a fresh year centred on the week in view
+clearTimeout(this._stripT);
+if (i < 3 || i > n - 4) this._stripT = setTimeout(() => { if (this._sAnchor === wk) return; this._sAnchor = wk; this._stripWant = wk; this.hydrate(); }, 160);
+}
+closeTop() {
+const up = this._root ? Array.prototype.slice.call(this._root.querySelectorAll('[data-sheet][data-over].up')) : [];
+if (up.length) up.forEach((e) => this.sheet(e.getAttribute('data-sheet'), false)); else this.closeSheets();
+}
+dayDate(off) { const t = new Date(); t.setHours(12, 0, 0, 0); t.setDate(t.getDate() + off); return t; }
+monOff(off) { return off - (this.dayDate(off).getDay() + 6) % 7; }
+isoWeek(d) {
+const t = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate())), wd = t.getUTCDay() || 7;
+t.setUTCDate(t.getUTCDate() + 4 - wd);
+const y = t.getUTCFullYear(), w = Math.ceil(((t - Date.UTC(y, 0, 1)) / 864e5 + 1) / 7), j = new Date(Date.UTC(y, 0, 1)).getUTCDay(), leap = (y % 4 === 0 && y % 100 !== 0) || y % 400 === 0;
+return [w, j === 4 || (leap && j === 3) ? 53 : 52, y];
+}
+weekLabel(off) { const w = this.isoWeek(this.dayDate(this.monOff(off))), y = this.isoWeek(this.dayDate(0))[2]; return 'Week ' + w[0] + ' of ' + w[1] + (w[2] !== y ? ', ' + w[2] : ''); }
+dayRange() { return [-36500, 36500]; }
+rgbOf(hex) { const n = parseInt((hex || '#000000').slice(1), 16); return [n >> 16, (n >> 8) & 255, n & 255]; }
+mixRgb(a, b, t, alpha) { const x = this.rgbOf(a), y = this.rgbOf(b), m = x.map((v, i) => Math.round(v * (1 - t) + y[i] * t)); return alpha === undefined ? 'rgb(' + m.join(', ') + ')' : 'rgba(' + m.join(', ') + ', ' + alpha + ')'; }
+tintUI() {
+// the theme colour leaks into the neutral surfaces so the whole UI leans the same way
+const r = this._root, A = this.theme().accent, ml = this.store().ch.mode === 'amoled';
+if (!r || !/^#[0-9a-f]{6}$/i.test(A || '') || r._tint === A + ml) return;
+r._tint = A + ml;
+const v = { bg: this.mixRgb('#0A0A10', A, 0.05), bg2: this.mixRgb('#0E0E13', A, 0.06), sheet: this.mixRgb('#1D1D26', A, 0.07), card: this.mixRgb('#FFFFFF', A, 0.3, 0.08),
+card2: this.mixRgb('#FFFFFF', A, 0.3, 0.15), line: this.mixRgb('#FFFFFF', A, 0.35, 0.13), sh1: this.mixRgb('#2E2E3C', A, 0.08, 0.72), sh2: this.mixRgb('#181820', A, 0.07, 0.86),
+glass: this.mixRgb('#282834', A, 0.08, 0.7), sec: this.mixRgb('#8E8E93', A, 0.16), dim: this.mixRgb('#77777C', A, 0.14) };
+if (ml) Object.assign(v, { bg: '#000000', bg2: '#000000', sheet: '#000000', sh1: 'rgba(0, 0, 0, 1)', sh2: 'rgba(0, 0, 0, 1)', glass: '#000000', card: this.mixRgb('#FFFFFF', A, 0.3, 0.07), card2: this.mixRgb('#FFFFFF', A, 0.3, 0.13), line: this.mixRgb('#FFFFFF', A, 0.35, 0.16) });
+Object.keys(v).forEach((k) => r.style.setProperty('--' + k, v[k]));
+}
+mins(t) { const m = /^(\d{1,2}):(\d{2})/.exec(t || ''); return m ? +m[1] * 60 + +m[2] : null; }
+hhmm(n) { n = ((n % 1440) + 1440) % 1440; return ('0' + Math.floor(n / 60)).slice(-2) + ':' + ('0' + n % 60).slice(-2); }
+tlH(len) { return 50.81 + Math.min(+len || 0, 180) * 0.6; }
+hexPath(w, h, r) {
+// a hexagon whose flat sides stretch with the task's length, every corner rounded the same
+const q = w / (2 * Math.sqrt(3)), P = [[w / 2, 0], [w, q], [w, h - q], [w / 2, h], [0, h - q], [0, q]], f = (v) => v.toFixed(2);
+let d = '';
+P.forEach((v, i) => {
+const a = P[(i + 5) % 6], b = P[(i + 1) % 6], la = Math.hypot(a[0] - v[0], a[1] - v[1]), lb = Math.hypot(b[0] - v[0], b[1] - v[1]);
+const p1 = [v[0] + (a[0] - v[0]) * r / la, v[1] + (a[1] - v[1]) * r / la], p2 = [v[0] + (b[0] - v[0]) * r / lb, v[1] + (b[1] - v[1]) * r / lb];
+d += (i ? 'L' : 'M') + f(p1[0]) + ' ' + f(p1[1]) + 'Q' + f(v[0]) + ' ' + f(v[1]) + ' ' + f(p2[0]) + ' ' + f(p2[1]);
+});
+return d + 'Z';
+}
+shapeRow(li, start, len) {
+// lay out one timeline row from its start time and length: the hexagon's height, the gutter, the line over the title
+len = +len || 0;
+const h = this.tlH(len), m = this.mins(start), end = m !== null && len ? this.hhmm(m + len) : '';
+const cap = li.querySelector('[data-cap]'), g = li.querySelector('[data-tg]');
+if (cap) { cap.style.height = h.toFixed(1) + 'px'; const p = "path('" + this.hexPath(44, h, 7) + "')"; cap.style.clipPath = p; cap.style.webkitClipPath = p; }
+if (g) { g.style.height = h.toFixed(1) + 'px'; g.style.justifyContent = end ? 'space-between' : 'center'; }
+const gs = li.querySelector('[data-tgs]'), ge = li.querySelector('[data-tge]'), wt = li.querySelector('[data-wt]');
+if (gs) gs.textContent = start || '';
+if (ge) { ge.textContent = end; ge.style.display = end ? 'block' : 'none'; }
+if (wt) wt.textContent = start ? (end ? start + ' – ' + end : start) : 'Any time';
+['[data-tlu]', '[data-tld]'].forEach((k) => { const e = li.querySelector(k); if (e) e.style.height = 'calc(50% - ' + (h / 2).toFixed(1) + 'px)'; });
+li.style.minHeight = Math.max(76, h + 22).toFixed(0) + 'px';
+li.setAttribute('data-start', start || '');
+}
+remDays(d) {
+const n = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'], on = (d || []).map((x, i) => x ? i : -1).filter((i) => i >= 0), k = on.join();
+if (on.length === 7) return 'Daily';
+if (!on.length) return 'Never';
+if (k === '0,1,2,3,4') return 'Weekdays';
+if (k === '5,6') return 'Weekends';
+return on.map((i) => n[i]).join(', ');
+}
+remAbout(a) { return ({ act: 'Actions', task: 'Tasks', focus: 'Focus', review: 'Review' })[a] || 'Actions'; }
+remCur() { const s = this.store(); return s.rem[Math.max(0, Math.min(s.rem.length - 1, s.num.remCur ?? 0))] || null; }
+solids() { return [this.theme().accent, '#F0D21E', '#19E6A8', '#3B8FF0', '#9B6DFF', '#E87A1E']; }
+// ---- every dream keeps its own editable record: name, why, goals (with milestones), daily actions and strategies
+curId() { const c = this.store().txt.cur; return this.known(c) ? c : (this.allIds()[0] || 'studio'); }
+daysOf(t) { t = String(t || ''); if (!t || /every day|daily/i.test(t)) return [1, 1, 1, 1, 1, 1, 1]; if (/weekday/i.test(t)) return [1, 1, 1, 1, 1, 0, 0]; if (/weekend/i.test(t)) return [0, 0, 0, 0, 0, 1, 1]; const k = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((d, i) => (t.indexOf(d) >= 0 || t.indexOf(['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'][i]) >= 0) ? 1 : 0); return k.some(Boolean) ? k : [1, 1, 1, 1, 1, 1, 1]; }
+// ---- the goal system: the DREAM (the INTANGIBLE GOAL, one per hexagon) > TANGIBLE GOALS (measurable) > STRATEGIES > DAILY ACTIONS, checked at 1, 3 and 6 month CHECKPOINTS
+dayIso(off) { const d = this.dayDate(off || 0); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
+ddSeed3() {
+const G = (id, t, ig, kind, start, target, cur, unit, ago, extra) => Object.assign({ id: id, t: t, ig: ig, kind: kind, start: start, target: target, cur: cur, unit: unit, done: 0, since: this.dayIso(-ago), checks: {} }, extra || {});
+const A = (id, t, time, len, sid, days) => ({ id: id, t: t, time: time, len: len, s: sid, days: days || [1, 1, 1, 1, 1, 1, 1] });
+return {
+studio: { track: 'Design business', why: 'Work for myself, on projects I choose, from a space that is mine.',
+igs: [{ id: 'i0', t: 'A designer clients trust with real budgets' }, { id: 'i1', t: 'Financially safe enough to go solo' }],
+goals: [G('g0', 'Portfolio projects finished', 'i0', 'num', 0, 12, 6, 'projects', 40, { checks: { 1: { actual: 1, note: 'Behind pace. Adding a Saturday morning session to the pipeline.', done: 1 } } }), G('g1', 'Paying clients signed', 'i0', 'num', 0, 3, 1, 'clients', 40), G('g2', 'Runway saved', 'i1', 'num', 0, 15000, 6000, '£', 40)],
+strat: [{ id: 's0', t: 'Portfolio pipeline', d: 'One self-initiated brief a fortnight. Photograph and write up each project the week it ships.', g: 'g0' }, { id: 's1', t: 'Outreach plan', d: 'Pitch 3 local businesses a week, each with a tailored one-page idea.', g: 'g1' }, { id: 's2', t: 'Savings plan', d: 'Move 20% of every invoice into the runway account the day it is paid.', g: 'g2' }],
+acts: [A('design', 'Design for 45 min', '08:00', 45, 's0'), A('post', 'Post work in progress', '21:30', 0, 's0', [0, 1, 0, 1, 0, 1, 0])] },
+tri: { track: 'Fitness', why: 'Be fit enough to swim, ride and run one race from start to finish, and enjoy it.',
+igs: [{ id: 'i0', t: 'An endurance athlete who enjoys long efforts' }, { id: 'i1', t: 'Strong and fast on the bike' }],
+goals: [G('g0', 'Sprint triathlon finished', 'i0', 'bin', 0, 1, 0, '', 20), G('g1', 'Non-stop swim distance', 'i0', 'num', 400, 1500, 900, 'm', 20), G('g2', '40 km ride time', 'i1', 'num', 120, 90, 104, 'min', 20)],
+strat: [{ id: 's0', t: '12 week training plan', d: '3 runs, 2 swims and 2 rides a week. Build 10% a week, with an easy week every fourth.', g: 'g0' }, { id: 's1', t: 'Swim technique plan', d: 'Two drill sessions and one long swim a week, adding 100 m to the long swim each time.', g: 'g1' }, { id: 's2', t: 'Bike intervals plan', d: 'Twice a week: 5 x 4 minutes hard, 2 minutes easy. One long ride at the weekend.', g: 'g2' }],
+acts: [A('run', 'Morning run', '06:30', 30, 's0'), A('swim', 'Swim 30 lengths', '18:00', 40, 's1')] },
+jp: { track: 'Languages', why: 'Hold a real conversation in Japanese, without reaching for an app.',
+igs: [{ id: 'i0', t: 'Comfortable speaking Japanese with strangers' }, { id: 'i1', t: 'Able to read everyday Japanese' }],
+goals: [G('g0', '15 minute conversation held', 'i0', 'bin', 0, 1, 0, '', 60), G('g1', 'JLPT N4 passed', 'i1', 'bin', 0, 1, 0, '', 60), G('g2', 'Kanji known', 'i1', 'num', 0, 300, 120, 'kanji', 60)],
+strat: [{ id: 's0', t: 'Speaking plan', d: 'Two 30 minute online lessons a week, and shadow one dialogue a day.', g: 'g0' }, { id: 's1', t: 'Exam study plan', d: '20 new words a day with spaced repetition, one grammar point a week, a past paper every Sunday.', g: 'g1' }],
+acts: [A('words', 'Learn 20 new words', '13:00', 15, 's1')] },
+music: { track: 'Music', why: 'Play a full set of songs I love, live, for people who came to listen.',
+igs: [{ id: 'i0', t: 'A confident performer' }],
+goals: [G('g0', 'Songs I can play start to finish', 'i0', 'num', 0, 8, 3, 'songs', 30), G('g1', 'Open mic nights played', 'i0', 'num', 0, 1, 0, 'gigs', 30)],
+strat: [{ id: 's0', t: 'Practice plan', d: 'One new song a fortnight: learn the parts slowly, then play it through at tempo every day.', g: 'g0' }, { id: 's1', t: 'Gig prep plan', d: 'Pick a 3 song set, rehearse it standing up twice a week, and play it to a friend first.', g: 'g1' }],
+acts: [A('practise', 'Practise for 30 min', '19:30', 30, 's0')] },
+home: { track: 'Money', why: 'Own a place with my name on the door and room to grow.',
+igs: [{ id: 'i0', t: 'In control of my money' }],
+goals: [G('g0', 'House deposit saved', 'i0', 'num', 0, 25000, 8000, '£', 50), G('g1', 'Credit card balance', 'i0', 'num', 3200, 0, 1900, '£', 50)],
+strat: [{ id: 's0', t: 'Deposit savings plan', d: 'A standing order for 15% of take-home pay on payday, into a separate account.', g: 'g0' }, { id: 's1', t: 'Debt payoff plan', d: 'Freeze the card, pay £250 a month, and put any windfall straight onto it.', g: 'g1' }],
+acts: [A('spend', 'Log today’s spending', '21:00', 0, 's1')] }
+};
+}
+uid(p) { return p + Date.now().toString(36) + Math.floor(Math.random() * 1296).toString(36); }
+ddOf(id) {
+const s = this.store();
+if (!s.dd || typeof s.dd !== 'object') s.dd = {};
+const old = s.dd[id];
+if (old && old.v === 3) return old;
+const seed = this.fresh() ? null : this.ddSeed3()[id], keep = old || {};
+const o = { v: 3, why: keep.why ?? (seed ? seed.why : ''), track: keep.track ?? (seed ? seed.track : ''), igs: [], goals: [], strat: [], acts: [] };
+['name', 'logo', 'hex', 'gone'].forEach((k) => { if (keep[k] !== undefined) o[k] = keep[k]; });
+if (seed) {
+const S = JSON.parse(JSON.stringify(seed));
+o.igs = S.igs; o.goals = S.goals; o.strat = S.strat;
+o.acts = S.acts.filter((a) => !s.num['gone_' + a.id]);
+// daily actions the person added before stay, untraced until they link them to a STRATEGY
+(keep.acts || []).forEach((a) => { if (!o.acts.some((x) => x.id === a.id) && a.made) o.acts.push({ id: a.id, t: a.t, time: a.time || '', len: +a.len || 0, days: a.days || [1, 1, 1, 1, 1, 1, 1], s: '', made: 1 }); });
+} else if (old) {
+// an older custom dream: each goal becomes a TANGIBLE GOAL under one INTANGIBLE GOAL, measured in the steps it had
+o.igs = [{ id: 'i0', t: '' }];
+o.goals = (old.goals || []).map((g) => { const ms = g.ms || [], n = ms.length, dn = Math.max(0, Math.min(n, +g.dn || 0)); return { id: g.id, t: g.t, ig: 'i0', kind: 'num', start: 0, target: n || 1, cur: dn, unit: 'steps', done: 0, since: this.dayIso(0), checks: {} }; });
+o.strat = (old.strat || []).map((x) => ({ id: x.id, t: x.t, d: x.d || '', g: x.g || '' }));
+o.acts = (old.acts || []).map((a) => ({ id: a.id, t: a.t, time: a.time || '', len: +a.len || 0, days: a.days || [1, 1, 1, 1, 1, 1, 1], s: '', made: a.made ? 1 : 0 }));
+}
+s.dd[id] = o;
+return o;
+}
+ddInit() {
+const s = this.store();
+if (s.ddv === 3) return;
+if (!s.ddv && s.txt.custAct && !s.num.gone_cust && !this.fresh()) { const ad = this.known(s.ch.adream) ? s.ch.adream : 'tri'; s.dd = s.dd || {}; s.dd[ad] = s.dd[ad] || {}; (s.dd[ad].acts = s.dd[ad].acts || []).push({ id: 'cust', t: s.txt.custAct, time: s.txt.caTime || '', len: s.num.caLen || 0, days: [1, 1, 1, 1, 1, 1, 1], made: 1 }); }
+delete s.txt.custAct;
+this.allIds().forEach((id) => this.ddOf(id));
+s.ddv = 3;
+this.save();
+}
+gPct(G) {
+if (!G) return 0;
+if (G.kind === 'bin') return G.done ? 100 : 0;
+const a = +G.start || 0, b = +G.target, c = +G.cur || 0;
+if (!isFinite(b) || b === a) return c === b && G.target !== '' ? 100 : 0;
+return Math.round(Math.max(0, Math.min(1, (c - a) / (b - a))) * 100);
+}
+ofT(G) { const u = G.unit || ''; if (+G.target < +G.start) return this.fmtV(G.cur, u) + ' \u00b7 target ' + this.fmtV(G.target, u); const cur = /^[£$€]$/.test(u) ? this.fmtV(G.cur, u) : this.fmtV(G.cur, ''); return cur + ' of ' + this.fmtV(G.target, u); }
+measurable(G) { return G.kind === 'bin' || (G.target !== '' && G.target != null && isFinite(+G.target) && +G.target !== +G.start); }
+fmtV(v, unit) {
+const n = +v, u = unit || '', num = isFinite(n) ? (Math.abs(n) >= 1000 ? Math.round(n).toLocaleString('en-GB') : String(Math.round(n * 10) / 10)) : '?';
+return /^[£$€]$/.test(u) ? u + num : (u ? num + ' ' + u : num);
+}
+addMonths(iso, m) { const p = String(iso || this.dayIso(0)).split('-'), d = new Date(+p[0], +p[1] - 1, +p[2], 12); d.setMonth(d.getMonth() + m); return d; }
+checks(G) {
+// CHECKPOINTS: where the goal should be after 1, 3 and 6 months, on a straight line from start to target
+const today = this.dayDate(0), a = +G.start || 0, b = +G.target || 0;
+return [1, 3, 6].map((m) => {
+const at = this.addMonths(G.since, m), due = at <= today, rev = (G.checks || {})[m] || null, raw = a + (b - a) * m / 6, exp = G.kind === 'bin' ? (m === 6 ? 1 : 0) : (Math.abs(b - a) >= 10 ? Math.round(raw) : Math.round(raw * 10) / 10);
+const days = Math.round((at - today) / 86400000);
+return { m: m, at: at, due: due, rev: rev && rev.done ? rev : null, exp: exp, days: days };
+});
+}
+verdict(G, ck, actual) {
+if (G.kind === 'bin') return actual ? 'ahead' : (ck.m === 6 ? 'behind' : 'on track');
+const a = +G.start || 0, b = +G.target || 0, dir = b >= a ? 1 : -1, gap = (actual - ck.exp) * dir, tol = Math.abs(b - a) * 0.05;
+return gap > tol ? 'ahead' : (gap < -tol ? 'behind' : 'on track');
+}
+gaps(id) {
+// the system check: missing layers, untraceable actions and goals that can't be measured
+const R = this.ddOf(id), out = [], q = (t) => '“' + (t || 'Untitled') + '”';
+if (!R.goals.length) out.push('This DREAM has no TANGIBLE GOAL to prove it yet.');
+if (!String(R.why || '').trim()) out.push('This DREAM has no vision written yet. Describe the end state you’re after.');
+R.goals.forEach((g) => {
+if (!this.measurable(g)) out.push('TANGIBLE GOAL ' + q(g.t) + ' can’t be measured yet. Give it a target number, or make it done-or-not.');
+if (!R.strat.some((x) => x.g === g.id)) out.push('TANGIBLE GOAL ' + q(g.t) + ' has no STRATEGY.');
+this.checks(g).forEach((c) => { if (c.due && !c.rev) out.push('The ' + c.m + ' month CHECKPOINT for ' + q(g.t) + ' is due.'); });
+});
+R.strat.forEach((x) => { if (!R.acts.some((a) => a.s === x.id)) out.push('STRATEGY ' + q(x.t) + ' has no DAILY ACTIONS carrying it out.'); if (!R.goals.some((g) => g.id === x.g)) out.push('STRATEGY ' + q(x.t) + ' doesn’t support a TANGIBLE GOAL.'); });
+R.acts.forEach((a) => { if (!R.strat.some((x) => x.id === a.s)) out.push('DAILY ACTION ' + q(a.t) + ' can’t be traced up to a STRATEGY.'); });
+return out;
+}
+actFind(aid) { const ids = this.allIds(); for (let i = 0; i < ids.length; i++) { const L = this.ddOf(ids[i]).acts, j = L.findIndex((a) => a.id === aid); if (j >= 0) return { dream: ids[i], list: L, i: j, a: L[j] }; } return null; }
+actCur() { const f = this.actFind(this.store().txt.aCur || ''); return f ? f.a : null; }
+stratCur() { const L = this.ddOf(this.curId()).strat; return L.filter((x) => x.id === this.store().txt.sCur)[0] || null; }
+goalRec() { const G = this.curGoal(); return this.known(G.id) ? this.ddOf(G.id).goals[G.g] || null : null; }
+msCur() { return null; }
+igCur() { const R = this.ddOf(this.curId()); return R.igs.filter((x) => x.id === this.store().txt.igCur)[0] || null; }
+setDream(id, k, v) { const cd = this.custom(id); if (cd && (k === 'name' || k === 'logo' || k === 'hex')) { cd[k] = v; if (k === 'hex') cd.col = 0; } else this.ddOf(id)[k] = v; }
+delDream(id) {
+const s = this.store(), cd = this.custom(id);
+if (cd) { s.dreams.splice(s.dreams.indexOf(cd), 1); delete s.dd[id]; } else { this.ddOf(id).gone = 1; }
+delete s.focus[id];
+s.txt.cur = this.allIds()[0] || '';
+}
+dreamAct(a, t) {
+const s = this.store(), cur = this.curId(), R0 = this.known(cur) ? this.ddOf(cur) : null, k = a[0], done = () => { this.save(); this.hydrate(); return true; };
+const focus = (sel) => setTimeout(() => { const e = this._root && this._root.querySelector(sel); if (e) { try { e.focus({ preventScroll: true }); } catch (err) {} } }, 380);
+const onGoalPage = !!(this._root && this._root.querySelector('[data-list="checks"]'));
+const back = () => { const l = this._root.querySelector('[data-back]'); if (l) setTimeout(() => l.click(), 60); };
+if (k === 'dedit') { this.hydrate(); this.sheet('dedit', true); return true; }
+if (k === 'pedit') { this.hydrate(); this.sheet('pedit', true); return true; }
+if (k === 'phrm') { delete s.me.photo; return done(); }
+if (k === 'icfor') { s.ch.icFor = 'cur'; this.save(); this.hydrate(); this.sheet('icons', true); return true; }
+if (k === 'ddel') { this.sheet('ddel', true); return true; }
+if (k === 'ddelok') { this.delDream(cur); this.save(); this.closeSheets(); this.hydrate(); back(); return true; }
+if (!R0) return false;
+// INTANGIBLE GOALS
+if (k === 'igadd') { const v = (s.txt.ignew || '').trim(); if (!v) { focus('[data-in="ignew"]'); return true; } R0.igs.push({ id: this.uid('i'), t: v }); s.txt.ignew = ''; this.wipe('ignew'); return done(); }
+if (k === 'igedit') { s.txt.igCur = a[1]; this.save(); this.hydrate(); this.sheet('igedit', true); return true; }
+if (k === 'igdel') { const x = this.igCur(); if (x) { R0.igs.splice(R0.igs.indexOf(x), 1); R0.goals.forEach((g) => { if (g.ig === x.id) g.ig = ''; }); } this.closeSheets(); return done(); }
+// TANGIBLE GOALS
+if (k === 'gnew') { const g = { id: this.uid('g'), t: '', ig: '', kind: 'num', start: 0, target: '', cur: 0, unit: '', done: 0, since: this.dayIso(0), checks: {} }; R0.goals.push(g); s.num.cg = R0.goals.length - 1; this.save(); this.hydrate(); this.sheet('gedit', true); focus('[data-gf="t"]'); return true; }
+if (k === 'gedit') { this.hydrate(); this.sheet('gedit', true); return true; }
+if (k === 'gdelq') { this.sheet('gdelq', true); return true; }
+const GG = this.goalRec();
+if (GG && k === 'gdel') { R0.goals.splice(R0.goals.indexOf(GG), 1); R0.strat.forEach((x) => { if (x.g === GG.id) x.g = ''; }); s.num.cg = 0; this.closeSheets(); this.save(); this.hydrate(); if (onGoalPage) back(); return true; }
+if (GG && k === 'gkind') { GG.kind = a[1] === 'bin' ? 'bin' : 'num'; return done(); }
+if (GG && k === 'gig') { GG.ig = a[1] || ''; return done(); }
+if (GG && k === 'gdone') { GG.done = GG.done ? 0 : 1; if (GG.done) this.pop('[data-gmeter]'); return done(); }
+if (GG && k === 'gstep') { const span = Math.abs((+GG.target || 0) - (+GG.start || 0)), st = span >= 5000 ? 100 : (span >= 500 ? 10 : 1); GG.cur = Math.round(((+GG.cur || 0) + st * (+a[1])) * 10) / 10; GG.curSet = 1; if (this.gPct(GG) >= 100) this.pop('[data-gmeter]'); return done(); }
+if (k === 'gsave') { if (GG && !String(GG.t || '').trim()) GG.t = 'Untitled TANGIBLE GOAL'; this.closeSheets(); return done(); }
+// CHECKPOINTS
+if (k === 'ckedit') { s.num.ckCur = +a[1]; if (GG) { GG.checks = GG.checks || {}; const c = GG.checks[a[1]] || (GG.checks[a[1]] = { actual: GG.kind === 'bin' ? (GG.done ? 1 : 0) : GG.cur, note: '', done: 0 }); if (!c.done) c.actual = GG.kind === 'bin' ? (GG.done ? 1 : 0) : GG.cur; } this.save(); this.hydrate(); this.sheet('ckedit', true); return true; }
+const CR = GG && GG.checks ? GG.checks[s.num.ckCur || 1] : null;
+if (CR && k === 'ckbin') { CR.actual = +a[1]; return done(); }
+if (CR && k === 'cksave') { CR.done = 1; this.closeSheets(); return done(); }
+if (CR && k === 'ckclear') { delete GG.checks[s.num.ckCur || 1]; this.closeSheets(); return done(); }
+// STRATEGIES
+if (k === 'sadd') {
+const key = a[1] === 'g' ? 'sgnew' : 'snew', v = (s.txt[key] || '').trim(), G2 = a[1] === 'g' ? GG : null;
+if (!v) { focus('[data-in="' + key + '"]'); return true; }
+const x = { id: this.uid('s'), t: v, d: '', g: G2 ? G2.id : '' };
+R0.strat.push(x); s.txt[key] = ''; this.wipe(key); s.txt.sCur = x.id; this.save(); this.hydrate(); this.sheet('stedit', true); focus('[data-sf="d"]'); return true;
+}
+if (k === 'stedit') { s.txt.sCur = a[1]; this.save(); this.hydrate(); this.sheet('stedit', true); return true; }
+if (k === 'sg') { const x = this.stratCur(); if (x) x.g = a[1] || ''; return done(); }
+if (k === 'sdel') { const x = this.stratCur(); if (x) { R0.strat.splice(R0.strat.indexOf(x), 1); R0.acts.forEach((y) => { if (y.s === x.id) y.s = ''; }); } this.closeSheets(); return done(); }
+// DAILY ACTIONS
+if (k === 'aadd') { const S0 = a[1] === 'g' && GG ? R0.strat.filter((x) => x.g === GG.id)[0] : null, x = { id: this.uid('a'), t: '', time: '', len: 0, days: [1, 1, 1, 1, 1, 1, 1], s: S0 ? S0.id : '', made: 1 }; R0.acts.push(x); s.txt.aCur = x.id; this.save(); this.hydrate(); this.sheet('aedit', true); focus('[data-af="t"]'); return true; }
+if (k === 'aedit') { s.txt.aCur = a[1]; this.save(); this.hydrate(); this.sheet('aedit', true); return true; }
+const ac = this.actCur();
+if (ac && k === 'alen') { ac.len = +a[1]; return done(); }
+if (ac && k === 'aday') { ac.days = (ac.days || [1, 1, 1, 1, 1, 1, 1]).slice(); ac.days[+a[1]] = ac.days[+a[1]] ? 0 : 1; return done(); }
+if (ac && k === 'arep') { ac.days = ({ all: [1, 1, 1, 1, 1, 1, 1], wd: [1, 1, 1, 1, 1, 0, 0], we: [0, 0, 0, 0, 0, 1, 1] })[a[1]].slice(); return done(); }
+if (ac && k === 'ag') { ac.s = a[1] || ''; return done(); }
+if (ac && k === 'adel') { const f = this.actFind(ac.id); if (f) f.list.splice(f.i, 1); delete s.done[ac.id]; this.closeSheets(); return done(); }
+if (k === 'adone') { if (ac && !String(ac.t || '').trim()) ac.t = 'New daily action'; this.closeSheets(); return done(); }
+return false;
+}
+// ---- earned things on a fresh install: badges, titles, the 5 week grid and the week's summary
+awards(c) {
+const s = this.store(), H = c.hx || this.history(), v = (k) => c['v_' + k] || 0, keys = ['PHY', 'SPD', 'STA', 'DSC', 'PUR', 'INT'];
+let reviewed = 0, goalDone = 0, dreamDone = 0;
+this.allIds().forEach((id) => { const R = this.ddOf(id); R.goals.forEach((g) => { Object.keys(g.checks || {}).forEach((m) => { if (g.checks[m] && g.checks[m].done) reviewed++; }); if (this.gPct(g) >= 100) goalDone++; }); if (R.goals.length && this.dreamPct(id) >= 100) dreamDone++; });
+const B = { 'First Cell': this.allIds().length >= 1, '7 Day Streak': H.best >= 7, '30 Day Streak': H.best >= 30, 'Reviewer': reviewed >= 3, 'Strong Start': v('PHY') >= 60, 'First Goal': goalDone >= 1,
+'Balanced Hex': keys.every((k) => v(k) >= 70), 'Centurion': H.activeDays >= 100, 'Rank A': (c.total || 0) >= 440, 'Dream Realised': dreamDone >= 1 };
+const T = { 'The Consistent': H.best >= 7, 'Early Riser': H.early >= 10, 'Iron Will': H.best >= 30, 'Balanced': keys.every((k) => v(k) >= 70) };
+return { B: B, T: T };
+}
+awardSync(q, c) {
+const s = this.store(), A = this.awards(c), got = Object.keys(A.B).filter((k) => A.B[k]), grad = this.theme().grad;
+q('[data-bind="badgeN"]').forEach((e) => { e.textContent = String(got.length); });
+q('[data-bind="badgeLine"]').forEach((e) => { e.textContent = got.length ? 'Unlocked: ' + got.join(', ') + '.' : 'No badges yet. Your first one, First Cell, comes with your first DREAM on the hive.'; });
+q('[data-badge]').forEach((e) => {
+if (e._st0 === undefined) e._st0 = e.getAttribute('style');
+const on = !!A.B[e.getAttribute('data-badge')], lk = e.querySelector('[data-lock]');
+e.setAttribute('style', on ? e._st0.replace(/background: [^;]*; color: [^;]*;/, 'background: ' + grad + '; color: #0B0B12;') : e._st0);
+if (lk) lk.style.display = on ? 'none' : 'flex';
+});
+if (s.ch.title && !A.T[s.ch.title]) delete s.ch.title;
+q('[data-title]').forEach((e) => {
+const k = e.getAttribute('data-title'), on = !!A.T[k], eq = on && s.ch.title === k, lk = e.querySelector('[data-lock]');
+if (on) { e.setAttribute('data-act', 'ch'); e.setAttribute('data-ch', 'title:' + k); e.setAttribute('role', 'button'); e.setAttribute('tabindex', '0'); } else { e.removeAttribute('data-act'); e.removeAttribute('role'); e.removeAttribute('tabindex'); }
+e.style.border = on ? '0' : '2px dotted var(--line, rgba(255, 255, 255, 0.13))';
+e.style.background = eq ? grad : (on ? 'var(--card, rgba(255, 255, 255, 0.08))' : 'transparent');
+e.style.color = eq ? '#0B0B12' : (on ? '#F2F2F3' : 'var(--sec, #8E8E93)');
+e.style.cursor = on ? 'pointer' : '';
+if (lk) lk.style.display = on ? 'none' : 'flex';
+});
+// the 5 week grid: one cell a day, Monday first, oldest week at the top
+const cells = q('[data-heat]');
+if (cells.length) {
+const mon = this.monOff(0) - 28, n = Math.max(1, (s.tasks || []).length + this.allIds().reduce((t, id) => t + this.ddOf(id).acts.length, 0));
+cells.forEach((e) => {
+const i = +e.getAttribute('data-heat'), d = mon + i, L = d > 0 ? null : this.dayLog(d), k = L ? Object.keys(L).filter((x) => L[x]).length : 0;
+if (!k) { e.style.border = '1.5px dotted var(--line, rgba(255, 255, 255, 0.13))'; e.style.background = 'transparent'; e.style.opacity = '1'; }
+else { e.style.border = '0'; e.style.background = grad; e.style.opacity = String(Math.min(1, 0.3 + 0.7 * k / n)); }
+});
+}
+const H = c.hx || this.history();
+q('[data-bind="insTxt"]').forEach((e) => {
+let a = 0, t = 0, days = 0;
+for (let d = -6; d <= 0; d++) { const L = this.dayLog(d); if (!L) continue; const ids = Object.keys(L).filter((x) => L[x]); if (ids.length) days++; ids.forEach((x) => { if ((s.tasks || []).some((y) => y.id === x)) t++; else a++; }); }
+e.textContent = days ? 'Last 7 days: ' + a + ' DAILY ACTION' + (a === 1 ? '' : 'S') + ' and ' + t + ' stat task' + (t === 1 ? '' : 's') + ' done, across ' + days + ' of 7 days. Current streak: ' + H.streak + (H.streak === 1 ? ' day.' : ' days.') : 'Nothing logged yet. Tick off DAILY ACTIONS and stat tasks, and this week fills in here day by day.';
+});
+}
+dreamSync(q) {
+const s = this.store(), act = document.activeElement, val = (e, v) => { v = v == null ? '' : String(v); if (act !== e && e.value !== v) e.value = v; };
+const cur = this.curId(), R0 = this.known(cur) ? this.ddOf(cur) : null;
+q('[data-ddf]').forEach((e) => { const k = e.getAttribute('data-ddf'); val(e, k === 'name' ? this.dreamName(cur) : (R0 ? R0[k] : '')); });
+const igc = this.igCur(); if (igc) q('[data-igf]').forEach((e) => val(e, igc.t));
+const ac = this.actCur(), pr = (e, on) => { e.setAttribute('aria-pressed', on ? 'true' : 'false'); e.style.background = on ? this.dreamGrad(cur) : 'var(--card, rgba(255, 255, 255, 0.08))'; e.style.color = on ? '#0B0B12' : '#F2F2F3'; };
+if (ac) {
+q('[data-af]').forEach((e) => val(e, ac[e.getAttribute('data-af')]));
+q('[data-alen]').forEach((e) => pr(e, String(+ac.len || 0) === e.getAttribute('data-alen')));
+q('[data-aday]').forEach((e) => pr(e, !!(ac.days || [])[+e.getAttribute('data-aday')]));
+q('[data-arep]').forEach((e) => { const k = (ac.days || []).join(''); pr(e, ({ all: '1111111', wd: '1111100', we: '0000011' })[e.getAttribute('data-arep')] === k); });
+q('[data-ag]').forEach((e) => pr(e, (ac.s || '') === e.getAttribute('data-ag')));
+}
+const sc = this.stratCur();
+if (sc) { q('[data-sf]').forEach((e) => val(e, sc[e.getAttribute('data-sf')])); q('[data-sg]').forEach((e) => pr(e, (sc.g || '') === e.getAttribute('data-sg'))); }
+const GG = this.goalRec();
+if (GG) {
+q('[data-gf]').forEach((e) => val(e, GG[e.getAttribute('data-gf')]));
+q('[data-gkind]').forEach((e) => pr(e, (GG.kind === 'bin' ? 'bin' : 'num') === e.getAttribute('data-gkind')));
+q('[data-gig]').forEach((e) => pr(e, (GG.ig || '') === e.getAttribute('data-gig')));
+const CRv = GG.checks ? GG.checks[s.num.ckCur || 1] : null;
+if (CRv) { q('[data-ckf]').forEach((e) => val(e, CRv[e.getAttribute('data-ckf')])); q('[data-ckbin]').forEach((e) => pr(e, String(+CRv.actual || 0) === e.getAttribute('data-ckbin'))); }
+}
+const mc = this.msCur();
+if (mc) q('[data-mf]').forEach((e) => val(e, mc[0]));
+if (this.fresh()) q('[data-act^="open:"]').forEach((e) => { if (['studio', 'tri', 'jp', 'music', 'home'].indexOf(e.getAttribute('data-act').slice(5)) >= 0) e.style.display = 'none'; });
+// built-in hive cells follow the dream's own colour and icon once they have been changed
+const tint = (c, a) => { const n = parseInt(c.slice(1), 16); return 'rgba(' + (n >> 16) + ', ' + ((n >> 8) & 255) + ', ' + (n & 255) + ', ' + a + ')'; };
+q('[data-cell]').forEach((el) => {
+const id = el.getAttribute('data-cell');
+if (!this.dreamData()[id]) { if (this.fresh() && ['studio', 'tri', 'jp', 'music', 'home'].indexOf(id) >= 0) el.style.display = 'none'; return; }
+if (this.gone(id)) { el.style.display = 'none'; return; }
+el.setAttribute('aria-label', this.dreamName(id));
+const x = this.ddx(id);
+if (!x.hex && !x.logo) return;
+const sol = this.dreamSolid(id), band = el.querySelector('[data-band]'), body = el.querySelector('[data-body]'), fill = el.querySelector('[data-fill]'), liq = el.querySelector('[data-liq]');
+if (band) band.style.background = this.shade(sol, 0.42);
+if (body && !el.hasAttribute('data-won')) { body.style.background = tint(sol, 0.26); body.style.color = sol; }
+if (fill) fill.style.color = this.shade(sol);
+if (liq) liq.style.background = this.dreamGrad(id);
+const ik = this.dreamIcon(id);
+if (el._ik !== ik) { el._ik = ik; Array.prototype.slice.call(el.querySelectorAll('[data-ico] svg')).forEach((v) => { v.innerHTML = this.iconBody(ik); }); }
+});
+}
+custom(id) { return this.store().dreams.filter((d) => d.id === id)[0] || null; }
+known(id) { return !!((this.dreamData()[id] && !this.gone(id)) || this.custom(id)); }
+gone(id) { const x = this.store().dd; return !!(x && x[id] && x[id].gone); }
+ddx(id) { const x = this.store().dd; return (x && x[id]) || {}; }
+baseIds() { return this.fresh() ? [] : ['studio', 'tri', 'jp', 'music', 'home'].filter((id) => !this.gone(id)); }
+allIds() { return this.baseIds().concat(this.store().dreams.map((d) => d.id)); }
+dreamCol(id) { const cd = this.custom(id); return cd ? +cd.col || 0 : ({ tri: 1, jp: 2, music: 4, home: 3 })[id] || 0; }
+dreamGrad(id) { const cd = this.custom(id), x = this.ddx(id); if (!cd && x.hex) return this.gradOf(x.hex); return cd && cd.hex ? this.gradOf(cd.hex) : (this.cols()[this.dreamCol(id)] || this.theme().grad); }
+dreamSolid(id) { const cd = this.custom(id), x = this.ddx(id); if (!cd && x.hex) return x.hex; return cd && cd.hex ? cd.hex : (this.solids()[this.dreamCol(id)] || this.theme().accent); }
+dreamIcon(id) { const cd = this.custom(id), D = this.dreamData()[id], x = this.ddx(id); return this.iconKey(cd ? cd.logo : (x.logo ? x.logo : (D ? D.logo : 0))); }
+dreamName(id) { const cd = this.custom(id), D = this.dreamData()[id], x = this.ddx(id); return cd ? cd.name : (x.name || (D ? D.name : '')); }
+goalCount(id) { return this.known(id) ? this.ddOf(id).goals.length : 0; }
+goalState(id, g) {
+const G = this.known(id) ? this.ddOf(id).goals[g] : null;
+if (!G) return { title: '', id: '', pct: 0, n: 0, dn: 0, ms: [] };
+return { title: G.t, id: G.id, pct: this.gPct(G), n: 1, dn: this.gPct(G) >= 100 ? 1 : 0, ms: [] };
+}
+dreamPct(id) { const n = this.goalCount(id); let t = 0; for (let g = 0; g < n; g++) t += this.goalState(id, g).pct; return n ? Math.round(t / n) : 0; }
+curGoal() { const id = this.curId(); return { id: id, g: Math.max(0, Math.min(this.goalCount(id) - 1, this.store().num.cg ?? 0)) }; }
+cells() {
+const s = this.store(), D = this.dreamData();
+return Object.keys(D).filter((id) => !this.gone(id)).map((id) => { const p = s.pos[id] && s.pos[id].length === 2 ? s.pos[id] : D[id].pos; return { id: id, x: p[0], y: p[1] }; }).concat(s.dreams.map((d) => ({ id: d.id, x: d.x, y: d.y })));
+}
+taken(x, y) { return this.cells().some((c) => Math.abs(c.x - x) < 5 && Math.abs(c.y - y) < 5); }
+ringsNeeded() { const all = this.cells(), n = all.length, far = all.reduce((m, c) => Math.max(m, this.ringOf(c.x, c.y)), 0); return Math.min(4, Math.max(far, n >= 37 ? 4 : (n >= 19 ? 3 : (n >= 7 ? 2 : 1)))); }
+ringsOpen() { return Math.max(1, Math.min(4, Math.max(parseInt(this.store().num.rings ?? 1, 10) || 1, this.ringsNeeded()))); }
+ringOf(x, y) { const r = Math.round((y - 580) / 69.282), q = Math.round((x - 640 - 40 * r) / 80); return Math.max(Math.abs(q), Math.abs(r), Math.abs(q + r)); }
+freeCell() {
+const N = this.rings ? this.rings() : this.ringsOpen(), all = [];
+for (let r = -N; r <= N; r++) for (let q = -N; q <= N; q++) { const k = Math.max(Math.abs(q), Math.abs(r), Math.abs(q + r)); if (k <= N) all.push({ k: k, x: 640 + 80 * q + 40 * r, y: Math.round((580 + 69.282 * r) * 100) / 100 }); }
+all.sort((a, b) => a.k - b.k || a.y - b.y || a.x - b.x);
+return all.filter((c) => !this.taken(c.x, c.y))[0] || { x: 680, y: 649.28 };
+}
+plusCell() { const n = this.store().num, c = n.selx !== undefined && n.sely !== undefined ? { x: n.selx, y: n.sely } : { x: 680, y: 649.28 }; return this.taken(c.x, c.y) || this.ringOf(c.x, c.y) > (this.rings ? this.rings() : this.ringsOpen()) ? this.freeCell() : c; }
+lists(c) {
+const root = this._root, arr = (x) => Array.prototype.slice.call(x);
+arr(root.querySelectorAll('[data-list]')).forEach((box) => {
+const items = c['L_' + box.getAttribute('data-list')] || [], kids = arr(box.children), tpl = kids.filter((k) => k.hasAttribute('data-tpl'))[0];
+if (!tpl) return;
+const old = kids.filter((k) => k.hasAttribute('data-clone')), sig = JSON.stringify(items);
+if (box._sig === sig && old.length === items.length) return;
+old.forEach((k) => box.removeChild(k));
+items.forEach((it) => {
+const n = tpl.cloneNode(true);
+n.removeAttribute('data-tpl');
+n.setAttribute('data-clone', '1');
+n.style.display = tpl.getAttribute('data-disp') || 'flex';
+[n].concat(arr(n.querySelectorAll('[data-f], [data-fa], [data-fs], [data-fh]'))).forEach((e) => {
+if (e.hasAttribute('data-f')) e.textContent = it[e.getAttribute('data-f')] ?? '';
+if (e.hasAttribute('data-fh')) e.innerHTML = it[e.getAttribute('data-fh')] ?? '';
+(e.getAttribute('data-fa') || '').split(';').forEach((p) => { const kv = p.split(':'); if (kv.length === 2) e.setAttribute(kv[0], it[kv[1]] ?? ''); });
+(e.getAttribute('data-fs') || '').split(';').forEach((p) => { const kv = p.split(':'); if (kv.length === 2) e.style[kv[0]] = it[kv[1]] ?? ''; });
+});
+box.insertBefore(n, tpl);
+});
+box._sig = sig;
+});
+}
+// ---- real history: each day's ticks are filed under its date when the day rolls over
+rollDay() {
+const s = window.__hx;
+if (!s) return;
+const td = this.dayIso(0);
+if (s.doneDate && s.doneDate !== td) { if (Object.keys(s.done || {}).some((k) => s.done[k])) s.log[s.doneDate] = s.done; s.done = {}; }
+if (s.doneDate !== td) { s.doneDate = td; try { localStorage.setItem(this.K(), JSON.stringify(s)); } catch (e) {} }
+}
+dayLog(d) { const s = this.store(); return d === 0 ? s.done : (s.log[this.dayIso(d)] || null); }
+pastOn(d, id, i, made) { const L = this.dayLog(d); if (L) return !!L[id]; return made || this.fresh() ? false : this.hist(d, i); }
+history() {
+// streaks, totals and points from every logged day plus today
+const s = this.store(), days = Object.keys(s.log).filter((k) => Object.keys(s.log[k]).some((x) => s.log[k][x])).sort();
+const today = this.dayIso(0), active = days.slice();
+if (Object.keys(s.done).some((x) => s.done[x]) && active.indexOf(today) < 0) active.push(today);
+const dnum = (iso) => { const p = iso.split('-'); return Math.round(Date.UTC(+p[0], +p[1] - 1, +p[2]) / 86400000); };
+let best = 0, run = 0, prev = null;
+active.forEach((k) => { const n = dnum(k); run = prev !== null && n === prev + 1 ? run + 1 : 1; prev = n; best = Math.max(best, run); });
+let streak = 0; const t0 = dnum(today), set = {}; active.forEach((k) => { set[dnum(k)] = 1; });
+let d = set[t0] ? t0 : t0 - 1; while (set[d]) { streak++; d--; }
+const taskIds = {}; s.tasks.forEach((t) => { taskIds[t.id] = t; });
+let acts = 0, tasks = 0, early = 0; const earnAll = {}, earnWk = {};
+const actTime = {}; this.allIds().forEach((id) => this.ddOf(id).acts.forEach((a) => { actTime[a.id] = a.time || ''; }));
+const all = Object.assign({}, s.log); all[today] = s.done;
+Object.keys(all).forEach((k) => {
+const L = all[k] || {}, recent = t0 - dnum(k) < 7;
+Object.keys(L).forEach((id) => {
+if (!L[id]) return;
+const T = taskIds[id];
+if (T) { tasks++; const st = this.statDef()[T.stat] ? T.stat : 'PHY', pts = Math.max(1, +T.pts || 1); earnAll[st] = (earnAll[st] || 0) + pts; if (recent) earnWk[st] = (earnWk[st] || 0) + pts; }
+else { acts++; const m = this.mins(actTime[id] || ''); if (m !== null && m < 480) early++; }
+});
+});
+return { streak: streak, best: best, activeDays: active.length, acts: acts, tasks: tasks, early: early, earnAll: earnAll, earnWk: earnWk };
+}
+hist(day, idx) { if (this.fresh()) return false; return day === -3 ? idx % 4 === 3 : ((((day * 7 + idx * 3) % 5) + 5) % 5) !== 0; }
+swKey(e) { const k = e.getAttribute('data-sw').split('.'); if (k[1] === '@') k[1] = this.store().txt.cur || 'studio'; return k; }
+calc() {
+const s = this.store(), o = {}, f = s.focus, names = {};
+this.statKeys().forEach((k) => { names[k] = this.statOf(k).name; });
+const D = this.dreamData(), ids = this.baseIds();
+const RG = this.dayRange(), today = 0, day = Math.max(RG[0], Math.min(RG[1], s.num.doff ?? 0)), base = this.monOff(day), dD = this.dayDate(day);
+const wd = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], mo = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+o.day = day; o.isToday = day === today; o.past = day < today; o.future = day > today;
+o.dateTxt = (day === today ? 'Today, ' : (day === -1 ? 'Yesterday, ' : (day === 1 ? 'Tomorrow, ' : ''))) + wd[dD.getDay()] + ' ' + dD.getDate() + ' ' + mo[dD.getMonth()] + (dD.getFullYear() !== this.dayDate(0).getFullYear() ? ' ' + dD.getFullYear() : '');
+o.wkTxt = this.weekLabel(day); o.canPrev = base - 7 >= this.monOff(RG[0]); o.canNext = base + 7 <= RG[1];
+this.ddInit();
+const acts = [], dOk = (a, d) => !!(a.days || [1, 1, 1, 1, 1, 1, 1])[(this.dayDate(d).getDay() + 6) % 7];
+this.allIds().forEach((id) => this.ddOf(id).acts.forEach((a) => acts.push({ id: a.id, dream: id, short: a.t || 'Daily action', time: a.time || '', len: +a.len || 0, days: a.days, made: !!a.made, s: a.s || '' })));
+acts.sort((x, y) => { const mx = this.mins(x.time), my = this.mins(y.time); return (mx === null ? 9999 : mx) - (my === null ? 9999 : my); });
+const ad = this.known(s.ch.adream) ? s.ch.adream : (this.allIds()[0] || 'tri');
+o.caStart = s.txt.caTime || ''; o.caLen = s.num.caLen || 0; o.ctStart = s.txt.ctTime || ''; o.ctLen = s.num.ctLen || 0;
+const cl = +(s.ch.clen || 0); o.clenTxt = cl ? (cl < 60 ? cl + ' min' : (cl / 60) + (cl === 60 ? ' hour' : ' hours')) : 'None';
+[0, 10, 15, 20, 30, 45, 60, 90, 120].forEach((n) => { o['ln_' + n] = cl === n; });
+o.custGoal = this.goalCount(ad) ? this.goalState(ad, 0).title : this.dreamName(ad);
+o.adIcon = this.dreamIcon(ad); o.adName = this.dreamName(ad);
+o.cIcon = s.ch.icFor === 'cur' ? this.dreamIcon(this.curId()) : this.iconKey(s.txt.cicon ?? s.ch.logo ?? 0);
+o.L_icons = this.iconList().map((i) => ({ k: i.k, n: i.n, b: i.b, on: String(i.k === o.cIcon) }));
+o.L_dreams = this.allIds().map((id) => ({ ch: 'adream:' + id, name: this.dreamName(id), grad: this.dreamGrad(id), ib: this.iconBody(this.dreamIcon(id)), on: String(id === ad), ck: id === ad ? 'flex' : 'none' }));
+o.wheelT = this.wheelFor() !== 'theme' ? 'Dream colour' : 'Theme colour'; o.wheelTheme = this.wheelFor() === 'theme';
+o.themeTxt = s.txt.themeHex ? s.txt.themeHex.toUpperCase() : ({ sunset: 'Sunset', gold: 'Gold', mint: 'Mint', ocean: 'Ocean', violet: 'Violet', mono: 'Mono' })[s.ch.theme] || 'Sunset';
+o.modeTxt = ({ dark: 'Dark', amoled: 'AMOLED', light: 'Light', auto: 'System' })[s.ch.mode] || 'Dark'; o.hexTxt = s.ch.hex || 'Filled';
+o.adream = ad;
+const on = (a, i, d) => d === today ? !!s.done[a.id] : (d > today ? false : this.pastOn(d, a.id, i, a.made));
+acts.forEach((a, i) => { a.now = !!s.done[a.id]; a.done = on(a, i, day); o['d_' + a.id] = a.done; });
+const visAll = acts.filter((a) => f[a.dream] && dOk(a, day)), vis = visAll.filter((a) => !a.made || day >= today), dn = vis.filter((a) => a.done).length, nxt = vis.filter((a) => !a.done)[0], dn0 = visAll.filter((a) => a.now).length;
+o.sum1 = !vis.length ? 'No dream is in focus.' : (day > today ? vis.length + ' planned.' : dn + ' of ' + vis.length + ' done.');
+o.sum2 = !vis.length ? 'Switch focus on for a dream to see its actions.' : (day < today ? (vis.length - dn ? (vis.length - dn) + ' missed that day.' : 'A full day.') : (day > today ? 'Nothing to tick yet.' : (nxt ? nxt.short + (nxt.time ? ' at ' + nxt.time : '') + ' is next.' : 'Everything is done for today.')));
+let fn = 0;
+ids.forEach((d) => { const a = acts.filter((x) => x.dream === d && dOk(x, day) && (!x.made || day >= today)); o['c_' + d] = a.filter((x) => x.done).length + '/' + a.length; o['f_' + d] = !!f[d]; if (f[d]) fn++; });
+s.dreams.forEach((d) => { o['f_' + d.id] = !!f[d.id]; if (f[d.id]) fn++; });
+o.focusN = fn + (fn === 1 ? ' dream' : ' dreams');
+const allIds = ids.concat(s.dreams.map((d) => d.id)), tracked = allIds.filter((id) => f[id]);
+o.trackTxt = !tracked.length ? 'No focus' : (tracked.length === 1 ? 'Focus: ' + this.dreamName(tracked[0]) : 'Tracking ' + tracked.length + ' dreams');
+o.L_track = allIds.map((id) => ({ act: 'ftog:' + id, name: this.dreamName(id), grad: this.dreamGrad(id), ib: this.iconBody(this.dreamIcon(id)), on: f[id] ? 'true' : 'false', ck: f[id] ? 'flex' : 'none', nk: f[id] ? 'none' : 'block' }));
+o.focusC = fn + ' in focus';
+o.pill = dn0 + ' of ' + visAll.length + ' done';
+o.hasAct = false; o.custAct = '';
+// tab bubbles: what's still open today, and whether any of it is already past its start time
+{ const now = new Date(), nm = now.getHours() * 60 + now.getMinutes(), wd = (now.getDay() + 6) % 7, late = (t) => { const m = this.mins(t || ''); return m !== null && m < nm; };
+const openA = acts.filter((a) => f[a.dream] && (a.days || [1, 1, 1, 1, 1, 1, 1])[wd] && !s.done[a.id]);
+const openT = (s.tasks || []).filter((t) => !s.done[t.id]);
+let due = 0; this.allIds().forEach((id) => this.ddOf(id).goals.forEach((g) => { this.checks(g).forEach((ck) => { if (ck.due && !ck.rev) due++; }); }));
+o.nb = { today: openA.length, todayLate: openA.some((a) => late(a.time)), stats: openT.length, statsLate: openT.some((t) => late(t.time)), hive: due, hiveLate: due > 0 }; }
+const gT = (id, sid) => { const R = this.ddOf(id), S = sid ? R.strat.filter((x) => x.id === sid)[0] : null, G = S ? R.goals.filter((x) => x.id === S.g)[0] : null; return S ? S.t + (G ? ' \u203a ' + G.t : '') : this.dreamName(id) + ' \u00b7 not linked to a STRATEGY'; };
+const lenT = (n) => !n ? '' : (n < 60 ? n + ' min' : (n % 60 ? Math.floor(n / 60) + ' h ' + (n % 60) : (n / 60) + (n === 60 ? ' hour' : ' hours')));
+const actRow = (a) => ({ id: a.id, tick: 'tick:' + a.id, tmo: 'tm:open:' + a.id, edit: 'aedit:' + a.id, time: a.time, len: String(a.len), t: a.short, sub: gT(a.dream, a.s), grad: this.dreamGrad(a.dream), col: this.dreamSolid(a.dream), deep: this.shade(this.dreamSolid(a.dream)), ib: this.iconBody(this.dreamIcon(a.dream)), when: [a.time || 'Any time', lenT(a.len), this.remDays(a.days)].filter(Boolean).join(' \u00b7 ') });
+o.L_acts = vis.map(actRow);
+o.noActs = !vis.length;
+o.meName = (s.me.name || '').trim() || 'Add your name'; o.hasPhoto = !!s.me.photo;
+o.hasNew = s.dreams.length > 0; o.dreams = 5 + s.dreams.length;
+o.dn = s.txt.dn || 'Your dream';
+for (let i = 0; i < 6; i++) o['logo' + i] = String(s.ch.logo ?? '0') === String(i);
+for (let i = 0; i < 7; i++) {
+const dd = base + i;
+o['dnum' + i] = this.dayDate(dd).getDate(); o['doff' + i] = dd;
+if (dd > today) { o['mk' + i] = 3; continue; }
+const v = acts.filter((a) => f[a.dream] && !a.made && dOk(a, dd)), k = v.filter((a) => on(a, acts.indexOf(a), dd)).length;
+o['mk' + i] = !v.length || !k ? 0 : (k === v.length ? 2 : 1);
+}
+const FR = this.fresh(), base0 = FR ? { PHY: 0, SPD: 0, STA: 0, DSC: 0, PUR: 0, INT: 0 } : { PHY: 65, SPD: 70, STA: 75, DSC: 60, PUR: 80, INT: 67 }, earn = { PHY: 0, SPD: 0, STA: 0, DSC: 0, PUR: 0, INT: 0 }, wkd = FR ? { PHY: 0, SPD: 0, STA: 0, DSC: 0, PUR: 0, INT: 0 } : { PHY: 4, SPD: 0, STA: 3, DSC: -4, PUR: 5, INT: -2 };
+const cstat = s.ch.cstat || 'PHY', cpts = s.num.cpts ?? 5;
+const tasks = s.tasks.map((t) => ({ id: t.id, stat: this.statDef()[t.stat] ? t.stat : 'PHY', pts: Math.max(1, +t.pts || 1), t: t.t || 'Stat task', time: t.time || '', len: +t.len || 0, made: !!t.made }));
+let tot = 0, got = 0, top = 'PHY', low = 'PHY';
+const HX = this.history(); if (FR) Object.keys(HX.earnAll).forEach((k) => { earn[k] = HX.earnAll[k]; }); if (FR) Object.keys(HX.earnWk).forEach((k) => { wkd[k] = HX.earnWk[k] - (HX.earnAll[k] || 0); });
+o.hx = HX; o.streakN = FR ? HX.streak : 12; o.bestN = FR ? HX.best : 31; o.streakTxt = o.streakN + ' day streak'; o.bestTxt = 'Best streak ' + o.bestN + (o.bestN === 1 ? ' day' : ' days');
+tasks.forEach((t, i) => { if (s.done[t.id]) { if (!FR) earn[t.stat] += t.pts; got += t.pts; } t.done = day === today ? !!s.done[t.id] : (day > today ? false : this.pastOn(day, t.id, i + 7, t.made)); o['d_' + t.id] = t.done; });
+Object.keys(base0).forEach((k) => { const v = Math.min(110, base0[k] + earn[k]); o['v_' + k] = v; tot += v; const w = wkd[k] + earn[k]; o['w_' + k] = (w > 0 ? '+' : '') + w; if (v > o['v_' + top]) top = k; if (v < o['v_' + low]) low = k; });
+o.vals = ['PHY', 'SPD', 'STA', 'DSC', 'PUR', 'INT'].map((k) => o['v_' + k]);
+o.prevVals = ['PHY', 'SPD', 'STA', 'DSC', 'PUR', 'INT'].map((k) => base0[k] - wkd[k]);
+o.total = tot; o.earned = '+' + got; o.top = names[top] + ' ' + o['v_' + top]; o.low = names[low] + ' ' + o['v_' + low];
+const tv = tasks.filter((t) => !t.made || day >= today), tdn = tv.filter((t) => t.done).length, tdn0 = tasks.filter((t) => s.done[t.id]).length;
+o.tDone = day > today ? tv.length + ' planned' : tdn + ' of ' + tv.length + ' done';
+o.cstat = cstat; o.cpts = cpts; o.cstatCode = this.statOf(cstat).code;
+o.noTasks = !tv.length;
+o.L_tasks = tv.map((t) => { const st = this.statOf(t.stat); return { id: t.id, tick: 'tick:' + t.id, edit: 'tedit:' + t.id, time: t.time, len: String(t.len), t: t.t, code: st.code, sub: '+' + t.pts + ' ' + st.code, col: st.col, grad: st.grad, deep: st.deep }; });
+o.L_stats = this.statKeys().map((k) => { const st = this.statOf(k); return { k: k, ch: 'cstat:' + k, sedit: 'statedit:' + k, tst: 'tstat:' + k, code: st.code, name: st.name, col: st.col, tint: st.tint, ck: cstat === k ? 'flex' : 'none', on: cstat === k ? 'true' : 'false' }; });
+const te = s.tasks.filter((t) => t.id === s.txt.tCur)[0];
+if (te) { o.teStat = te.stat; o.tePts = Math.max(1, +te.pts || 1); o.teLen = +te.len || 0; o.teHead = te.t || 'Stat task'; o.teLine = 'Done adds ' + o.tePts + ' to ' + names[te.stat] + '.'; }
+const sk = this.statDef()[s.txt.stCur] ? s.txt.stCur : 'PHY', so = this.statOf(sk);
+o.seHead = so.name; o.seCode = so.code;
+o.cstatName = names[cstat];
+const tOn = (t, i, d) => d === 0 ? !!s.done[t.id] : (d > 0 ? false : this.pastOn(d, t.id, i + 7, t.made));
+const anc = this._sAnchor ?? this.monOff(day), sm = anc - 26 * 7, se = anc + 26 * 7 + 6, wl = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+this._sAnchor = anc;
+o.L_sdays = [];
+for (let d = sm; d <= se; d++) {
+const k = d > 0 ? 0 : tasks.filter((t, i) => !t.made && tOn(t, i, d)).length, n = Math.max(1, tasks.filter((t) => !t.made).length);
+o.L_sdays.push({ d: String(d), act: 'dayo:' + d, n: String(this.dayDate(d).getDate()), w: wl[(d - sm) % 7], snap: (d - sm) % 7 ? 'none' : 'start', mk: d > 0 ? 'transparent' : (k === n ? '#F2F2F3' : (k ? '#8E8E93' : 'rgba(255, 255, 255, 0.16)')), tc: d === 0 ? this.theme().accent : '', td: d === 0 ? 'true' : 'false' });
+}
+['PHY', 'SPD', 'STA', 'DSC', 'PUR', 'INT'].forEach((k) => { o['cs_' + k] = cstat === k; });
+o.ptsLine = 'Done adds ' + cpts + ' to ' + names[cstat] + '. A missed day takes ' + Math.max(1, Math.round(cpts * 0.4)) + ' away.';
+const steps = [['E', 0], ['D', 110], ['C', 220], ['B', 330], ['A', 440], ['S', 550]];
+let ri = 0;
+steps.forEach((st, i) => { if (tot >= st[1]) ri = i; });
+o.rank = steps[ri][0];
+o.toNext = ri < 5 ? (steps[ri + 1][1] - tot) + ' points to Rank ' + steps[ri + 1][0] : 'Top rank reached';
+o.rankPct = ri < 5 ? Math.round((tot - steps[ri][1]) / (steps[ri + 1][1] - steps[ri][1]) * 100) : 100;
+const all = s.ch.lb === 'all', lb = all ? [1310, 1179 + got, 1104, 962, 480] : [47, 36 + got, 36, 29, 12];
+lb.forEach((v, i) => { o['lb' + (i + 1)] = '+' + v; });
+const pos = 1 + [47, 36, 29, 12].filter((v) => v > 36 + got).length;
+o.lbPos = ['1st', '2nd', '3rd', '4th', '5th'][pos - 1] + ' this week';
+o.title = s.ch.title || (this.fresh() ? 'No title yet' : 'The Consistent');
+if (this.fresh()) { o.lb1 = '+' + got; o.lbPos = 'Just you so far'; }
+o.L_rems = s.rem.map((r, i) => ({ act: 'rem:open:' + i, sw: 'remsw:' + i, t: r.t || 'Reminder', sub: (r.time || '09:00') + ' · ' + this.remDays(r.days) + ' · ' + this.remAbout(r.about), on: r.on ? 'true' : 'false', swbg: r.on ? this.theme().grad : 'rgba(255, 255, 255, 0.15)', swj: r.on ? 'flex-end' : 'flex-start', op: r.on ? '1' : '0.55' }));
+o.remN = s.rem.filter((r) => r.on).length + ' of ' + s.rem.length + ' on';
+const rc = this.remCur();
+o.remHead = rc && rc.t ? rc.t : 'New reminder'; o.remSum = rc ? (rc.time || '09:00') + ' · ' + this.remDays(rc.days) : '';
+const RN = this.rings ? this.rings() : this.ringsOpen(), capOf = (n) => 1 + 3 * n * (n + 1);
+o.capNow = capOf(RN); o.canR1 = RN < 4; o.canR2 = RN < 3; o.ringsMax = RN >= 4;
+o.levelTxt = RN >= 4 ? 'HIVE' : 'Level ' + RN;
+o.r1t = RN + 1 >= 4 ? 'Complete the hive' : 'Unlock level ' + (RN + 1); o.r1s = (capOf(RN + 1) - capOf(RN)) + ' more cells, ' + capOf(RN + 1) + ' in total';
+o.r2t = RN + 2 >= 4 ? 'Unlock level ' + (RN + 1) + ' and complete the hive' : 'Unlock levels ' + (RN + 1) + ' and ' + (RN + 2); o.r2s = (capOf(RN + 2) - capOf(RN)) + ' more cells, ' + capOf(RN + 2) + ' in total';
+o.canLock = RN > 1 && RN > this.ringsNeeded() && !this.cells().some((c) => this.ringOf(c.x, c.y) >= RN); o.lockT = 'Back to level ' + (RN - 1);
+const at = this.addType();
+o.isAct = at === 'act'; o.isTask = at === 'task'; o.timed = at === 'act' || at === 'task'; o.isDream = at === 'dream'; o.isGoal = at === 'goal'; o.forDream = o.isAct || o.isGoal;
+o.addHead = ({ dream: 'Add dream', task: 'Add stat task', goal: 'Add tangible goal', act: 'Add daily action' })[at];
+o.addSub = at === 'dream' ? 'Hive' : (at === 'goal' ? this.dreamName(ad) : 'Today');
+o.actsDone = this.fresh() ? o.hx.acts : 146 + acts.filter((a) => a.now).length; o.tasksDone = this.fresh() ? o.hx.tasks : 61 + tdn0;
+const cur = this.curId(), cd = this.custom(cur), isNew = !!cd;
+o.isNew = isNew; o.cur = cur;
+ids.forEach((d) => { o['p_' + d] = this.dreamPct(d); });
+s.dreams.forEach((d) => { o['p_' + d.id] = this.dreamPct(d.id); });
+const R0 = this.known(cur) ? this.ddOf(cur) : { igs: [], goals: [], strat: [], acts: [], why: '', track: '' };
+const gN = R0.goals.length, gDone = R0.goals.filter((g) => this.gPct(g) >= 100).length;
+o.dname = this.dreamName(cur); o.dpct = this.dreamPct(cur) + '%'; o.dIcon = this.dreamIcon(cur); o.dIconK = this.dreamIcon(cur);
+o.p_cur = this.dreamPct(cur); o.noGoals = !gN;
+o.dwhy = R0.why || ''; o.noWhy = !R0.why; o.dtrack = 'DREAM / INTANGIBLE GOAL' + (R0.track ? ' \u00b7 ' + R0.track.toUpperCase() : '');
+o.dGoalsN = gN + ''; o.dGoalsDone = gDone + ' of ' + gN; o.dIgsN = R0.igs.length + ''; o.dActsN = R0.acts.length + ''; o.dStratN = R0.strat.length + '';
+o.dFocus = f[cur] ? 'Tracked: its DAILY ACTIONS show up each day' : 'Not tracked: its DAILY ACTIONS are hidden';
+const meas = (g) => g.kind === 'bin' ? (g.done ? 'Done' : 'Not done yet') : (this.measurable(g) ? this.ofT(g) : 'No target set');
+const stratOf = (g) => R0.strat.filter((x) => x.g === g.id);
+// the dream's TANGIBLE GOALS, then a row to add another
+const tree = [], row = (t, x) => Object.assign({ tkey: '', ig: 'none', gl: 'none', ad: 'none', id: '', t: '', act: '', p: '', w: '0%', m: '', sx: '', won: 'none', go: 'none' }, x, { [t]: 'flex' });
+R0.goals.forEach((g, gi) => {
+const p = this.gPct(g), st = stratOf(g);
+tree.push(row('gl', { tkey: 'dgoal:' + g.id, id: g.id, t: g.t || 'Untitled TANGIBLE GOAL', act: 'goal:' + gi, p: p + '%', w: p + '%', m: meas(g), sx: st.length ? 'STRATEGY: ' + st.map((x) => x.t).join(', ') : 'No STRATEGY yet', won: p >= 100 ? 'flex' : 'none', go: p >= 100 ? 'none' : 'flex' }));
+});
+tree.push(row('ad', { act: 'gnew', t: 'Add a TANGIBLE GOAL that proves this DREAM' }));
+o.L_tree = tree;
+const gaps = this.known(cur) ? this.gaps(cur) : [];
+o.L_gaps = gaps.map((t, k) => ({ t: t, n: String(k + 1) }));
+o.noGaps = !gaps.length; o.hasGaps = !!gaps.length; o.gapsN = gaps.length ? gaps.length + (gaps.length === 1 ? ' gap' : ' gaps') : 'No gaps';
+o.L_dacts = R0.acts.map((a) => actRow({ id: a.id, dream: cur, short: a.t || 'Daily action', time: a.time || '', len: +a.len || 0, days: a.days, s: a.s }));
+o.noDActs = !R0.acts.length;
+const gName = (gid) => { const G = gid ? R0.goals.filter((x) => x.id === gid)[0] : null; return G ? 'SUPPORTS: ' + G.t : 'NOT LINKED TO A TANGIBLE GOAL'; };
+const stRow = (x) => ({ id: x.id, edit: 'stedit:' + x.id, t: x.t || 'Untitled plan', d: x.d || '', dd: x.d ? '-webkit-box' : 'none', sup: gName(x.g) + ' · ' + R0.acts.filter((a) => a.s === x.id).length + ' DAILY ACTIONS' });
+o.L_dstrat = R0.strat.map(stRow); o.noStrat = !R0.strat.length;
+// the tangible goal page
+const GR = this.goalRec(), A = GR;
+o.hasGoal = !!GR; o.noGoal = !GR;
+o.gT = GR ? GR.t || 'Untitled TANGIBLE GOAL' : 'No goal yet';
+const gp = GR ? this.gPct(GR) : 0;
+o.gP = gp + '%'; o.gPn = gp;
+o.gIg = this.dreamName(cur); o.gWhy = o.gIg; o.noGWhy = false;
+o.isNum = !!GR && GR.kind !== 'bin'; o.isBin = !!GR && GR.kind === 'bin'; o.gDoneTxt = GR && GR.done ? 'Done' : 'Not done yet'; o.gDoneBtn = GR && GR.done ? 'Mark as not done' : 'Mark as done';
+o.gCur = GR ? this.fmtV(GR.cur, GR.unit) : ''; o.gTarget = GR ? (this.measurable(GR) ? (+GR.target < +GR.start ? 'target ' : 'of ') + this.fmtV(GR.target, GR.unit) : 'No target set yet') : '';
+o.gFrom = GR && GR.kind !== 'bin' ? 'Started at ' + this.fmtV(GR.start, GR.unit) + ' on ' + this.addMonths(GR.since, 0).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }) : '';
+o.gM = GR ? (GR.kind === 'bin' ? o.gDoneTxt : (this.measurable(GR) ? this.ofT(GR) : o.gCur + ' \u00b7 no target set')) : '';
+o.L_gstrat = GR ? stratOf(GR).map(stRow) : []; o.noGStrat = !o.L_gstrat.length; o.gStratN = String(o.L_gstrat.length);
+const gsIds = o.L_gstrat.map((x) => x.id);
+o.L_gacts = R0.acts.filter((a) => gsIds.indexOf(a.s) >= 0).map((a) => actRow({ id: a.id, dream: cur, short: a.t || 'Daily action', time: a.time || '', len: +a.len || 0, days: a.days, s: a.s }));
+o.noGActs = !o.L_gacts.length;
+const dfmt = (d) => d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+o.L_checks = !GR ? [] : this.checks(GR).map((c) => {
+const v = c.rev ? this.verdict(GR, c, GR.kind === 'bin' ? +c.rev.actual : +c.rev.actual) : '';
+const col = v === 'behind' ? '#FF8A6B' : (v === 'ahead' ? '#19E6A8' : '#F0D21E');
+const expT = GR.kind === 'bin' ? (c.m === 6 ? 'Should be done' : 'In progress') : 'Should be at ' + this.fmtV(c.exp, GR.unit);
+return { act: 'ckedit:' + c.m, m: c.m + (c.m === 1 ? ' MONTH' : ' MONTHS'), date: dfmt(c.at), exp: expT,
+st: c.rev ? 'Reviewed: ' + v.toUpperCase() + (GR.kind === 'bin' ? '' : ' at ' + this.fmtV(c.rev.actual, GR.unit)) : (c.due ? 'Due now. Tap to review' : 'In ' + c.days + (c.days === 1 ? ' day' : ' days')),
+col: c.rev ? col : (c.due ? '#FF5C7A' : '#8E8E93'), note: c.rev && c.rev.note ? 'Strategy change: ' + c.rev.note : '', nd: c.rev && c.rev.note ? 'block' : 'none', ring: c.rev ? col : (c.due ? '#FF5C7A' : 'rgba(255, 255, 255, 0.15)') };
+});
+// sheets
+const AC = this.actCur(), AF = AC ? this.actFind(AC.id) : null, AR = AF ? this.ddOf(AF.dream) : null;
+o.L_agoals = [{ gid: '', act: 'ag:', name: 'None' }].concat(AR ? AR.strat.map((x) => ({ gid: x.id, act: 'ag:' + x.id, name: x.t })) : []);
+o.aDream = AF ? 'Part of ' + this.dreamName(AF.dream) : '';
+o.L_sgoals = R0.goals.map((g) => ({ gid: g.id, act: 'sg:' + g.id, name: g.t || 'Untitled' }));
+o.L_gigs = R0.igs.map((x) => ({ gid: x.id, act: 'gig:' + x.id, name: x.t || 'Untitled' }));
+const CK = GR ? this.checks(GR).filter((c) => c.m === (s.num.ckCur || 1))[0] : null, CR = GR && GR.checks ? GR.checks[s.num.ckCur || 1] : null;
+o.ckHead = CK ? CK.m + (CK.m === 1 ? ' month' : ' months') + ' CHECKPOINT · ' + dfmt(CK.at) : '';
+o.ckExp = CK ? (GR.kind === 'bin' ? (CK.m === 6 ? 'By now it should be done.' : 'By now it should be well under way.') : 'By now it should be at ' + this.fmtV(CK.exp, GR.unit) + '.') : '';
+o.ckEarly = !!CK && !CK.due; o.ckBin = !!GR && GR.kind === 'bin'; o.ckNum = !!GR && GR.kind !== 'bin';
+o.ckVerdict = CK && CR && CR.actual !== '' && CR.actual != null ? 'Result: ' + this.verdict(GR, CK, +CR.actual).toUpperCase() : '';
+o.ckActualBin = CR ? (+CR.actual ? 'Yes' : 'No') : (GR && GR.done ? 'Yes' : 'No');
+o.unitTxt = GR ? (GR.unit || 'no unit') : '';
+o.kNum = !!GR && GR.kind !== 'bin'; o.kBin = !!GR && GR.kind === 'bin';
+const IGC = this.igCur(); o.igHead = IGC ? 'INTANGIBLE GOAL' : '';
+o.canUndo = false; o.noMs = true; o.L_ms = [];
+const tintOf = (c, a) => { const n = parseInt(c.slice(1), 16); return 'rgba(' + (n >> 16) + ', ' + ((n >> 8) & 255) + ', ' + (n & 255) + ', ' + a + ')'; };
+o.L_cd = s.dreams.map((d) => {
+const solid = this.dreamSolid(d.id), it = { id: d.id, name: d.name, act: 'open:' + d.id, ch: 'adream:' + d.id, grad: this.dreamGrad(d.id), solid: solid, tint: tintOf(solid, 0.26), band: this.shade(solid, 0.42), deepc: this.shade(solid), mark: f[d.id] ? 'block' : 'none' };
+it.ib = this.iconBody(this.dreamIcon(d.id));
+return it;
+});
+if (isNew || !D[cur]) o.fs_cur = '0 of 0';
+else {
+const d = D[cur], mine = acts.filter((x) => x.dream === cur);
+d.acts.forEach((a, i) => { o['a' + (i + 1) + 't'] = a[0]; o['a' + (i + 1) + 'w'] = a[1]; o['a' + (i + 1) + 'h'] = a[2]; });
+d.strat.forEach((t, i) => { o['st' + (i + 1)] = t; });
+o.fs_cur = (d.wk[0] + mine.filter((x) => x.now).length) + ' of ' + (d.wk[1] + mine.length);
+}
+o.i_d = visAll.length ? Math.round(dn0 / visAll.length * 100) : 0;
+o.i_s = tasks.length ? Math.round(tdn0 / tasks.length * 100) : 0;
+{ const n0 = this.fresh() ? 0 : 26, d0 = this.fresh() ? 0 : 33, den = d0 + visAll.length + tasks.length; o.i_rate = (den ? Math.round((n0 + dn0 + tdn0) / den * 100) : 0) + '%'; }
+const cnt = (d) => acts.filter((x) => x.dream === d && x.now).length, len = (d) => acts.filter((x) => x.dream === d).length;
+o.fs_studio = (8 + cnt('studio')) + ' of ' + (10 + len('studio')); o.fw_studio = Math.round((8 + cnt('studio')) / (10 + len('studio')) * 100);
+o.fs_tri = (7 + cnt('tri')) + ' of ' + (10 + len('tri')); o.fw_tri = Math.round((7 + cnt('tri')) / (10 + len('tri')) * 100);
+return o;
+}
+hydrate() {
+const root = this._root;
+if (!root) return;
+const s = this.store(), c = this.calc(), q = (sel) => Array.prototype.slice.call(root.querySelectorAll(sel));
+this.lists(c);
+this.tintUI();
+this.pullSync();
+root.setAttribute('data-past', c.isToday ? '0' : '1');
+q('[data-row]').forEach((r) => r.setAttribute('data-done', c['d_' + r.getAttribute('data-row')] ? '1' : '0'));
+q('[data-day]').forEach((e) => e.setAttribute('aria-pressed', c['doff' + e.getAttribute('data-day')] === c.day ? 'true' : 'false'));
+q('[data-sday]').forEach((e) => e.setAttribute('aria-pressed', +e.getAttribute('data-sday') === c.day ? 'true' : 'false'));
+q('[data-strip]').forEach((st) => {
+// scroll the week strip to the week of the chosen day, once, then follow the finger
+const want = this._stripWant !== undefined ? this._stripWant : this.monOff(c.day);
+if (this._stripWant === undefined && st._wk === want) return;
+this._stripWant = undefined;
+st._wk = want;
+const first = st.querySelector('[data-sday]');
+if (!first) return;
+const i = (want - +first.getAttribute('data-sday')) / 7;
+st.scrollLeft = i * st.clientWidth;
+this.stripLabel(st);
+});
+q('[data-mark]').forEach((e) => { const m = c['mk' + e.getAttribute('data-mark')]; e.style.background = m === 2 ? this.theme().grad : (m === 1 ? '#8E8E93' : (m === 3 ? 'transparent' : 'rgba(255, 255, 255, 0.16)')); });
+q('[data-bind]').forEach((e) => { const v = c[e.getAttribute('data-bind')]; if (v !== undefined) e.textContent = v; });
+q('[data-show]').forEach((e) => {
+if (e._d === undefined) e._d = e.getAttribute('data-disp') || (e.style.display === 'none' ? '' : e.style.display);
+const k = e.getAttribute('data-show'), neg = k[0] === '!', v = c[neg ? k.slice(1) : k];
+e.style.display = (neg ? !v : !!v) ? e._d : 'none';
+});
+q('[data-w]').forEach((e) => { e.style.width = c[e.getAttribute('data-w')] + '%'; });
+q('[data-tlist] > [data-clone][data-len]').forEach((li) => this.shapeRow(li, li.getAttribute('data-start'), li.getAttribute('data-len')));
+q('[data-stc]').forEach((e) => {
+const st = this.statOf(e.getAttribute('data-stc'));
+(e.getAttribute('data-stp') || 'color').split(',').forEach((p) => {
+if (p === 'color') e.style.color = st.col;
+if (p === 'bg') e.style.background = st.col;
+if (p === 'grad') e.style.background = st.grad;
+if (p === 'tint') e.style.background = st.tint;
+if (p === 'deep') e.style.color = st.deep;
+if (p === 'border') e.style.borderColor = st.col;
+});
+});
+q('[data-stcode]').forEach((e) => { e.textContent = this.statOf(e.getAttribute('data-stcode')).code; });
+q('[data-stname]').forEach((e) => { e.textContent = this.statOf(e.getAttribute('data-stname')).name; });
+q('[data-fg="adeep"]').forEach((e) => { e.style.color = this.shade(this.dreamSolid(c.adream)); });
+const tcur = s.tasks.filter((t) => t.id === s.txt.tCur)[0];
+if (tcur) {
+q('[data-taskf]').forEach((e) => { const v = tcur[e.getAttribute('data-taskf')] ?? ''; if (document.activeElement !== e && e.value !== String(v)) e.value = v; });
+const pr2 = (e, on) => { e.setAttribute('aria-pressed', on ? 'true' : 'false'); e.style.background = on ? this.theme().grad : 'var(--card, rgba(255, 255, 255, 0.08))'; e.style.color = on ? '#0B0B12' : '#F2F2F3'; };
+q('[data-tlen]').forEach((e) => pr2(e, String(+tcur.len || 0) === e.getAttribute('data-tlen')));
+q('[data-tstat]').forEach((e) => { const on = tcur.stat === e.getAttribute('data-tstat'), st = this.statOf(e.getAttribute('data-tstat')); e.setAttribute('aria-pressed', on ? 'true' : 'false'); e.style.background = on ? st.grad : st.tint; e.style.color = on ? '#0B0B12' : st.col; });
+}
+this.dreamSync(q);
+// a red dot on a tab when something there is still open or overdue
+const NB = c.nb || {};
+q('nav[aria-label="Main"] > [aria-label]').forEach((el) => {
+const l = el.getAttribute('aria-label') || '', k = /^Hive/.test(l) ? 'hive' : (/^Daily Actions/.test(l) ? 'today' : (/^Statistics/.test(l) ? 'stats' : ''));
+if (!k) return;
+let b = null;
+for (let i = 0; i < el.children.length; i++) if (el.children[i].hasAttribute('data-nbadge')) b = el.children[i];
+if (!b) { b = document.createElement('span'); b.setAttribute('data-nbadge', k); b.setAttribute('aria-hidden', 'true'); b.style.cssText = 'position: absolute; top: 1px; right: 1px; width: 12px; height: 12px; box-sizing: border-box; border-radius: 6px; border: 2px solid var(--bg, #0A0A10); background: #FF453A; display: none; pointer-events: none'; el.appendChild(b); if (getComputedStyle(el).position === 'static') el.style.position = 'relative'; }
+const n = NB[k] || 0;
+b.style.display = n ? 'block' : 'none';
+});
+if (this.fresh()) this.awardSync(q, c);
+q('[data-meimg]').forEach((e) => { const ph = s.me.photo || ''; if (ph) { if (e.getAttribute('src') !== ph) e.setAttribute('src', ph); e.style.display = 'block'; } else { e.removeAttribute('src'); e.style.display = 'none'; } });
+const rks = q('[data-rk]');
+if (rks.length === 6) {
+// the rank ladder: ranks passed, the one you hold (larger), and the ones still ahead
+if (!root._rkS) { const st = (e) => [e.getAttribute('style'), e.firstElementChild.getAttribute('style')]; root._rkS = { past: st(rks[0]), cur: st(rks[3]), fut: st(rks[4]) }; }
+const ri = ['E', 'D', 'C', 'B', 'A', 'S'].indexOf(c.rank);
+rks.forEach((e, i) => { const v = root._rkS[i < ri ? 'past' : (i === ri ? 'cur' : 'fut')]; if (e.getAttribute('style') !== v[0]) { e.setAttribute('style', v[0]); e.firstElementChild.setAttribute('style', v[1]); } });
+}
+q('[data-meicon]').forEach((e) => { e.style.display = s.me.photo ? 'none' : 'flex'; });
+q('[data-mef]').forEach((e) => { const v = s.me[e.getAttribute('data-mef')] || ''; if (document.activeElement !== e && e.value !== v) e.value = v; });
+const scur = this.statDef()[s.txt.stCur] ? s.txt.stCur : 'PHY', sst = this.statOf(scur), sraw = s.stats[scur] || {};
+q('[data-statf]').forEach((e) => { const k = e.getAttribute('data-statf'), v = k === 'name' ? (sraw.name ?? sst.name) : (sraw.code ?? sst.code); if (document.activeElement !== e && e.value !== v) e.value = v; });
+q('[data-stsw]').forEach((e) => e.setAttribute('aria-pressed', e.getAttribute('data-stsw').toLowerCase() === sst.col.toLowerCase() ? 'true' : 'false'));
+this.swipeSync();
+q('[data-dyn]').forEach((li) => { const k = li.getAttribute('data-dyn'); this.shapeRow(li, c[k + 'Start'], c[k + 'Len']); });
+q('[data-tlist]').forEach((ul) => {
+// timeline: rows sit in time order, and connectors run only between rows that are showing
+Array.prototype.slice.call(ul.children).forEach((r) => { const m = this.mins(r.getAttribute('data-start')); r.style.order = m === null ? 2000 : m; });
+const rows = Array.prototype.slice.call(ul.children).filter((r) => r.style.display !== 'none').sort((x, y) => +x.style.order - +y.style.order);
+rows.forEach((r, i) => { const u = r.querySelector('[data-tlu]'), d = r.querySelector('[data-tld]'); if (u) u.style.visibility = i ? 'visible' : 'hidden'; if (d) d.style.visibility = i < rows.length - 1 ? 'visible' : 'hidden'; });
+const rgb = (r) => { const h = r && r.querySelector('[data-cap]'); if (!h) return null; const cs = getComputedStyle(h), m = ((cs.backgroundImage || '') + ' ' + (cs.backgroundColor || '')).match(/rgba?\([^)]*\)/g); const ok = (m || []).filter((x) => !/,\s*0\)$/.test(x)); const v = ok.length > 1 ? ok[1] : ok[0]; return v ? v.match(/[\d.]+/g).slice(0, 3).map(Number) : null; };
+const css = (c) => 'rgb(' + c.map((v) => Math.round(v)).join(', ') + ')', mid = (a, b) => a.map((v, j) => (v + b[j]) / 2);
+const cols = rows.map(rgb);
+const paint = (e, a, b) => { if (!e || !a || !b) return; e.style.borderLeft = '0'; e.style.width = '2px'; e.style.opacity = '0.9'; e.style.background = 'linear-gradient(to bottom, ' + css(a) + ', ' + css(b) + ')'; const mk = 'repeating-linear-gradient(to bottom, #000 0 2px, transparent 2px 5px)'; e.style.webkitMaskImage = mk; e.style.maskImage = mk; };
+rows.forEach((r, i) => { const c = cols[i]; if (!c) return; if (i) paint(r.querySelector('[data-tlu]'), mid(cols[i - 1] || c, c), c); if (i < rows.length - 1) paint(r.querySelector('[data-tld]'), c, mid(c, cols[i + 1] || c)); });
+});
+const rc = this.remCur();
+if (rc) {
+q('[data-remf]').forEach((e) => { const v = rc[e.getAttribute('data-remf')] ?? ''; if (document.activeElement !== e && e.value !== v) e.value = v; });
+const pr = (e, on) => { e.setAttribute('aria-pressed', on ? 'true' : 'false'); e.style.background = on ? this.theme().grad : 'var(--card, rgba(255, 255, 255, 0.08))'; e.style.color = on ? '#0B0B12' : '#F2F2F3'; };
+q('[data-remday]').forEach((e) => pr(e, !!(rc.days || [])[+e.getAttribute('data-remday')]));
+q('[data-remab]').forEach((e) => pr(e, (rc.about || 'act') === e.getAttribute('data-remab')));
+q('[data-remnud]').forEach((e) => pr(e, String(rc.nudge || 0) === e.getAttribute('data-remnud')));
+q('[data-remrep]').forEach((e) => { const k = (rc.days || []).join(''); pr(e, ({ all: '1111111', wd: '1111100', we: '0000011' })[e.getAttribute('data-remrep')] === k); });
+}
+q('[data-h]').forEach((e) => { e.style.height = Math.max(3, c[e.getAttribute('data-h')]) + '%'; });
+q('[data-sw]').forEach((e) => { const k = this.swKey(e); e.setAttribute('aria-checked', s[k[0]][k[1]] ? 'true' : 'false'); });
+const look = (e, on) => {
+e.setAttribute('aria-pressed', on ? 'true' : 'false');
+const a = e.getAttribute(on ? 'data-on' : 'data-off');
+if (a !== null) e.style.cssText = a;
+};
+q('[data-ch]').forEach((e) => { const p = e.getAttribute('data-ch').split(':'), cur = s.ch[p[0]]; look(e, cur === undefined ? e.hasAttribute('data-d') : String(cur) === p[1]); });
+q('[data-ms]').forEach((e) => { const p = e.getAttribute('data-ms').split(':'), cur = s.ch[p[0] + '_' + p[1]]; look(e, cur === undefined ? e.hasAttribute('data-d') : !!cur); });
+q('[data-theme]').forEach((e) => look(e, !s.txt.themeHex && (s.ch.theme || 'sunset') === e.getAttribute('data-theme')));
+q('[data-in]').forEach((e) => { const v = s.txt[e.getAttribute('data-in')]; if (v !== undefined && document.activeElement !== e && e.value !== v) e.value = v; });
+q('[data-ic]').forEach((e) => { const k = c[e.getAttribute('data-ic')]; if (e._ic !== k) { e.innerHTML = this.iconBody(k); e._ic = k; } });
+if (!this._wh) this.paintWheel();
+q('[data-bg]').forEach((e) => {
+const k = e.getAttribute('data-bg');
+if (k === 'col') e.style.background = s.txt.chex ? this.gradOf(s.txt.chex) : (this.cols()[+(s.ch.col ?? 0)] || this.theme().grad);
+if (k === 'adream') e.style.background = this.dreamGrad(c.adream);
+if (k === 'accent') e.style.background = this.theme().grad;
+if (k === 'dream') e.style.background = this.dreamGrad(c.cur);
+if (k === 'cstat') e.style.background = this.statCol()[c.cstat];
+});
+q('[data-fg="cstat"]').forEach((e) => { e.style.color = this.statCol()[c.cstat]; });
+q('[data-radar-prev]').forEach((g) => {
+const p = g.getAttribute('data-radar-prev').split(',').map(Number), pts = c.prevVals.map((v, i) => { const a = (-90 + 60 * i) * Math.PI / 180, r = p[2] * v / 110; return [p[0] + r * Math.cos(a), p[1] + r * Math.sin(a)]; });
+const pl = g.querySelector('polygon');
+if (pl) pl.setAttribute('points', pts.map((x) => x[0].toFixed(1) + ',' + x[1].toFixed(1)).join(' '));
+Array.prototype.slice.call(g.querySelectorAll('circle')).forEach((ci, i) => { if (pts[i]) { ci.setAttribute('cx', pts[i][0].toFixed(1)); ci.setAttribute('cy', pts[i][1].toFixed(1)); } });
+});
+q('[data-radar]').forEach((g) => {
+const p = g.getAttribute('data-radar').split(',').map(Number), pts = c.vals.map((v, i) => { const a = (-90 + 60 * i) * Math.PI / 180, r = p[2] * v / 110; return [p[0] + r * Math.cos(a), p[1] + r * Math.sin(a)]; });
+const poly = g.querySelector('polygon');
+if (poly) {
+poly.setAttribute('points', pts.map((x) => x[0].toFixed(1) + ',' + x[1].toFixed(1)).join(' '));
+poly.setAttribute('fill-opacity', s.ch.hex === 'Outline' ? '0' : '0.28');
+}
+const outl = s.ch.hex === 'Outline', ac = this.theme().accent;
+Array.prototype.slice.call(g.querySelectorAll('circle')).forEach((ci, i) => {
+if (pts[i]) { ci.setAttribute('cx', pts[i][0].toFixed(1)); ci.setAttribute('cy', pts[i][1].toFixed(1)); }
+// the points follow the radar style: solid in Outline, white with a coloured ring in Filled and Target
+ci.setAttribute('fill', outl ? ac : '#FFFFFF'); ci.setAttribute('stroke', ac); ci.setAttribute('stroke-width', outl ? '0' : '1.5');
+});
+});
+q('[data-target]').forEach((e) => { e.style.display = s.ch.hex === 'Target' ? '' : 'none'; });
+if (this.hiveSync) this.hiveSync(c, s);
+this.paintTimer();
+}
+sheet(name, open) {
+const root = this._root, el = root && root.querySelector('[data-sheet="' + name + '"]');
+if (!el) return;
+clearTimeout(el._t);
+if (name === 'add') {
+const b = root.querySelector('[data-add]');
+if (b) { b.setAttribute('aria-expanded', open ? 'true' : 'false'); if (b.firstElementChild) b.firstElementChild.style.transform = open ? 'rotate(45deg)' : 'none'; }
+}
+if (open) {
+if (!el.hasAttribute('data-over')) this.closeSheets(name);
+el.style.display = 'flex';
+void el.offsetHeight;
+el.classList.add('up');
+if (name === 'add') this.focusAdd(el);
+} else {
+el.classList.remove('up');
+el._t = setTimeout(() => { el.style.display = 'none'; }, 300);
+}
+}
+addType() { const t = this.store().ch.addType; return t === 'task' || t === 'dream' || t === 'goal' ? t : 'act'; }
+focusAdd(el) {
+el = el || (this._root && this._root.querySelector('[data-sheet="add"]'));
+const i = el && (el.querySelector('[data-in="' + ({ act: 'an', task: 'tn', dream: 'dn', goal: 'gn' })[this.addType()] + '"]') || el.querySelector('input'));
+if (i) { try { i.focus({ preventScroll: true }); } catch (e) {} }
+}
+openAdd(type) {
+if (type) { this.store().ch.addType = type; this.save(); }
+this.hydrate();
+this.sheet('add', true);
+}
+commitAdd() {
+const s = this.store(), t = this.addType();
+if (t === 'dream') this.newDream();
+if (t === 'goal') { const id = this.known(s.ch.adream) ? s.ch.adream : this.curId(), R = this.ddOf(id); R.goals.push({ id: this.uid('g'), t: (s.txt.gn || '').trim() || 'New goal', ig: '', kind: 'num', start: 0, target: '', cur: 0, unit: '', done: 0, since: this.dayIso(0), checks: {} }); s.txt.gn = ''; this.wipe('gn'); }
+if (t === 'act') { const id = this.known(s.ch.adream) ? s.ch.adream : this.curId(); this.ddInit(); this.ddOf(id).acts.push({ id: this.uid('a'), t: (s.txt.an || '').trim() || 'New daily action', time: s.txt.ctime || '', len: +(s.ch.clen || 0), days: [1, 1, 1, 1, 1, 1, 1], s: '', made: 1 }); s.txt.an = ''; this.wipe('an'); }
+if (t === 'task') s.tasks.push({ id: 't' + Date.now().toString(36), t: (s.txt.tn || '').trim() || 'New stat task', stat: s.ch.cstat || 'PHY', pts: s.num.cpts ?? 5, time: s.txt.ctime || '', len: +(s.ch.clen || 0), made: 1 });
+if (t === 'task') { s.txt.tn = ''; this.wipe('tn'); }
+if (t === 'act' || t === 'task') { delete s.txt.ctime; delete s.ch.clen; this.wipe('ctime'); }
+this.save();
+this.hydrate();
+this.closeSheets();
+}
+newDream() {
+const s = this.store(), p = this.plusCell();
+s.dreams.push({ id: 'd' + Date.now().toString(36) + s.dreams.length, name: (s.txt.dn || '').trim() || 'New dream', logo: this.iconKey(s.txt.cicon ?? s.ch.logo ?? 0), col: +(s.ch.col ?? 0), hex: s.txt.chex || '', x: p.x, y: p.y });
+s.txt.dn = '';
+delete s.txt.cicon; delete s.txt.chex;
+delete s.num.selx; delete s.num.sely;
+this.wipe('dn');
+if (this.state && this.state.sel) this.setState({ sel: null });
+}
+addMilestone() {
+const s = this.store(), GG = this.goalRec(), t = (s.txt.mnew || '').trim();
+if (!t || !GG) return;
+GG.ms.push([t, 1]);
+s.txt.mnew = '';
+this.wipe('mnew');
+}
+wipe(k) { const e = this._root && this._root.querySelector('[data-in="' + k + '"]'); if (e) e.value = ''; }
+closeSheets(except) {
+const root = this._root;
+if (!root) return;
+Array.prototype.slice.call(root.querySelectorAll('[data-sheet].up')).forEach((e) => { const n = e.getAttribute('data-sheet'); if (n !== except) this.sheet(n, false); });
+}
+paintTimer() {
+const root = this._root, tm = this._tm;
+if (!root || !tm) return;
+const set = (k, v) => { const e = root.querySelector('[data-tm="' + k + '"]'); if (e) e.textContent = v; };
+const m = Math.floor(tm.left / 60), sec = tm.left % 60;
+set('time', (m < 10 ? '0' : '') + m + ':' + (sec < 10 ? '0' : '') + sec);
+set('title', tm.title);
+set('btn', tm.run ? 'Pause' : (tm.left < tm.full ? 'Resume' : 'Start'));
+}
+timer(cmd, id, el) {
+const root = this._root, ui = root && root.querySelector('[data-timer]');
+if (!ui) return;
+const tm = this._tm || (this._tm = { left: 1500, full: 1500, run: false, id: null, title: '' });
+if (cmd === 'open') {
+const row = el && el.closest('[data-row]'), t = row && row.querySelector('[data-t]');
+tm.id = id; tm.title = t ? t.textContent : ''; tm.left = 1500; tm.full = 1500; tm.run = false;
+this.sheet('timer', true);
+}
+if (cmd === 'toggle') tm.run = !tm.run && tm.left > 0;
+if (cmd === 'add') { tm.left += 300; tm.full += 300; }
+if (cmd === 'done') { this.store().done[tm.id] = 1; this.save(); cmd = 'close'; }
+if (cmd === 'close') { tm.run = false; this.sheet('timer', false); }
+clearInterval(this._ti);
+if (tm.run) this._ti = setInterval(() => { tm.left = Math.max(0, tm.left - 1); if (!tm.left) { tm.run = false; clearInterval(this._ti); } this.paintTimer(); }, 1000);
+this.hydrate();
+}
+onClick(e) {
+const sh = e.target && e.target.getAttribute ? e.target.getAttribute('data-sheet') : null;
+if (sh) { if (sh === 'timer') this.timer('close'); else this.sheet(sh, false); return; }
+const t = e.target && e.target.closest ? e.target.closest('[data-act]') : null;
+if (!t || !this._root || !this._root.contains(t)) return;
+const a = t.getAttribute('data-act').split(':'), s = this.store();
+if (a[0] === 'sheet') { e.preventDefault(); if (a[1] === 'close') this.closeTop(); else if (a[1] === 'act' || a[1] === 'task' || a[1] === 'dream' || a[1] === 'goal') { if (a[1] === 'goal') s.ch.adream = this.curGoal().id; this.openAdd(a[1]); } else this.sheet(a[1], true); return; }
+if (a[0] === 'addtype') { s.ch.addType = a[1]; this.save(); this.hydrate(); this.focusAdd(); return; }
+if (a[0] === 'addsave') { this.commitAdd(); return; }
+if (a[0] === 'tm') { if (a[1] === 'open' && (s.num.doff ?? 0) !== 0) return; this.timer(a[1], a[2], t); return; }
+if (a[0] === 'tick') { if ((s.num.doff ?? 0) !== 0) return; s.done[a[1]] = s.done[a[1]] ? 0 : 1; if (s.done[a[1]]) this.pop('[data-row="' + a[1] + '"]'); }
+if (a[0] === 'sw') { const k = this.swKey(t); s[k[0]][k[1]] = s[k[0]][k[1]] ? 0 : 1; }
+if (a[0] === 'open') s.txt.cur = a[1];
+const RG = this.dayRange(), cl = (d) => Math.max(RG[0], Math.min(RG[1], d));
+if (a[0] === 'day') s.num.doff = cl(this.monOff(s.num.doff ?? 0) + (+a[1]));
+if (a[0] === 'dayo') s.num.doff = cl(+a[1]);
+if (a[0] === 'day' || a[0] === 'wk' || a[0] === 'today') this._sAnchor = undefined;
+if (a[0] === 'wk') s.num.doff = cl((s.num.doff ?? 0) + 7 * (+a[1]));
+if (a[0] === 'today') s.num.doff = 0;
+if (a[0] === 'rem') { s.num.remCur = +a[2]; this.save(); this.hydrate(); this.sheet('rem', true); return; }
+if (a[0] === 'remnew') {
+s.rem.push({ t: '', time: '09:00', days: [1, 1, 1, 1, 1, 0, 0], about: 'act', nudge: 0, on: 1 });
+s.num.remCur = s.rem.length - 1; this.save(); this.hydrate(); this.sheet('rem', true);
+const n = this._root.querySelector('[data-remf="t"]'); if (n) { try { n.focus({ preventScroll: true }); } catch (err) {} }
+return;
+}
+if (a[0] === 'ftog') s.focus[a[1]] = s.focus[a[1]] ? 0 : 1;
+if (a[0] === 'tedit') { s.txt.tCur = a[1]; this.save(); this.hydrate(); this.sheet('tedit', true); return; }
+if (a[0] === 'statedit') { s.txt.stCur = a[1]; this.save(); this.hydrate(); this.paintWheel(); this.sheet('statedit', true); return; }
+const tcur = s.tasks.filter((x) => x.id === s.txt.tCur)[0];
+if (tcur && a[0] === 'tstat') tcur.stat = a[1];
+if (tcur && a[0] === 'tpts') tcur.pts = Math.max(1, Math.min(10, (+tcur.pts || 1) + (+a[1])));
+if (tcur && a[0] === 'tlen') tcur.len = +a[1];
+if (tcur && a[0] === 'tdel') { s.tasks.splice(s.tasks.indexOf(tcur), 1); delete s.done[tcur.id]; this.save(); this.closeSheets(); this.hydrate(); return; }
+if (a[0] === 'stcol') { const k = s.txt.stCur || 'PHY'; s.stats[k] = Object.assign({}, s.stats[k], { col: t.getAttribute('data-stsw') }); this.save(); this.hydrate(); this.paintWheel(); return; }
+if (a[0] === 'streset') { delete s.stats[s.txt.stCur || 'PHY']; this.save(); this.hydrate(); this.paintWheel(); return; }
+if (a[0] === 'remsw') { const r = s.rem[+a[1]]; if (r) r.on = r.on ? 0 : 1; }
+const rc = this.remCur();
+if (rc && a[0] === 'remday') { rc.days = (rc.days || [0, 0, 0, 0, 0, 0, 0]).slice(); rc.days[+a[1]] = rc.days[+a[1]] ? 0 : 1; }
+if (rc && a[0] === 'remrep') rc.days = ({ all: [1, 1, 1, 1, 1, 1, 1], wd: [1, 1, 1, 1, 1, 0, 0], we: [0, 0, 0, 0, 0, 1, 1] })[a[1]].slice();
+if (rc && a[0] === 'remab') rc.about = a[1];
+if (rc && a[0] === 'remnud') rc.nudge = +a[1];
+if (rc && a[0] === 'remdel') { s.rem.splice(s.rem.indexOf(rc), 1); s.num.remCur = 0; this.save(); this.closeSheets(); this.hydrate(); return; }
+if (a[0] === 'goal') s.num.cg = +a[1];
+if (a[0] === 'msdec' || a[0] === 'msinc') {
+const G = this.curGoal(), x = this.goalCount(G.id) ? this.goalState(G.id, G.g) : null;
+if (x) {
+let c = x.c, dn = x.dn;
+if (a[0] === 'msinc') { if (dn < x.n) { c++; if (c >= x.t) { dn++; c = 0; this.pop('[data-list="ms"] > [data-clone]:nth-child(' + dn + ')'); } } }
+else if (c > 0) c--; else if (dn > 0) { dn--; c = x.ms[dn][1] - 1; }
+const GG = this.goalRec(); if (GG) { GG.dn = dn; GG.c = c; }
+}
+}
+if (a[0] === 'msadd') this.addMilestone();
+if (this.dreamAct(a, t)) return;
+if (a[0] === 'rings') {
+s.num.rings = Math.max(1, Math.min(4, (this.rings ? this.rings() : this.ringsOpen()) + (parseInt(a[1], 10) || 0)));
+this.save();
+this.closeSheets();
+if (this.recenter) this.recenter(); else if (this.setState) this.setState({ ringsV: s.num.rings });
+}
+if (a[0] === 'ch') { const p = t.getAttribute('data-ch').split(':'); s.ch[p[0]] = p[1]; if (t.hasAttribute('data-shut')) this.closeTop(); }
+if (a[0] === 'ms') { const p = t.getAttribute('data-ms').split(':'), k = p[0] + '_' + p[1], cur = s.ch[k] === undefined ? t.hasAttribute('data-d') : !!s.ch[k]; s.ch[k] = cur ? 0 : 1; }
+if (a[0] === 'step') s.num[a[1]] = Math.max(+a[3], Math.min(+a[4], (s.num[a[1]] ?? +a[5]) + (+a[2])));
+if (a[0] === 'save') {
+if (a[1] === 'dream') this.newDream();
+if (a[1] === 'act') s.txt.custAct = s.txt.an || 'New daily action';
+if (a[1] === 'task') s.txt.custTask = s.txt.tn || 'New stat task';
+}
+if (a[0] === 'theme') { s.ch.theme = a[1]; delete s.txt.themeHex; }
+if (a[0] === 'wheel') { s.ch.wheelFor = a[1]; this.save(); this.hydrate(); this.sheet('wheel', true); return; }
+if (a[0] === 'pickicon') { if (s.ch.icFor === 'cur') { this.setDream(this.curId(), 'logo', t.getAttribute('data-icon')); delete s.ch.icFor; } else s.txt.cicon = t.getAttribute('data-icon'); this.closeTop(); }
+if (a[0] === 'reset') { window.__hx = null; try { localStorage.removeItem(this.K()); } catch (err) {} }
+this.save();
+if (a[0] === 'theme' || a[0] === 'reset') { const wh = a[0] === 'theme' && !!t.closest('[data-sheet="wheel"]'); this.setState({ rev: Date.now() }); if (wh) this.keepOpen('wheel'); setTimeout(() => { this.hydrate(); if (wh) this.keepOpen('wheel'); }, 0); }
+this.hydrate();
+if (a[0] === 'save') this.closeSheets();
+}
+// ---- pull-up page: the lighter panel slides up to become the whole page, and back down to show the header
+pullEl() { return this._root ? this._root.querySelector('[data-pull]') : null; }
+pullSet(p, anim) {
+const el = this.pullEl();
+if (!el) return;
+const T = +el.getAttribute('data-pull') || 0, pad = el.querySelector('[data-pullpad]'), was = this._pullP ?? 0;
+p = Math.max(-0.08, Math.min(1.04, p));
+this._pullP = p;
+const tr = anim ? 'transform 0.46s cubic-bezier(0.2, 0.9, 0.25, 1)' : 'none';
+el.style.transition = tr;
+el.style.transform = 'translateY(' + (T * (1 - p)).toFixed(1) + 'px)';
+el._pullStr = el.style.transform;
+if (pad) { pad.style.transition = anim ? 'height 0.46s cubic-bezier(0.2, 0.9, 0.25, 1)' : 'none'; pad.style.height = (40 * Math.max(0, Math.min(1, p))).toFixed(1) + 'px'; }
+const open = p >= 0.999;
+el.style.overflowY = open ? 'auto' : 'hidden';
+if (!open && was >= 0.999 && el.scrollTop) el.scrollTop = 0;
+const hd = this._root.querySelectorAll('[data-pullhead]');
+for (let i = 0; i < hd.length; i++) { hd[i].style.transition = anim ? 'opacity 0.46s ease' : 'none'; hd[i].style.opacity = String(1 - 0.6 * Math.max(0, Math.min(1, p))); }
+}
+pullSync() { const el = this.pullEl(); if (el && !this._pullDrag && el.style.transform !== el._pullStr) this.pullSet((this._pullP ?? 0) >= 0.5 ? 1 : 0, false); }
+pullSnap(v, dir) {
+// v in progress-per-ms (positive = opening); a flick decides, otherwise the nearer end, nudged by the drag direction
+const p = this._pullP ?? 0;
+let to = p > 0.5 ? 1 : 0;
+if (Math.abs(v) > 0.0016) to = v > 0 ? 1 : 0;
+else if (dir > 0 && p > 0.2) to = 1;
+else if (dir < 0 && p < 0.8) to = 0;
+this.pullSet(to, true);
+}
+pullInit(root) {
+const el = this.pullEl();
+if (!el || el._pull) return;
+el._pull = true;
+const T = () => +el.getAttribute('data-pull') || 1;
+const k = () => { const r = root.getBoundingClientRect(); return r.width ? r.width / 390 : 1; };
+const P = () => this._pullP ?? 0;
+const skip = (t) => t && t.closest && (t.closest('[data-strip], input, textarea, [data-wheel]'));
+// touch: drive the panel until it is fully open, then let the content scroll; pull down at the top to close it again
+let g = null;
+el.addEventListener('touchstart', (e) => {
+if (e.touches.length !== 1) { g = null; return; }
+const t = e.touches[0];
+g = { x: t.clientX, y: t.clientY, p0: P(), top: el.scrollTop, mode: '', pts: [[e.timeStamp, P()]], noX: !!skip(e.target) };
+}, { passive: true });
+el.addEventListener('touchmove', (e) => {
+if (!g || e.touches.length !== 1) return;
+if (this._swiping && g.mode !== 'sheet') { g = null; return; }
+const t = e.touches[0], dx = t.clientX - g.x, dy = t.clientY - g.y;
+if (!g.mode) {
+if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 6) { g.mode = 'x'; return; }
+if (Math.abs(dy) < 5) return;
+if (g.p0 < 0.999) g.mode = 'sheet';
+else if (el.scrollTop <= 0 && dy > 0) g.mode = 'sheet';
+else g.mode = 'native';
+if (g.mode === 'sheet') { this._pullDrag = true; g.y = t.clientY; g.dy0 = 0; }
+}
+if (g.mode !== 'sheet') return;
+e.preventDefault();
+const d = (t.clientY - g.y) / k();
+let p = g.p0 - d / T();
+if (p > 1) p = 1 + (p - 1) * 0.2;
+if (p < 0) p = p * 0.2;
+this.pullSet(p, false);
+g.pts.push([e.timeStamp, p]); if (g.pts.length > 6) g.pts.shift();
+g.dir = d < 0 ? 1 : -1;
+}, { passive: false });
+const tend = (e) => {
+if (!g) return;
+const G = g; g = null;
+if (G.mode !== 'sheet') return;
+this._pullDrag = false;
+const a = G.pts[0], b = G.pts[G.pts.length - 1], v = b && a && b[0] - a[0] > 10 && e.timeStamp - b[0] < 80 ? (b[1] - a[1]) / (b[0] - a[0]) : 0;
+this.pullSnap(v, G.dir || 0);
+};
+el.addEventListener('touchend', tend);
+el.addEventListener('touchcancel', tend);
+// mouse drag (desktop) works the same way
+let m = null;
+el.addEventListener('pointerdown', (e) => {
+if (e.pointerType !== 'mouse' || e.button !== 0 || skip(e.target)) return;
+m = { y: e.clientY, p0: P(), moved: false, pts: [[e.timeStamp, P()]], id: e.pointerId };
+});
+el.addEventListener('pointermove', (e) => {
+if (!m || e.pointerId !== m.id) return;
+if (e.buttons === 0) { m = null; return; }
+if (this._swiping && !m.moved) { m = null; return; }
+const d = (e.clientY - m.y) / k();
+if (!m.moved) {
+if (Math.abs(d) < 5) return;
+if (m.p0 >= 0.999 && !(el.scrollTop <= 0 && d > 0)) { m = null; return; }
+m.moved = true; this._pullDrag = true; m.y = e.clientY;
+try { el.setPointerCapture(e.pointerId); } catch (err) {}
+return;
+}
+let p = m.p0 - d / T();
+if (p > 1) p = 1 + (p - 1) * 0.2;
+if (p < 0) p = p * 0.2;
+this.pullSet(p, false);
+m.pts.push([e.timeStamp, p]); if (m.pts.length > 6) m.pts.shift();
+m.dir = d < 0 ? 1 : -1;
+});
+const mend = (e) => {
+if (!m) return;
+const M = m; m = null;
+if (!M.moved) return;
+this._pullDrag = false;
+this._pullEat = true; setTimeout(() => { this._pullEat = false; }, 60);
+const a = M.pts[0], b = M.pts[M.pts.length - 1], v = b && a && b[0] - a[0] > 10 && e.timeStamp - b[0] < 80 ? (b[1] - a[1]) / (b[0] - a[0]) : 0;
+this.pullSnap(v, M.dir || 0);
+};
+el.addEventListener('pointerup', mend);
+el.addEventListener('pointercancel', mend);
+el.addEventListener('click', (e) => { if (this._pullEat) { e.preventDefault(); e.stopPropagation(); } }, true);
+// wheel / trackpad: scrolling down opens the panel first; scrolling up at the very top closes it
+let w = null, lastScroll = 0;
+el.addEventListener('wheel', (e) => {
+if (e.ctrlKey || Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+const p = P(), dy = e.deltaY * (e.deltaMode === 1 ? 16 : 1), now = e.timeStamp;
+const open = p >= 0.999;
+if (open && (dy > 0 || el.scrollTop > 0)) { lastScroll = now; return; }
+if (open && dy < 0 && now - lastScroll < 260) { lastScroll = now; e.preventDefault(); return; }
+e.preventDefault();
+if (!w) { w = { dir: 0 }; this._pullDrag = true; }
+const np = Math.max(0, Math.min(1, p + dy / T()));
+w.dir = dy > 0 ? 1 : -1;
+this.pullSet(np, false);
+clearTimeout(w.t);
+if (np >= 1 || np <= 0) { lastScroll = now; }
+w.t = setTimeout(() => { const W = w; w = null; this._pullDrag = false; this.pullSnap(0, W ? W.dir : 0); }, 140);
+}, { passive: false });
+this.pullSet(0, false);
+}
+// ---- swipe a row to the left to reveal Delete; swipe all the way to delete at once
+swipeRows() {
+const root = this._root, out = [], q = (sel) => Array.prototype.slice.call(root.querySelectorAll(sel));
+q('[data-list="acts"] > [data-clone][data-row], [data-list="dacts"] > [data-clone][data-row], [data-list="gacts"] > [data-clone][data-row]').forEach((li) => out.push([li, 'act:' + li.getAttribute('data-row')]));
+q('[data-list="tree"] > [data-clone][data-tkey]').forEach((el) => { const k = el.getAttribute('data-tkey'); if (k) out.push([el, k]); });
+q('[data-list="dstrat"] > [data-clone][data-sid], [data-list="gstrat"] > [data-clone][data-sid]').forEach((el) => out.push([el, 'dstrat:' + el.getAttribute('data-sid')]));
+q('[data-list="tasks"] > [data-clone][data-row]').forEach((li) => out.push([li, 'task:' + li.getAttribute('data-row')]));
+q('[data-list="rems"] > [data-clone]').forEach((el) => {
+const own = (el.getAttribute('data-act') || '').indexOf('rem:open:') === 0 ? el : el.querySelector('[data-act^="rem:open:"]');
+if (own) out.push([el, 'rem:' + own.getAttribute('data-act').split(':')[2]]);
+});
+const msb = q('[data-list="ms"] > [data-clone]');
+msb.forEach((el, i) => out.push([el, 'ms:' + i]));
+return out;
+}
+swipeSync() {
+const root = this._root, s = this.store();
+Array.prototype.slice.call(root.querySelectorAll('ul[data-tlist]:not([data-list]) > li[data-row]')).forEach((li) => { if (s.num['gone_' + li.getAttribute('data-row')]) li.style.display = 'none'; });
+this.swipeRows().forEach((r) => {
+const el = r[0];
+el.setAttribute('data-swipe', r[1]);
+const tl = !!el.querySelector('[data-cap]') && !!el.closest('[data-tlist]');
+el._tl = tl;
+if (getComputedStyle(el).position === 'static') el.style.position = 'relative';
+let d = null;
+for (let i = 0; i < el.children.length; i++) if (el.children[i].hasAttribute('data-swdel')) d = el.children[i];
+if (!d) {
+d = document.createElement('button');
+d.type = 'button';
+d.setAttribute('data-swdel', '1');
+d.setAttribute('aria-label', 'Delete');
+d.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M10 11v6M14 11v6M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-12M9 7V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3"/></svg>';
+d.style.cssText = tl
+? 'position: absolute; top: 50%; right: 44px; margin-top: -22px; width: 44px; height: 44px; box-sizing: border-box; border: 0; border-radius: 50%; background: #FF453A; color: #FFFFFF; display: flex; align-items: center; justify-content: center; padding: 0; cursor: pointer; z-index: 1; opacity: 0; transform: scale(0.5); pointer-events: none'
+: 'position: absolute; top: 50%; left: 100%; margin: -24px 0 0 14px; width: 48px; height: 48px; box-sizing: border-box; border: 0; border-radius: 50%; background: #FF453A; color: #FFFFFF; display: flex; align-items: center; justify-content: center; padding: 0; cursor: pointer; z-index: 1';
+el.appendChild(d);
+}
+const p = el.parentElement;
+if (!tl && p && p.style.overflowX !== 'clip') { p.style.overflowX = 'clip'; p.style.overflowClipMargin = '6px'; }
+});
+}
+swipeSet(el, x, anim) {
+const tr = anim ? 'transform 0.32s cubic-bezier(0.2, 0.9, 0.25, 1), opacity 0.32s ease' : 'none';
+el._sx = x;
+if (el._tl) {
+// timeline row: only the capsule and the text slide; the time gutter, the dotted line and the tick stay put
+const cap = el.querySelector('[data-cap]'), txt = el.querySelector('[data-swm]'), d = el.querySelector(':scope > [data-swdel]'), k = Math.max(0, Math.min(1, -x / 70));
+[cap, txt].forEach((e) => { if (e) { e.style.transition = tr; e.style.transform = x ? 'translateX(' + x.toFixed(1) + 'px)' : ''; } });
+if (cap) cap.style.opacity = String(1 - k);
+if (d) { d.style.transition = anim ? 'opacity 0.32s ease, transform 0.32s cubic-bezier(0.2, 0.9, 0.25, 1)' : 'none'; d.style.opacity = String(k); d.style.transform = 'scale(' + (0.5 + 0.5 * k).toFixed(3) + ')'; d.style.pointerEvents = k > 0.9 ? 'auto' : 'none'; }
+return;
+}
+el.style.transition = tr;
+el.style.transform = x ? 'translateX(' + x.toFixed(1) + 'px)' : '';
+
+}
+swipeDelete(row) {
+const key = row.getAttribute('data-swipe');
+if (!key || row._gone) return;
+row._gone = true;
+if (this._swOpen === row) this._swOpen = null;
+const h = row.offsetHeight;
+row.style.transition = 'transform 0.22s ease-in, opacity 0.22s ease-in';
+if (row._tl) row.style.opacity = '0'; else { row.style.transform = 'translateX(-115%)'; row.style.opacity = '0'; }
+setTimeout(() => {
+row.style.overflow = 'hidden'; row.style.minHeight = '0'; row.style.height = h + 'px';
+void row.offsetHeight;
+row.style.transition = 'height 0.24s ease, margin 0.24s ease';
+row.style.height = '0px';
+}, 200);
+setTimeout(() => {
+['transition', 'transform', 'opacity', 'overflow', 'minHeight', 'height'].forEach((k) => { row.style[k] = ''; });
+if (row._tl) this.swipeSet(row, 0, false);
+row._sx = 0; row._gone = false;
+this.deleteKey(key);
+}, 460);
+}
+deleteKey(key) {
+const s = this.store(), i = key.indexOf(':'), k = key.slice(0, i), id = key.slice(i + 1);
+if (k === 'act') { const f = this.actFind(id); if (f) f.list.splice(f.i, 1); s.num['gone_' + id] = 1; delete s.done[id]; }
+if (k === 'dgoal') { const R0 = this.ddOf(this.curId()), j = R0.goals.findIndex((g) => g.id === id); if (j >= 0) { R0.goals.splice(j, 1); R0.strat.forEach((x) => { if (x.g === id) x.g = ''; }); } s.num.cg = 0; }
+if (k === 'dig') { const R0 = this.ddOf(this.curId()), j = R0.igs.findIndex((x) => x.id === id); if (j >= 0) { R0.igs.splice(j, 1); R0.goals.forEach((g) => { if (g.ig === id) g.ig = ''; }); } }
+if (k === 'dstrat') { const R0 = this.ddOf(this.curId()), j = R0.strat.findIndex((x) => x.id === id); if (j >= 0) { R0.strat.splice(j, 1); R0.acts.forEach((y) => { if (y.s === id) y.s = ''; }); } }
+if (k === 'task') { const j = s.tasks.findIndex((t) => t.id === id); if (j >= 0) s.tasks.splice(j, 1); delete s.done[id]; }
+if (k === 'rem') { if (s.rem[+id]) s.rem.splice(+id, 1); s.num.remCur = 0; }
+if (k === 'ms') {
+const GG = this.goalRec(), st = this.goalState(this.curId(), this.curGoal().g), i = +id;
+if (GG && GG.ms[i]) { GG.ms.splice(i, 1); if (i < st.dn) GG.dn = st.dn - 1; if (i === st.dn) GG.c = 0; }
+}
+this.save();
+this.hydrate();
+}
+swipeInit(root) {
+if (root._sw) return;
+root._sw = true;
+const OPEN = 70;
+const k = () => { const r = root.getBoundingClientRect(); return r.width ? r.width / 390 : 1; };
+const closeOpen = () => { if (this._swOpen) { this.swipeSet(this._swOpen, 0, true); this._swOpen = null; } };
+const eat = (ms) => { this._swEat = true; clearTimeout(this._swEatT); this._swEatT = setTimeout(() => { this._swEat = false; }, ms); };
+let g = null;
+const start = (e, x, y) => {
+const t = e.target;
+if (t && t.closest && t.closest('[data-swdel]')) { g = null; return; }
+const row = t && t.closest ? t.closest('[data-swipe]') : null;
+// a touch anywhere else just closes the open row
+if (this._swOpen && this._swOpen !== row) { closeOpen(); eat(400); g = null; return; }
+if (!row || row._gone) { g = null; return; }
+g = { row: row, x: x, y: y, x0: row._sx || 0, mode: '', pts: [[e.timeStamp, row._sx || 0]] };
+};
+const move = (e, x, y) => {
+if (!g) return false;
+if (this._pullDrag) { g = null; return false; }
+const dx = (x - g.x) / k(), dy = (y - g.y) / k();
+if (!g.mode) {
+if (Math.abs(dy) > 8 && Math.abs(dy) >= Math.abs(dx)) { g = null; return false; }
+if (!(Math.abs(dx) > 8 && Math.abs(dx) > Math.abs(dy) * 1.2)) return false;
+g.mode = 'x'; this._swiping = true; g.x = x;
+}
+let nx = g.x0 + (x - g.x) / k();
+if (nx > 0) nx *= 0.25;
+if (nx < -OPEN) nx = -OPEN;
+this.swipeSet(g.row, nx, false);
+g.pts.push([e.timeStamp, nx]); if (g.pts.length > 5) g.pts.shift();
+return true;
+};
+const end = (e) => {
+if (!g) return;
+const G = g; g = null;
+if (G.mode !== 'x') return;
+this._swiping = false;
+eat(80);
+const a = G.pts[0], b = G.pts[G.pts.length - 1], v = b[0] - a[0] > 10 && e.timeStamp - b[0] < 90 ? (b[1] - a[1]) / (b[0] - a[0]) : 0, x = G.row._sx || 0, w = G.row.offsetWidth;
+if ((x < -OPEN / 2 && v < 0.4) || v < -0.35) { this.swipeSet(G.row, -OPEN, true); this._swOpen = G.row; }
+else { this.swipeSet(G.row, 0, true); if (this._swOpen === G.row) this._swOpen = null; }
+};
+root.addEventListener('touchstart', (e) => { if (e.touches.length === 1) start(e, e.touches[0].clientX, e.touches[0].clientY); else g = null; }, { passive: true });
+root.addEventListener('touchmove', (e) => { if (g && e.touches.length === 1 && move(e, e.touches[0].clientX, e.touches[0].clientY)) e.preventDefault(); }, { passive: false });
+root.addEventListener('touchend', end);
+root.addEventListener('touchcancel', end);
+root.addEventListener('pointerdown', (e) => { if (e.pointerType === 'mouse' && e.button === 0) start(e, e.clientX, e.clientY); });
+root.addEventListener('pointermove', (e) => { if (e.pointerType !== 'mouse' || !g) return; if (e.buttons === 0) { g = null; this._swiping = false; return; } move(e, e.clientX, e.clientY); });
+root.addEventListener('pointerup', (e) => { if (e.pointerType === 'mouse') end(e); });
+root.addEventListener('click', (e) => {
+const t = e.target, del = t && t.closest ? t.closest('[data-swdel]') : null;
+if (del) { e.preventDefault(); e.stopPropagation(); const row = del.closest('[data-swipe]'); if (row) this.swipeDelete(row); return; }
+if (this._swEat) { e.preventDefault(); e.stopPropagation(); return; }
+if (this._swOpen) { closeOpen(); e.preventDefault(); e.stopPropagation(); }
+}, true);
+}
+// ---- page transitions: remember how you left a page, and bring the next one in to match
+navInit(root) {
+root.addEventListener('click', (e) => {
+const a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+if (!a || e.defaultPrevented) return;
+const lab = a.getAttribute('aria-label') || '';
+const kind = a.hasAttribute('data-back') || /^(back|close)/i.test(lab) ? 'back' : (a.closest('nav') ? 'tab' : (a.hasAttribute('data-cell') ? 'zoom' : 'fwd'));
+try { sessionStorage.setItem('hxnav', kind + '|' + Date.now()); } catch (err) {}
+}, true);
+if (root._navIn) return;
+root._navIn = true;
+let kind = 'tab';
+try { const v = (sessionStorage.getItem('hxnav') || '').split('|'); if (v[0] && Date.now() - (+v[1] || 0) < 5000) kind = v[0]; sessionStorage.removeItem('hxnav'); } catch (err) {}
+try { if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; } catch (err) {}
+if (!root.animate) return;
+const ease = 'cubic-bezier(0.2, 0.85, 0.25, 1)';
+const K = { fwd: [{ opacity: 0, transform: 'translateX(36px)' }, { opacity: 1, transform: 'none' }], back: [{ opacity: 0, transform: 'translateX(-36px)' }, { opacity: 1, transform: 'none' }],
+zoom: [{ opacity: 0, transform: 'scale(0.9)' }, { opacity: 1, transform: 'none' }], tab: [{ opacity: 0, transform: 'scale(0.985)' }, { opacity: 1, transform: 'none' }] }[kind] || null;
+const kids = Array.prototype.slice.call(root.children).filter((c) => !c.hasAttribute('data-sheet') && c.tagName !== 'NAV' && c.tagName !== 'STYLE');
+kids.forEach((c, i) => {
+if (c.hasAttribute('data-pull')) {
+const T = +c.getAttribute('data-pull') || 0;
+c.animate([{ transform: 'translateY(' + (T + 60) + 'px)', opacity: 0.4 }, { transform: 'translateY(' + T + 'px)', opacity: 1 }], { duration: 460, delay: 60, easing: ease, fill: 'backwards' });
+} else if (K) c.animate(K, { duration: kind === 'tab' ? 260 : 360, delay: Math.min(i, 4) * 25, easing: ease, fill: 'backwards' });
+});
+}
+mount(root) {
+root = root || document.querySelector('[data-root]');
+if (!root) return;
+this._root = root;
+if (!root._hx) {
+root._hx = true;
+root.addEventListener('click', (e) => this.onClick(e));
+root.addEventListener('pointerdown', (e) => {
+const w = e.target && e.target.closest ? e.target.closest('[data-wheel]') : null;
+if (!w) return;
+this._wh = w;
+try { w.setPointerCapture(e.pointerId); } catch (err) {}
+e.preventDefault();
+this.wheelAt(e);
+});
+root.addEventListener('pointermove', (e) => { if (this._wh) this.wheelAt(e); });
+const wheelEnd = () => {
+if (!this._wh) return;
+const tw = this.wheelTarget(this._wh);
+this._wh = null;
+this.save();
+if (tw === 'theme') { this.setState({ rev: Date.now() }); this.keepOpen('wheel'); setTimeout(() => { this.hydrate(); this.keepOpen('wheel'); }, 0); }
+this.hydrate();
+};
+root.addEventListener('pointerup', wheelEnd);
+root.addEventListener('pointercancel', wheelEnd);
+root.addEventListener('keydown', (e) => { const t = e.target; if (e.key === 'Enter' && t && t.closest && t.closest('[data-sheet="add"]') && t.tagName === 'INPUT') { e.preventDefault(); this.commitAdd(); }
+else if (e.key === 'Enter' && t && t.getAttribute && (t.getAttribute('data-in') === 'ignew' || t.getAttribute('data-in') === 'snew' || t.getAttribute('data-in') === 'sgnew')) { e.preventDefault(); const k = t.getAttribute('data-in'); this.dreamAct(k === 'ignew' ? ['igadd'] : (k === 'sgnew' ? ['sadd', 'g'] : ['sadd']), t); }
+else if (e.key === 'Enter' && t && t.getAttribute && (t.hasAttribute('data-af') || t.hasAttribute('data-gf') || t.hasAttribute('data-ddf') || t.hasAttribute('data-igf') || t.hasAttribute('data-ckf')) && t.tagName === 'INPUT') { e.preventDefault(); t.blur(); }
+else if (e.key === 'Enter' && t && t.getAttribute && t.getAttribute('data-in') === 'mnew') { e.preventDefault(); this.addMilestone(); this.save(); this.hydrate(); } });
+root.addEventListener('input', (e) => {
+const t = e.target, k = t && t.getAttribute && t.getAttribute('data-in'), f = t && t.getAttribute && t.getAttribute('data-remf');
+if (k) { this.store().txt[k] = t.value; this.save(); this.hydrate(); }
+if (f) { const r = this.remCur(); if (r) { r[f] = t.value; this.save(); this.hydrate(); } }
+const tf = t && t.getAttribute && t.getAttribute('data-taskf'), sf = t && t.getAttribute && t.getAttribute('data-statf'), st = this.store();
+if (tf) { const x = st.tasks.filter((y) => y.id === st.txt.tCur)[0]; if (x) { x[tf] = t.value; this.save(); this.hydrate(); } }
+const df = t && t.getAttribute && t.getAttribute('data-ddf'), af = t && t.getAttribute && t.getAttribute('data-af'), xf = t && t.getAttribute && t.getAttribute('data-sf'), gf = t && t.getAttribute && t.getAttribute('data-gf'), mf = t && t.getAttribute && t.getAttribute('data-mf');
+if (df) { this.setDream(this.curId(), df, t.value); this.save(); this.hydrate(); }
+if (af) { const x = this.actCur(); if (x) { x[af] = t.value; this.save(); this.hydrate(); } }
+if (xf) { const x = this.stratCur(); if (x) { x[xf] = t.value; this.save(); this.hydrate(); } }
+if (gf) { const x = this.goalRec(); if (x) { x[gf] = (gf === 't' || gf === 'unit') ? t.value : (t.value === '' ? '' : +t.value); if (gf === 'cur') x.curSet = 1; if (gf === 'start' && !x.curSet) x.cur = x.start === '' ? 0 : x.start; this.save(); this.hydrate(); } }
+const mef = t && t.getAttribute && t.getAttribute('data-mef');
+if (mef) { st.me[mef] = t.value; this.save(); this.hydrate(); }
+const igf = t && t.getAttribute && t.getAttribute('data-igf'), ckf = t && t.getAttribute && t.getAttribute('data-ckf');
+if (igf) { const x = this.igCur(); if (x) { x.t = t.value; this.save(); this.hydrate(); } }
+if (ckf) { const x = this.goalRec(), c = x && x.checks ? x.checks[st.num.ckCur || 1] : null; if (c) { c[ckf] = ckf === 'note' ? t.value : (t.value === '' ? '' : +t.value); this.save(); this.hydrate(); } }
+if (mf) { const x = this.msCur(); if (x) { x[0] = t.value; this.save(); this.hydrate(); } }
+if (sf) { const k = st.txt.stCur || 'PHY'; st.stats[k] = Object.assign({}, st.stats[k], { [sf]: sf === 'code' ? t.value.toUpperCase().slice(0, 4) : t.value }); this.save(); this.hydrate(); }
+});
+root.addEventListener('scroll', (e) => { const st = e.target; if (st && st.hasAttribute && st.hasAttribute('data-strip')) this.stripLabel(st); }, true);
+this.pullInit(root);
+this.navInit(root);
+root.addEventListener('change', (e) => {
+// a chosen photo is cropped to a square and shrunk before it is kept, so it fits in local storage
+const t = e.target;
+if (!t || !t.hasAttribute || !t.hasAttribute('data-photo') || !t.files || !t.files[0]) return;
+const fr = new FileReader();
+fr.onload = () => {
+const img = new Image();
+img.onload = () => {
+const N = 240, c = document.createElement('canvas'), k = Math.min(img.width, img.height);
+c.width = N; c.height = N;
+c.getContext('2d').drawImage(img, (img.width - k) / 2, (img.height - k) / 2, k, k, 0, 0, N, N);
+try { this.store().me.photo = c.toDataURL('image/jpeg', 0.85); } catch (err) {}
+this.save(); this.hydrate();
+};
+img.src = fr.result;
+};
+fr.readAsDataURL(t.files[0]);
+t.value = '';
+});
+this.swipeInit(root);
+}
+this.addMount();
+this.hydrate();
+}
+addInit(btn) {
+if (!btn || btn._addBound) return;
+btn._addBound = true;
+btn.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); if (!this._root) this.mount(btn.closest('[data-root]')); if (btn.getAttribute('aria-expanded') === 'true') this.closeSheets(); else this.openAdd(btn.getAttribute('data-add-type') || 'act'); });
+}
+addMount() { const b = (this._root || document).querySelector('[data-add]'); if (b) this.addInit(b); }
+tint(c, a) {
+const m = /^#([0-9a-f]{6})$/i.exec(c || '');
+if (!m) return c;
+const n = parseInt(m[1], 16);
+return 'rgba(' + (n >> 16) + ', ' + ((n >> 8) & 255) + ', ' + (n & 255) + ', ' + a + ')';
+}
+theme() {
+let a = this.props.accent ?? '#FF5C7A', b = this.props.accent2 ?? '#FFA24D';
+const th = this.themes()[this.store().ch.theme], hx = this.store().txt.themeHex;
+if (hx) { a = hx; b = this.partner(hx); } else if (th) { a = th[0]; b = th[1]; }
+if (!this._addRef) this._addRef = (el) => this.addInit(el);
+if (!this._rootRef) this._rootRef = (el) => { if (el) this.mount(el); };
+return { addRef: this._addRef, rootRef: this._rootRef, meshc: this.mix(a), deep: this.shade(a), band: this.shade(a, 0.42), accent: a, accent2: b, grad: 'linear-gradient(135deg, ' + a + ' 0%, ' + b + ' 100%)', glow: this.tint(a, 0.45), wash: this.tint(a, 0.26), soft: this.tint(a, 0.16) };
+}
+componentDidMount() { this.mount(); }
+componentDidUpdate() { this.hydrate(); }
+renderVals() {
+return this.theme();
+}
+}
+
+(function(){
+  var tpl = document.getElementById('tpl').textContent;
+  var c = new Component(); window.__c = c;
+  var v = c.renderVals();
+  var fill = function(){ return tpl.replace(/\{\{\s*([\w.]+)\s*\}\}/g, function(m, k){ return typeof v[k] === 'function' ? '' : String(v[k] == null ? '' : v[k]); }); };
+  var wire = function(){
+    Array.prototype.slice.call(document.querySelectorAll('[data-ref]')).forEach(function(el){ var f = v[el.getAttribute('data-ref')]; if (typeof f === 'function') f(el); });
+    Array.prototype.slice.call(document.querySelectorAll('[data-onclick]')).forEach(function(el){ el.addEventListener('click', function(e){ var f = v[el.getAttribute('data-onclick')]; if (typeof f === 'function') f(e); }); });
+  };
+  var root = document.getElementById('root');
+  root.innerHTML = fill();
+  window.__apply = function(){
+    var prev = v; v = c.renderVals();
+    if (v.accent !== prev.accent || v.grad !== prev.grad) { root.innerHTML = fill(); c._el = null; c._root = null; wire(); if (c.componentDidMount) c.componentDidMount(); return; }
+    if (c.layers && v.pan !== prev.pan) c.layers().forEach(function(l){ l.style.transform = v.pan; });
+    if (c.componentDidUpdate) c.componentDidUpdate();
+  };
+  wire();
+  if (c.componentDidMount) c.componentDidMount();
+})();
+</script>
+<script>
+(function(){
+  var C = window.Capacitor;
+  if (!C || !C.isNativePlatform || !C.isNativePlatform()) return;
+  var P = C.Plugins || {};
+  try { if (P.StatusBar) P.StatusBar.setStyle({ style: 'DARK' }); } catch (e) {}
+  try { if (P.SplashScreen) P.SplashScreen.hide(); } catch (e) {}
+  document.addEventListener('click', function(e){
+    var t = e.target && e.target.closest ? e.target.closest('[data-act]') : null;
+    if (!t || !P.Haptics) return;
+    var a = t.getAttribute('data-act') || '';
+    try { if (/^(tick|msinc|gstep|gdone|cksave)/.test(a)) P.Haptics.impact({ style: 'LIGHT' }); } catch (err) {}
+  }, true);
+  var LN = P.LocalNotifications;
+  if (!LN) return;
+  var KEY = 'hexhive.fresh.v1', timer = null, last = '';
+  var about = { act: 'Time for today\u2019s DAILY ACTIONS.', task: 'Your stat tasks are waiting.', focus: 'Check in on the dreams you\u2019re tracking.', review: 'Take two minutes to review your day.' };
+  function sync(){
+    var s = {}; try { s = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) {}
+    var rems = (s.rem || []).filter(function(r){ return r && r.on; });
+    var sig = JSON.stringify(rems); if (sig === last) return; last = sig;
+    var list = [];
+    rems.forEach(function(r, i){
+      var t = String(r.time || '09:00').split(':'), h = +t[0] || 0, m = +t[1] || 0;
+      (r.days || []).forEach(function(on, d){
+        if (!on) return;
+        list.push({ id: 1000 + i * 10 + d, title: r.t || 'Reminder', body: about[r.about] || about.act,
+          schedule: { on: { weekday: d === 6 ? 1 : d + 2, hour: h, minute: m }, repeats: true, allowWhileIdle: true } });
+      });
+    });
+    LN.getPending().then(function(p){
+      var old = (p && p.notifications || []).map(function(n){ return { id: n.id }; });
+      return old.length ? LN.cancel({ notifications: old }) : null;
+    }).then(function(){
+      if (!list.length) return null;
+      return LN.checkPermissions().then(function(st){ return st.display === 'granted' ? st : LN.requestPermissions(); }).then(function(st){
+        if (st.display === 'granted') return LN.schedule({ notifications: list });
+      });
+    }).catch(function(){ last = ''; });
+  }
+  var set = localStorage.setItem.bind(localStorage);
+  localStorage.setItem = function(k, val){ set(k, val); if (k === KEY) { clearTimeout(timer); timer = setTimeout(sync, 600); } };
+  setTimeout(sync, 800);
+})();
+</script>
+</body>
+</html>
