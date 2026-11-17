@@ -1,7 +1,18 @@
 #!/bin/bash
 # Builds an unsigned Hive.ipa on a Mac (used by the GitHub workflow, or run it yourself on a Mac).
 set -eo pipefail
+ROOT="$(pwd)"
 echo "== Node $(node -v), npm $(npm -v)"; xcodebuild -version
+# find the app: www/index.html next to capacitor.config.json (it may sit in a subfolder if the whole folder was uploaded)
+if [ ! -f www/index.html ]; then
+  CFG=$(find . -path ./node_modules -prune -o -name capacitor.config.json -print | while read f; do d=$(dirname "$f"); [ -f "$d/www/index.html" ] && echo "$d" && break; done)
+  if [ -n "$CFG" ]; then echo "== Using the app in $CFG"; cd "$CFG"; else
+    echo "!! The www folder (with index.html inside) isn't in this repository."
+    echo "!! Upload the www and resources folders from the zip to the top level of the repository, next to package.json, then run again."
+    echo "== What the repository contains:"; find . -maxdepth 2 -not -path './node_modules*' -not -path './.git*' | sort | head -60
+    exit 1
+  fi
+fi
 echo "== Installing"
 npm install --no-audit --no-fund
 echo "== Creating the iOS project"
@@ -14,6 +25,7 @@ echo "== Photo picker permissions"
 P=ios/App/App/Info.plist
 /usr/libexec/PlistBuddy -c "Add :NSPhotoLibraryUsageDescription string Choose a photo for your profile." "$P" || true
 /usr/libexec/PlistBuddy -c "Add :NSCameraUsageDescription string Take a photo for your profile." "$P" || true
+/usr/libexec/PlistBuddy -c "Set :CFBundleDisplayName HIVE" "$P" || /usr/libexec/PlistBuddy -c "Add :CFBundleDisplayName string HIVE" "$P" || true
 echo "== Building with Xcode"
 if [ -d ios/App/App.xcworkspace ]; then TARGET="-workspace ios/App/App.xcworkspace"; else TARGET="-project ios/App/App.xcodeproj"; fi
 set +e
@@ -35,4 +47,5 @@ rm -rf Payload Hive-unsigned.ipa
 mkdir -p Payload
 cp -R "$APP" Payload/
 zip -qry Hive-unsigned.ipa Payload
+[ "$(pwd)" != "$ROOT" ] && cp Hive-unsigned.ipa "$ROOT/"
 echo "Built Hive-unsigned.ipa"
