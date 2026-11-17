@@ -791,6 +791,16 @@ ov.remove(); this.hydrate();
 });
 }
 // ---- the ? page: open the question a link points at
+homeGuard(root) {
+const nav = root.querySelector('nav');
+if (!nav || root.querySelector('[data-homeguard]')) return;
+const g = document.createElement('div');
+g.setAttribute('data-homeguard', '1'); g.setAttribute('aria-hidden', 'true');
+g.style.cssText = 'position: absolute; left: 0; right: 0; bottom: 0; height: 100px; touch-action: none; -webkit-user-select: none; user-select: none';
+['touchstart', 'touchmove', 'pointerdown', 'pointermove', 'mousedown', 'wheel', 'click'].forEach((ev) => g.addEventListener(ev, (e) => { e.stopPropagation(); if (e.cancelable && ev !== 'pointerdown' && ev !== 'mousedown') e.preventDefault(); }, { passive: false }));
+nav.parentNode.insertBefore(g, nav);
+if (!document.getElementById('hxguard')) { const st = document.createElement('style'); st.id = 'hxguard'; st.textContent = '[data-root]:has([data-sheet].up) [data-homeguard], [data-root]:has([data-crop]) [data-homeguard]{display:none}'; (document.head || document.documentElement).appendChild(st); }
+}
 faqInit(root) {
 const h = (location.hash || '').slice(1);
 if (!/^faq-[\w-]+$/.test(h)) return;
@@ -1869,6 +1879,8 @@ root.addEventListener('scroll', (e) => { const st = e.target; if (st && st.hasAt
 this.pullInit(root);
 this.navInit(root);
 this.faqInit(root);
+// the strip behind the tab bar, where the iPhone's home swipe starts, takes no touches on any screen (the tabs themselves still work)
+this.homeGuard(root);
 root.addEventListener('click', (e) => { const t0 = e.target && e.target.closest ? e.target.closest('[data-trackpill]') : null, t = t0 ? t0.querySelector('[data-trkdot]') : null; if (t && t.animate) t.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.12)' }, { transform: 'scale(1)' }], { duration: 220, easing: 'ease-out' }); });
 root.addEventListener('change', (e) => {
 // a chosen photo is shrunk (so it fits in local storage), then moved and scaled into the hexagon
