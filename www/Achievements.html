@@ -25,12 +25,12 @@ a{color:var(--tx, #F2F2F3)}a:hover{color:var(--tx, #F2F2F3)}
 [data-sheet]{background-color:rgba(0,0,0,0);transition:background-color .28s ease}[data-sheet].up{background-color:rgba(0,0,0,.62)}
 [data-sheet]>*{transform:translateY(108%);transition:transform .5s cubic-bezier(.32,.72,0,1)}[data-sheet].up>*{transform:translateY(0)}
 @media (prefers-reduced-motion:reduce){[data-sheet],[data-sheet]>*{transition:none}}
-[data-root][data-past="1"] [data-act^="tick"]{pointer-events:none;opacity:.55}
+
 [data-day][aria-pressed="true"]{background:var(--w15, rgba(255,255,255,.15))!important}[data-day][aria-pressed="true"] .dn{color:var(--tx, #F2F2F3)!important}
 .noscr::-webkit-scrollbar{display:none}.noscr{scrollbar-width:none}
 input::placeholder,textarea::placeholder{color:var(--dim, #6E6E73)}
 input[data-in]:focus{outline:none;border-bottom:2px solid var(--tx, #F2F2F3)!important}[data-sheet="add"] input[data-in]:focus{border-bottom:0!important}textarea[data-in]:focus{outline:none;border-color:var(--tx, #F2F2F3)!important}
-@keyframes tkpop{0%{transform:scale(.35)}55%{transform:scale(1.22)}100%{transform:scale(1)}}@keyframes tkring{0%{opacity:.85;transform:scale(.7)}100%{opacity:0;transform:scale(2)}}@keyframes tkbump{0%{transform:scale(1)}40%{transform:scale(1.07)}100%{transform:scale(1)}}[data-pop] .on{position:relative;animation:tkpop .45s cubic-bezier(.2,1.5,.4,1)}[data-pop] .on::after{content:"";position:absolute;inset:-3px;border-radius:50%;border:2px solid rgba(255,255,255,.85);animation:tkring .55s ease-out forwards}[data-pop] [data-cap]{animation:tkbump .45s ease}[data-list="ms"] > [data-pop] > span:first-child > *{animation:tkpop .45s cubic-bezier(.2,1.5,.4,1)}@media (prefers-reduced-motion: reduce){[data-pop] *,[data-pop] *::after{animation:none!important}}
+@keyframes tkpop{0%{transform:scale(.35)}55%{transform:scale(1.22)}100%{transform:scale(1)}}@keyframes tkring{0%{opacity:.85;transform:scale(.7)}100%{opacity:0;transform:scale(2)}}@keyframes tkbump{0%{transform:scale(1)}40%{transform:scale(1.07)}100%{transform:scale(1)}}[data-pop] .on{position:relative;animation:tkpop .45s cubic-bezier(.2,1.5,.4,1)}[data-pop] .on::after{content:"";position:absolute;inset:-3px;border-radius:50%;border:2px solid rgba(255,255,255,.85);animation:tkring .55s ease-out forwards}[data-pop]:not([data-pop="s"]):not([data-pop="full"]) [data-cap]{animation:tkbump .45s ease}[data-list="ms"] > [data-pop] > span:first-child > *{animation:tkpop .45s cubic-bezier(.2,1.5,.4,1)}@media (prefers-reduced-motion: reduce){[data-pop] *,[data-pop] *::after{animation:none!important}}
 
 html,body{margin:0;height:100%;background:#0A0A10;overflow:hidden;overscroll-behavior:none;-webkit-text-size-adjust:100%;
 -webkit-tap-highlight-color:transparent;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
@@ -49,10 +49,15 @@ input,textarea{-webkit-user-select:text;user-select:text}
 <h1 style="margin: 0; display: flex; align-items: center; gap: 6px; font-size: 19px; line-height: 1.15; font-weight: 700; letter-spacing: -0.01em"><span>Achievements</span></h1>
 <h2 style="margin: 0; font-size: 11px; font-weight: 600; color: var(--sec, #8E8E93); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 6px">Titles</h2>
 <div style="display: flex; flex-wrap: wrap; gap: 8px">
-<span data-title="The Consistent" style="height: 44px; box-sizing: border-box; padding: 0 16px; border-radius: 14px; border: 2px dotted var(--line, rgba(255, 255, 255, 0.13)); color: var(--sec, #8E8E93); font-size: 13.5px; font-weight: 600; display: flex; align-items: center; gap: 6px"><span data-lock="1" style="display: flex"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6"></path><path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"></path><path d="M8 11v-4a4 4 0 1 1 8 0v4"></path></svg></span>The Consistent</span>
-<span data-title="Early Riser" style="height: 44px; box-sizing: border-box; padding: 0 16px; border-radius: 14px; border: 2px dotted var(--line, rgba(255, 255, 255, 0.13)); color: var(--sec, #8E8E93); font-size: 13.5px; font-weight: 600; display: flex; align-items: center; gap: 6px"><span data-lock="1" style="display: flex"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6"></path><path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"></path><path d="M8 11v-4a4 4 0 1 1 8 0v4"></path></svg></span>Early Riser</span>
-<span data-title="Iron Will" style="height: 44px; box-sizing: border-box; padding: 0 16px; border-radius: 14px; border: 2px dotted var(--line, rgba(255, 255, 255, 0.13)); color: var(--sec, #8E8E93); font-size: 13.5px; font-weight: 600; display: flex; align-items: center; gap: 6px"><span data-lock="1" style="display: flex"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6"></path><path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"></path><path d="M8 11v-4a4 4 0 1 1 8 0v4"></path></svg></span>Iron Will</span>
-<span data-title="Balanced" style="height: 44px; box-sizing: border-box; padding: 0 16px; border-radius: 14px; border: 2px dotted var(--line, rgba(255, 255, 255, 0.13)); color: var(--sec, #8E8E93); font-size: 13.5px; font-weight: 600; display: flex; align-items: center; gap: 6px"><span data-lock="1" style="display: flex"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6"></path><path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"></path><path d="M8 11v-4a4 4 0 1 1 8 0v4"></path></svg></span>Balanced</span>
+<span data-title="Novice" style="height: 44px; box-sizing: border-box; padding: 0 16px; border-radius: 14px; border: 2px dotted var(--line, rgba(255, 255, 255, 0.13)); color: var(--sec, #8E8E93); font-size: 13.5px; font-weight: 600; display: flex; align-items: center; gap: 6px"><span data-lock="1" style="display: flex"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6"></path><path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"></path><path d="M8 11v-4a4 4 0 1 1 8 0v4"></path></svg></span><span data-rkp="1" style="font-family: 'Source Code Pro', ui-monospace, monospace; font-size: 11px; font-weight: 800; opacity: 0.7">G</span>Novice</span>
+<span data-title="Apprentice" style="height: 44px; box-sizing: border-box; padding: 0 16px; border-radius: 14px; border: 2px dotted var(--line, rgba(255, 255, 255, 0.13)); color: var(--sec, #8E8E93); font-size: 13.5px; font-weight: 600; display: flex; align-items: center; gap: 6px"><span data-lock="1" style="display: flex"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6"></path><path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"></path><path d="M8 11v-4a4 4 0 1 1 8 0v4"></path></svg></span><span data-rkp="1" style="font-family: 'Source Code Pro', ui-monospace, monospace; font-size: 11px; font-weight: 800; opacity: 0.7">F</span>Apprentice</span>
+<span data-title="Initiate" style="height: 44px; box-sizing: border-box; padding: 0 16px; border-radius: 14px; border: 2px dotted var(--line, rgba(255, 255, 255, 0.13)); color: var(--sec, #8E8E93); font-size: 13.5px; font-weight: 600; display: flex; align-items: center; gap: 6px"><span data-lock="1" style="display: flex"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6"></path><path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"></path><path d="M8 11v-4a4 4 0 1 1 8 0v4"></path></svg></span><span data-rkp="1" style="font-family: 'Source Code Pro', ui-monospace, monospace; font-size: 11px; font-weight: 800; opacity: 0.7">E</span>Initiate</span>
+<span data-title="Adept" style="height: 44px; box-sizing: border-box; padding: 0 16px; border-radius: 14px; border: 2px dotted var(--line, rgba(255, 255, 255, 0.13)); color: var(--sec, #8E8E93); font-size: 13.5px; font-weight: 600; display: flex; align-items: center; gap: 6px"><span data-lock="1" style="display: flex"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6"></path><path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"></path><path d="M8 11v-4a4 4 0 1 1 8 0v4"></path></svg></span><span data-rkp="1" style="font-family: 'Source Code Pro', ui-monospace, monospace; font-size: 11px; font-weight: 800; opacity: 0.7">D</span>Adept</span>
+<span data-title="Skilled" style="height: 44px; box-sizing: border-box; padding: 0 16px; border-radius: 14px; border: 2px dotted var(--line, rgba(255, 255, 255, 0.13)); color: var(--sec, #8E8E93); font-size: 13.5px; font-weight: 600; display: flex; align-items: center; gap: 6px"><span data-lock="1" style="display: flex"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6"></path><path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"></path><path d="M8 11v-4a4 4 0 1 1 8 0v4"></path></svg></span><span data-rkp="1" style="font-family: 'Source Code Pro', ui-monospace, monospace; font-size: 11px; font-weight: 800; opacity: 0.7">C</span>Skilled</span>
+<span data-title="Veteran" style="height: 44px; box-sizing: border-box; padding: 0 16px; border-radius: 14px; border: 2px dotted var(--line, rgba(255, 255, 255, 0.13)); color: var(--sec, #8E8E93); font-size: 13.5px; font-weight: 600; display: flex; align-items: center; gap: 6px"><span data-lock="1" style="display: flex"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6"></path><path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"></path><path d="M8 11v-4a4 4 0 1 1 8 0v4"></path></svg></span><span data-rkp="1" style="font-family: 'Source Code Pro', ui-monospace, monospace; font-size: 11px; font-weight: 800; opacity: 0.7">B</span>Veteran</span>
+<span data-title="Elite" style="height: 44px; box-sizing: border-box; padding: 0 16px; border-radius: 14px; border: 2px dotted var(--line, rgba(255, 255, 255, 0.13)); color: var(--sec, #8E8E93); font-size: 13.5px; font-weight: 600; display: flex; align-items: center; gap: 6px"><span data-lock="1" style="display: flex"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6"></path><path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"></path><path d="M8 11v-4a4 4 0 1 1 8 0v4"></path></svg></span><span data-rkp="1" style="font-family: 'Source Code Pro', ui-monospace, monospace; font-size: 11px; font-weight: 800; opacity: 0.7">A</span>Elite</span>
+<span data-title="Champion" style="height: 44px; box-sizing: border-box; padding: 0 16px; border-radius: 14px; border: 2px dotted var(--line, rgba(255, 255, 255, 0.13)); color: var(--sec, #8E8E93); font-size: 13.5px; font-weight: 600; display: flex; align-items: center; gap: 6px"><span data-lock="1" style="display: flex"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6"></path><path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"></path><path d="M8 11v-4a4 4 0 1 1 8 0v4"></path></svg></span><span data-rkp="1" style="font-family: 'Source Code Pro', ui-monospace, monospace; font-size: 11px; font-weight: 800; opacity: 0.7">S</span>Champion</span>
+<span data-title="Master" style="height: 44px; box-sizing: border-box; padding: 0 16px; border-radius: 14px; border: 2px dotted var(--line, rgba(255, 255, 255, 0.13)); color: var(--sec, #8E8E93); font-size: 13.5px; font-weight: 600; display: flex; align-items: center; gap: 6px"><span data-lock="1" style="display: flex"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6"></path><path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"></path><path d="M8 11v-4a4 4 0 1 1 8 0v4"></path></svg></span><span data-rkp="1" style="font-family: 'Source Code Pro', ui-monospace, monospace; font-size: 11px; font-weight: 800; opacity: 0.7">S+</span>Master</span>
 </div>
 
 <div aria-hidden="true" style="height: 0; border-top: 2px dotted var(--line, rgba(255, 255, 255, 0.13)); margin-top: 4px"></div>
@@ -187,12 +192,16 @@ const tg = this.wheelTarget(w);
 if (tg === 'stat') { const k = s.txt.stCur || 'PHY'; s.stats[k] = Object.assign({}, s.stats[k], { col: hex }); } else if (tg === 'cdream') this.setDream(this.curId(), 'hex', hex); else if (tg === 'dream') s.txt.chex = hex; else { s.txt.themeHex = hex; s.ch.theme = 'custom'; }
 this.paintWheel(hex, w);
 }
-pop(sel) {
+pop(sel, v) {
 // a short celebration on the thing that was just completed; it lives one beat and goes
 setTimeout(() => {
 const e = this._root && this._root.querySelector(sel);
 if (!e) return;
-e.removeAttribute('data-pop'); void e.offsetWidth; e.setAttribute('data-pop', '1');
+e.removeAttribute('data-pop'); void e.offsetWidth; e.setAttribute('data-pop', v || '1');
+// a stat task whose week just filled glows gold like a rank up, at half that glow
+// and the gold rises through it, the same way a finished dream's cell turns gold on the mesh
+if (v === 'full') { const gl = e.querySelector('[data-capg]'); if (gl && gl.animate) gl.animate([{ clipPath: 'inset(100% 0 0 0)', filter: 'brightness(1.6)' }, { clipPath: 'inset(0% 0 0 0)', filter: 'brightness(1.6)', offset: 0.55 }, { clipPath: 'inset(0% 0 0 0)', filter: 'brightness(1)' }], { duration: 1200, easing: 'cubic-bezier(0.3, 0.7, 0.2, 1)' }); }
+if (v === 'full') { const cap = e.querySelector('[data-cap]'), host = cap && cap.parentElement, c = '#F0B62E'; if (host && host.animate) { const g0 = 'drop-shadow(0 0 0 ' + c + ')', g1 = 'drop-shadow(0 0 1.4px ' + c + ')'; host.animate([{ filter: g0, easing: 'ease-out' }, { filter: g1, offset: 0.07 }, { filter: g1, offset: 0.628, easing: 'ease-in-out' }, { filter: g0 }], { duration: 1130 }); } }
 setTimeout(() => e.removeAttribute('data-pop'), 700);
 try { if (navigator.vibrate) navigator.vibrate(10); } catch (err) {}
 }, 0);
@@ -247,7 +256,9 @@ glass: this.mixRgb('#282834', A, 0.08, 0.7), sec: this.mixRgb('#8E8E93', A, 0.16
 tx: 'var(--tx, #F2F2F3)', tx2: 'var(--tx2, #C9C9D1)', mesh: '#C6C8D0', meshf: 'rgba(198, 200, 208, 0.10)', lockf: '#000000', unlockf: 'transparent', g4: 'var(--g4, #4A4A4F)', sheet2: '#262631', glass2: 'rgba(40, 40, 52, 0.82)',
 hivebg: 'radial-gradient(circle at 195px 392px, #16161D 0px, #08080B 190px, #000000 330px)',
 w08: W(0.08), w10: W(0.1), w12: W(0.12), w13: W(0.13), w15: W(0.15), w16: W(0.16), w22: W(0.22), w25: W(0.25), w34: W(0.34), shadow: 'none' };
-v.bgk = v.bg; v.radarbg = v.bg;
+v.bgk = v.bg; v.radarbg0 = v.bg;
+// the chart's backdrop takes the lighter, tinted tone of the panels (the stat tasks panel's top colour, made solid); it stays the same in AMOLED
+{ const P = this.rgbOf('#2E2E3C'), B0 = this.rgbOf('#0A0A10'), Q = this.rgbOf(A), m = P.map((x, i) => { const t = x * 0.92 + Q[i] * 0.08, b = B0[i] * 0.95 + Q[i] * 0.05; return Math.round(t * 0.72 + b * 0.28); }); v.radarbg = 'rgb(' + m.join(', ') + ')'; }
 if (ml) Object.assign(v, { bg: '#000000', bg2: '#000000', sheet: '#000000', sh1: 'rgba(0, 0, 0, 1)', sh2: 'rgba(0, 0, 0, 1)', glass: '#000000', card: this.mixRgb('#FFFFFF', A, 0.3, 0.07), card2: this.mixRgb('#FFFFFF', A, 0.3, 0.13), line: this.mixRgb('#FFFFFF', A, 0.35, 0.16) });
 if (lt) {
 // light mode the way iOS does it: a soft grey page, near-white raised surfaces, grey fills for controls, near-black text, and the colour kept for accents
@@ -306,7 +317,8 @@ if (g) { g.style.height = h.toFixed(1) + 'px'; g.style.justifyContent = end ? 's
 const gs = li.querySelector('[data-tgs]'), ge = li.querySelector('[data-tge]'), wt = li.querySelector('[data-wt]');
 if (gs) gs.textContent = start || '';
 if (ge) { ge.textContent = end; ge.style.display = end ? 'block' : 'none'; }
-if (wt) wt.textContent = start ? (end ? start + ' – ' + end : start) : 'Any time';
+// the times sit in the gutter already, so the line over the title says how long it takes (or just that it repeats)
+if (wt) { const dur = len ? (len < 60 ? len + 'm' : (Math.round(len / 60 * 100) / 100) + 'hr') : ''; wt.textContent = dur; wt.style.display = dur ? '' : 'none'; }
 ['[data-tlu]', '[data-tld]'].forEach((k) => { const e = li.querySelector(k); if (e) e.style.height = 'calc(50% - ' + (h / 2).toFixed(1) + 'px)'; });
 li.style.minHeight = Math.max(76, h + 22).toFixed(0) + 'px';
 li.setAttribute('data-start', start || '');
@@ -596,7 +608,8 @@ let reviewed = 0, goalDone = 0, dreamDone = 0;
 this.allIds().forEach((id) => { const R = this.ddOf(id); R.goals.forEach((g) => { reviewed += this.logOf(g).filter((x) => !x.draft).length; if (this.gPct(g) >= 100) goalDone++; }); if (R.goals.length && this.dreamPct(id) >= 100) dreamDone++; });
 const B = { 'First Cell': this.allIds().length >= 1, '7 Day Streak': H.best >= 7, '30 Day Streak': H.best >= 30, 'Reviewer': reviewed >= 3, 'Strong Start': v('PHY') >= 60, 'First Goal': goalDone >= 1,
 'Balanced Hex': keys.every((k) => v(k) >= 70), 'Centurion': H.activeDays >= 100, 'Rank A': (c.total || 0) >= 80, 'Dream Realised': dreamDone >= 1 };
-const T = { 'The Consistent': H.best >= 7, 'Early Riser': H.early >= 10, 'Iron Will': H.best >= 30, 'Balanced': keys.every((k) => v(k) >= 70) };
+const T = {}, ti = this.rankIdx(c.total || 0);
+this.RANKS().forEach((r, i) => { T[this.rankTitle(r[0])] = i <= ti; });
 return { B: B, T: T };
 }
 awardSync(q, c) {
@@ -890,7 +903,7 @@ rollDay() {
 const s = window.__hx;
 if (!s) return;
 const td = this.dayIso(0);
-if (s.doneDate && s.doneDate !== td) { if (Object.keys(s.done || {}).some((k) => s.done[k])) s.log[s.doneDate] = s.done; s.done = {}; }
+if (s.doneDate && s.doneDate !== td) { if (Object.keys(s.done || {}).some((k) => s.done[k])) s.log[s.doneDate] = s.done; s.done = Object.assign({}, s.log[td] || {}); delete s.log[td]; }
 if (s.doneDate !== td) { s.doneDate = td; try { localStorage.setItem(this.K(), JSON.stringify(s)); } catch (e) {} }
 }
 dayLog(d) { const s = this.store(); return d === 0 ? s.done : (s.log[this.dayIso(d)] || null); }
@@ -900,22 +913,25 @@ rankIdx(v) { const T = this.RANKS(); let i = 0; T.forEach((t, j) => { if (v >= t
 radarSVG(o) {
 // the stat chart: a fine outer ring with tick marks and compass marks, each stat's name and rank badge on the ring,
 // the 110 hexagon with its corner markers, the axes, the stat shape, and each stat's number
-const full = o.mode === 'full', HR = 54, B1 = 80, B2 = 93, BM = (B1 + B2) / 2, TX = 'var(--tx, #F2F2F3)', SC = 'var(--sec, #8E8E93)', BG = 'var(--bg, #0A0A10)', RB = 'var(--radarbg, #120E14)', AC = o.acc, INK = '#0B0B0C';
+const full = o.mode === 'full', HR = 54, B1 = 80, B2 = 93, BM = (B1 + B2) / 2, TX = 'var(--tx, #F2F2F3)', SC = 'var(--sec, #8E8E93)', BG = 'var(--bg, #0A0A10)', RB = o.mode === 'full' ? 'var(--radarbg, #120E14)' : 'var(--radarbg0, #0A0A10)', AC = o.acc, INK = '#0B0B0C';
 const LN = 'rgba(255, 255, 255, 0.22)', LF = 'rgba(255, 255, 255, 0.1)';
 const A = (i) => (-90 + 60 * i) * Math.PI / 180, P = (r, i) => [r * Math.cos(A(i)), r * Math.sin(A(i))], F = (n) => (+n).toFixed(2), pts = (r) => [0, 1, 2, 3, 4, 5].map((i) => P(r, i).map(F).join(',')).join(' ');
 const VE = o.mode === 'full' ? ' vector-effect="non-scaling-stroke"' : '', MONO = 'font-family: \'Source Code Pro\', ui-monospace, monospace';
 // the whole chart, ring included, sits on the same fixed backdrop in every mode
 let g = '';
-// the side marks start under the ring, so the backdrop and the ring line sit over their base; the tips stay where they were
-if (full) [0, 180].forEach((d) => { const s0 = d ? -1 : 1; g += '<polygon points="' + [[96.3 * s0, -3.6], [104.8 * s0, 0], [96.3 * s0, 3.6]].map((p) => p.map(F).join(',')).join(' ') + '" fill="' + AC + '"></polygon>'; });
-if (full) g += '<circle cx="0" cy="0" r="100.4" fill="' + RB + '"></circle>';
+// the side marks start under the ring, so the backdrop and the ring line sit over their base
+if (full) [0, 180].forEach((d) => { const a = d * Math.PI / 180, c = Math.cos(a), s1 = Math.sin(a), R = (r, t) => [r * c - t * s1, r * s1 + t * c]; g += '<polygon points="' + [R(96.3, -3.6), R(104.8, 0), R(96.3, 3.6)].map((p) => p.map(F).join(',')).join(' ') + '" fill="' + AC + '"></polygon>'; });
+// the fixed backdrop covers the ring band only; the space between the ring and the chart follows the theme
+if (full) g += '<path d="M100.4 0A100.4 100.4 0 1 0 -100.4 0A100.4 100.4 0 1 0 100.4 0ZM' + B1 + ' 0A' + B1 + ' ' + B1 + ' 0 1 1 -' + B1 + ' 0A' + B1 + ' ' + B1 + ' 0 1 1 ' + B1 + ' 0Z" fill-rule="evenodd" fill="' + RB + '"></path>';
 g += '<circle cx="0" cy="0" r="100" fill="none" stroke="' + LN + '" stroke-width="0.8"></circle>';
+// the ticked band turns as the chart zooms in and out
+g += '<g data-spin="1" style="transform-box: view-box; transform-origin: 0px 0px">';
 g += '<circle cx="0" cy="0" r="' + B2 + '" fill="none" stroke="' + LN + '" stroke-width="0.6"></circle><circle cx="0" cy="0" r="' + B1 + '" fill="none" stroke="' + LN + '" stroke-width="0.6"></circle>';
 let tk = '';
 for (let d = 0; d < 360; d += 5) { const a = d * Math.PI / 180, c = Math.cos(a), s2 = Math.sin(a), r0 = d % 30 ? B1 + 3 : B1; tk += 'M' + F(r0 * c) + ' ' + F(r0 * s2) + 'L' + F(B2 * c) + ' ' + F(B2 * s2); }
-g += '<path d="' + tk + '" stroke="' + LF + '" stroke-width="0.5" fill="none"></path>';
+g += '<path d="' + tk + '" stroke="' + LF + '" stroke-width="0.5" fill="none"></path></g>';
 // compass marks on the outer ring
-[-150, -30, 30, 150].forEach((d) => { const a = d * Math.PI / 180, x = 100 * Math.cos(a), y = 100 * Math.sin(a); g += '<rect x="-2" y="-2" width="4" height="4" transform="translate(' + F(x) + ' ' + F(y) + ') rotate(' + (d + 45) + ')" fill="' + RB + '" stroke="' + LN + '" stroke-width="0.8"></rect>'; });
+[-150, -30, 30, 150].forEach((d) => { const a = d * Math.PI / 180, x = 100 * Math.cos(a), y = 100 * Math.sin(a); g += '<rect x="-2" y="-2" width="4" height="4" transform="translate(' + F(x) + ' ' + F(y) + ') rotate(' + (d + 45) + ')" fill="' + AC + '" stroke="' + LN + '" stroke-width="0.8"></rect>'; });
 const R1 = g; g = '';
 // the 110 hexagon
 g += '<polygon points="' + pts(HR) + '" fill="' + RB + '"></polygon>';
@@ -923,11 +939,24 @@ if (o.style === 'Target') [0.25, 0.5, 0.75].forEach((f) => { g += '<polygon poin
 for (let i = 0; i < 3; i++) { const a = P(HR, i), b = P(HR, i + 3); g += '<line x1="' + F(a[0]) + '" y1="' + F(a[1]) + '" x2="' + F(b[0]) + '" y2="' + F(b[1]) + '" stroke="' + LF + '" stroke-width="0.5"' + VE + '></line>'; }
 // the stats
 const v = o.vals.map((x) => Math.max(0, Math.min(110, +x || 0))), sp = v.map((x, i) => P(HR * x / 110, i).map(F).join(',')).join(' ');
-g += '<polygon points="' + sp + '" fill="' + AC + '" fill-opacity="' + (o.style === 'Outline' ? '0' : '0.3') + '" stroke="' + AC + '" stroke-width="1.1" stroke-linejoin="round"' + VE + '></polygon>';
+if (o.style !== 'Outline') {
+// six slices, each shaded from faint at the centre to full strength along its outer edge
+let df = '', sl = '';
+for (let i = 0; i < 6; i++) {
+const p1 = P(HR * v[i] / 110, i), p2 = P(HR * v[(i + 1) % 6] / 110, (i + 1) % 6), dx = p2[0] - p1[0], dy = p2[1] - p1[1], L2 = dx * dx + dy * dy;
+if (L2 < 0.0001 && Math.hypot(p1[0], p1[1]) < 0.01) continue;
+const t = L2 ? -(p1[0] * dx + p1[1] * dy) / L2 : 0, fx = p1[0] + t * dx, fy = p1[1] + t * dy, id = 'rg' + o.mode + i;
+if (Math.hypot(fx, fy) < 0.05) continue;
+df += '<linearGradient id="' + id + '" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="' + F(fx) + '" y2="' + F(fy) + '"><stop offset="0" stop-color="' + AC + '" stop-opacity="0.04"></stop><stop offset="1" stop-color="' + AC + '" stop-opacity="0.34"></stop></linearGradient>';
+sl += '<polygon points="0,0 ' + p1.map(F).join(',') + ' ' + p2.map(F).join(',') + '" fill="url(#' + id + ')" stroke="url(#' + id + ')" stroke-width="0.15"></polygon>';
+}
+g += '<defs>' + df + '</defs>' + sl;
+}
+g += '<polygon points="' + sp + '" fill="none" stroke="' + AC + '" stroke-width="1.1" stroke-linejoin="round"' + VE + '></polygon>';
 if (o.dots !== false && full) v.forEach((x, i) => { const p = P(HR * x / 110, i); g += '<circle cx="' + F(p[0]) + '" cy="' + F(p[1]) + '" r="1.5" fill="' + AC + '"></circle>'; });
 g += '<polygon points="' + pts(HR) + '" fill="none" stroke="rgba(255, 255, 255, 0.5)" stroke-width="1" stroke-linejoin="round"' + VE + '></polygon>';
 g += '<polygon points="' + pts(HR - 2.6) + '" fill="none" stroke="' + LF + '" stroke-width="0.4"' + VE + '></polygon>';
-if (full) {
+if (o.mode !== 'mini') {
 // a small 110 marker on each corner, and each stat's number inside its corner
 for (let i = 0; i < 6; i++) { const p = P(HR, i); g += '<g transform="translate(' + F(p[0]) + ' ' + F(p[1]) + ') rotate(' + ((60 * i) > 90 && (60 * i) < 270 ? 60 * i - 180 : 60 * i) + ')"><rect x="-5" y="-2.6" width="10" height="5.2" rx="1" fill="' + RB + '" stroke="' + LN + '" stroke-width="0.5"></rect><text x="0" y="0.2" text-anchor="middle" dominant-baseline="middle" font-size="3.8" font-weight="600" fill="' + SC + '" style="' + MONO + '">110</text></g>'; }
 }
@@ -936,12 +965,14 @@ const C1 = g; g = '';
 for (let i = 0; i < 6; i++) {
 const p = P(BM, i), rk = o.ranks[i] || 'G', plus = rk.length > 1, col = (o.cols && o.cols[i]) || AC, r = full ? 10.6 : 12.5;
 const fs = full ? (plus ? 15 : 17) : (plus ? 18 : 21);
-g += '<g data-rkg="' + i + '" style="transform-box: fill-box; transform-origin: center">';
-g += '<text x="' + F(p[0]) + '" y="' + F(p[1] + 0.8) + '" text-anchor="middle" dominant-baseline="middle" font-size="' + fs + '" font-weight="900" fill="' + SC + '" stroke="' + RB + '" stroke-width="' + (full ? 3.6 : 4.2) + '" stroke-linejoin="round" paint-order="stroke">' + rk + '</text>';
-// drawn again with a thin outline in its own colour, so the letter reads heavier
-g += '<text x="' + F(p[0]) + '" y="' + F(p[1] + 0.8) + '" text-anchor="middle" dominant-baseline="middle" font-size="' + fs + '" font-weight="900" fill="' + SC + '" data-rkf="1" stroke="' + SC + '" stroke-width="0.45" stroke-linejoin="round">' + rk + '</text>';
-g += '</g>';
-if (full) g += '<text x="' + F(p[0]) + '" y="' + F(p[1] + 13) + '" text-anchor="middle" dominant-baseline="middle" font-size="7.4" font-weight="600" fill="' + AC + '" stroke="' + RB + '" stroke-width="2.6" stroke-linejoin="round" paint-order="stroke" style="' + MONO + '">' + Math.round(v[i]) + '</text>';
+// the rank letter, in grey; it sits in its own group centred on the letter so it can pulse from its middle
+g += '<g transform="translate(' + F(p[0]) + ' ' + F(p[1]) + ')"><g data-rkg="' + i + '" style="transform-box: view-box; transform-origin: 0px 0px">';
+g += '<text x="0" y="0.8" text-anchor="middle" dominant-baseline="middle" font-size="' + fs + '" font-weight="900" fill="' + SC + '" stroke="' + RB + '" stroke-width="' + (full ? 3.6 : 4.2) + '" stroke-linejoin="round" paint-order="stroke">' + rk + '</text>';
+g += '<text x="0" y="0.8" text-anchor="middle" dominant-baseline="middle" font-size="' + fs + '" font-weight="900" fill="' + SC + '" data-rkf="1" stroke="' + SC + '" stroke-width="0.45" stroke-linejoin="round">' + rk + '</text>';
+g += '</g></g>';
+// the dark halo is its own layer underneath, so a glow on the number sits above it in the number's own colour
+if (full) g += '<text aria-hidden="true" x="' + F(p[0]) + '" y="' + F(p[1] + 13) + '" text-anchor="middle" dominant-baseline="middle" font-size="7.4" font-weight="600" fill="' + BG + '" stroke="' + BG + '" stroke-width="2.6" stroke-linejoin="round" style="' + MONO + '">' + Math.round(v[i]) + '</text>'
++ '<text data-rkn="' + i + '" x="' + F(p[0]) + '" y="' + F(p[1] + 13) + '" text-anchor="middle" dominant-baseline="middle" font-size="7.4" font-weight="600" fill="' + AC + '" style="' + MONO + '">' + Math.round(v[i]) + '</text>';
 if (full) { const nm = String(o.names[i] || '').toUpperCase(), ns = nm.length > 10 ? 6.6 : (nm.length > 8 ? 7.1 : 7.6); g += '<text x="' + F(p[0]) + '" y="' + F(p[1] - 16) + '" text-anchor="middle" dominant-baseline="middle" font-size="' + ns + '" font-weight="600" letter-spacing="0.5" fill="' + SC + '" stroke="' + RB + '" stroke-width="3" stroke-linejoin="round" paint-order="stroke">' + nm.replace(/[&<>]/g, '') + '</text>'; }
 }
 const R2 = g;
@@ -950,7 +981,7 @@ const lbl = 'Stat chart: ' + o.names.map((n, i) => n + ' ' + Math.round(v[i]) + 
 // the full chart is two layers, so the ring can fade on its own while the chart zooms
 if (o.mode === 'full') return '<div role="img" aria-label="' + lbl + '" style="position: relative; width: ' + W + 'px; height: ' + H + 'px">' + sv(R1 + R2, ' data-ring="1" aria-hidden="true"') + sv(C1, ' aria-hidden="true"') + '</div>';
 // on the profile card and the leaderboard, just the chart itself, filling the space
-if (!full) return '<svg width="' + H + '" height="' + H + '" viewBox="-57 -57 114 114" role="img" aria-label="' + lbl + '" style="display: block; overflow: visible; font-family: inherit">' + C1 + '</svg>';
+if (!full) return '<svg width="' + H + '" height="' + H + '" viewBox="' + (o.mode === 'mini' ? '-57 -57 114 114' : '-60 -60 120 120') + '" role="img" aria-label="' + lbl + '" style="display: block; overflow: visible; font-family: inherit">' + C1 + '</svg>';
 return '<svg width="' + W + '" height="' + H + '" viewBox="' + vb + '" role="img" aria-label="' + lbl + '" style="display: block; overflow: visible; font-family: inherit">' + R1 + C1 + R2 + '</svg>';
 }
 totalSVG(n, rk, w, acc) {
@@ -963,7 +994,7 @@ return '<svg width="' + w + '" height="' + h.toFixed(1) + '" viewBox="0 0 58 67"
 + '<text x="29" y="17.6" text-anchor="middle" font-size="5.2" font-weight="600" letter-spacing="0.8" fill="' + SC + '">TOTAL</text>'
 + '<text x="29" y="27.4" text-anchor="middle" dominant-baseline="middle" font-size="11.5" font-weight="600" fill="' + TX + '">' + d + '</text>'
 + '<line x1="16" y1="35.2" x2="42" y2="35.2" stroke="rgba(255, 255, 255, 0.14)" stroke-width="0.6"></line>'
-+ '<g data-rkt="1" style="transform-box: fill-box; transform-origin: center"><text x="29" y="46.5" text-anchor="middle" dominant-baseline="middle" font-size="' + (rk.length > 1 ? 16 : 19) + '" font-weight="800" fill="' + AC + '">' + rk + '</text></g>'
++ '<g transform="translate(29 46.5)"><g data-rkt="1" style="transform-box: view-box; transform-origin: 0px 0px"><text x="0" y="0" text-anchor="middle" dominant-baseline="middle" font-size="' + (rk.length > 1 ? 16 : 19) + '" font-weight="800" fill="' + AC + '">' + rk + '</text></g></g>'
 + '</svg>';
 }
 rankFx(h, from, to) {
@@ -971,15 +1002,25 @@ rankFx(h, from, to) {
 const T = this.RANKS().map((r) => r[0]), ac = this.theme().accent;
 to.forEach((r, i) => { if (!from[i] || from[i] === r) return; const g = h.querySelector('[data-rkg="' + i + '"]'); this.rankPulse(g, T.indexOf(r) > T.indexOf(from[i]), ac, g && g.querySelector('[data-rkf]')); });
 }
+numFx(h, from, to) {
+// a stat that was just credited points glows under its rank letter: the rank up's timing, half its glow
+const ac = this.theme().accent;
+to.forEach((v, i) => { if (!(Math.round(v) > Math.round(from[i]))) return; const t = h.querySelector('[data-rkn="' + i + '"]'); if (!t || !t.animate) return; const g0 = 'drop-shadow(0 0 0 ' + ac + ')', g1 = 'drop-shadow(0 0 1px ' + ac + ')'; t.animate([{ filter: g0, easing: 'ease-out' }, { filter: g1, offset: 0.07 }, { filter: g1, offset: 0.628, easing: 'ease-in-out' }, { filter: g0 }], { duration: 1130 }); });
+}
 rankPulse(g, up, ac, txt) {
-if (!g || !g.animate) return;
-if (up) {
-g.animate([{ transform: 'scale(1)', filter: 'drop-shadow(0 0 0 ' + ac + ')' }, { transform: 'scale(1.35)', filter: 'drop-shadow(0 0 5px ' + ac + ')', offset: 0.18 }, { transform: 'scale(1.1)', filter: 'drop-shadow(0 0 4px ' + ac + ')', offset: 0.35 }, { transform: 'scale(1.1)', filter: 'drop-shadow(0 0 4px ' + ac + ')', offset: 0.8 }, { transform: 'scale(1)', filter: 'drop-shadow(0 0 0 ' + ac + ')' }], { duration: 1400, easing: 'ease-out' });
-if (txt) txt.animate([{ fill: 'var(--sec, #8E8E93)', stroke: 'var(--sec, #8E8E93)' }, { fill: ac, stroke: ac, offset: 0.18 }, { fill: ac, stroke: ac, offset: 0.8 }, { fill: 'var(--sec, #8E8E93)', stroke: 'var(--sec, #8E8E93)' }], { duration: 1400, easing: 'ease-out' });
-} else {
-g.animate([{ transform: 'scale(1)' }, { transform: 'scale(0.82)', offset: 0.3 }, { transform: 'scale(1.06)', offset: 0.65 }, { transform: 'scale(1)' }], { duration: 600, easing: 'ease-in-out' });
+// only a rank up gets a soft glow; going down a rank just changes the letter
+if (!up || !txt || !txt.animate) return;
+if (txt) txt.animate([{ fill: 'var(--sec, #8E8E93)', stroke: 'var(--sec, #8E8E93)', filter: 'drop-shadow(0 0 0 ' + ac + ')', easing: 'ease-out' }, { fill: ac, stroke: ac, filter: 'drop-shadow(0 0 2px ' + ac + ')', offset: 0.07 }, { fill: ac, stroke: ac, filter: 'drop-shadow(0 0 2px ' + ac + ')', offset: 0.628, easing: 'ease-in-out' }, { fill: 'var(--sec, #8E8E93)', stroke: 'var(--sec, #8E8E93)', filter: 'drop-shadow(0 0 0 ' + ac + ')' }], { duration: 1130 });
 }
+fromOff(x) {
+// the day a task or action starts, as days from today (made today if no date was picked; sample ones always existed)
+if (x && x.from) { const p = String(x.from).split('-'), q2 = this.dayIso(0).split('-'); return Math.round((Date.UTC(+p[0], +p[1] - 1, +p[2]) - Date.UTC(+q2[0], +q2[1] - 1, +q2[2])) / 86400000); }
+return x && x.made ? 0 : -100000;
 }
+cDate() { const s = this.store(); return s.txt.cdate || this.dayIso(Math.min(0, s.num.doff ?? 0)); }
+cDays() { const v = String(this.store().txt.cdays || '1111111'); return v.split('').map((x) => (x === '1' ? 1 : 0)); }
+rankTitle(r) { return { G: 'Novice', F: 'Apprentice', E: 'Initiate', D: 'Adept', C: 'Skilled', B: 'Veteran', A: 'Elite', S: 'Champion', 'S+': 'Master' }[r] || 'Novice'; }
+rankOf(v) { return this.RANKS()[this.rankIdx(v)][0]; }
 isoOf(d) { return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
 history() {
 // streaks, totals and points from every logged day plus today
@@ -1004,20 +1045,37 @@ if (T) { tasks++; const st = this.statDef()[T.stat] ? T.stat : 'PHY', pts = Math
 else { acts++; const m = this.mins(actTime[id] || ''); if (m !== null && m < 480) early++; }
 });
 });
-// stat scores, 0 to 110: each day, a stat task done adds its points; a day it's missed (after the day it was made) takes 40% of them away
-const score = {}, score7 = {}, made0 = (t) => { const ms = parseInt(String(t.id).slice(1), 36); return ms > 1.5e12 && ms < 4.2e12 ? dnum(this.isoOf(new Date(ms))) : null; };
-const keys = Object.keys(all).map(dnum), first = Math.min.apply(null, keys.concat(s.tasks.map(made0).filter((x) => x !== null)).concat([t0]));
-this.statKeys().forEach((k) => { score[k] = 0; });
-for (let n = first; n <= t0; n++) {
-const L = all[new Date(n * 86400000).toISOString().slice(0, 10)] || {};
+// stat scores, 0 to 110, banked in partial points (7 to a point, each stat's own): a stat task's week runs Monday to Sunday over the days it is set for;
+// each of those days ticked fills its share of the hexagon, and the task's points are only credited once all of them are ticked; a week that ends short gives nothing;
+// a missed day (after the day it was made) also takes 40% of its points away
+const score = {}, score7 = {}, part = {}, made0 = (t) => { const ms = parseInt(String(t.id).slice(1), 36); return ms > 1.5e12 && ms < 4.2e12 ? dnum(this.isoOf(new Date(ms))) : null; };
+const keys = Object.keys(all).map(dnum), first = Math.min.apply(null, keys.concat(s.tasks.map((T) => (T.from ? dnum(T.from) : made0(T))).filter((x) => x !== null)).concat([t0]));
+const P = {}, tent = {}, wks = {}, wkOf = (n) => n - (new Date(n * 86400000).getUTCDay() + 6) % 7, isoN = (n) => new Date(n * 86400000).toISOString().slice(0, 10);
+this.statKeys().forEach((k) => { P[k] = 0; tent[k] = 0; });
+const last = Math.max.apply(null, keys.concat([t0]));
+for (let w = wkOf(first); w <= wkOf(last); w += 7) {
+const got = [];
 s.tasks.forEach((T) => {
-const st = this.statDef()[T.stat] ? T.stat : 'PHY', pts = Math.max(1, +T.pts || 1), m0 = made0(T);
-if (L[T.id]) score[st] = Math.min(110, (score[st] || 0) + pts);
-else if (n < t0 && m0 !== null && n >= m0) score[st] = Math.max(0, (score[st] || 0) - Math.max(1, Math.round(pts * 0.4)));
-});
-if (n === t0 - 7) Object.keys(score).forEach((k) => { score7[k] = score[k]; });
+const st = this.statDef()[T.stat] ? T.stat : 'PHY', pts = Math.max(1, +T.pts || 1), m0 = T.from ? dnum(T.from) : made0(T), D = T.days || [1, 1, 1, 1, 1, 1, 1];
+let req = 0, done = 0;
+for (let d = 0; d < 7; d++) {
+const n = w + d;
+if (!D[d]) continue;
+req++;
+if ((all[isoN(n)] || {})[T.id]) done++;
+else if (m0 !== null && n >= m0 && n < t0) { P[st] = Math.max(0, (P[st] || 0) - 7 * Math.max(1, Math.round(pts * 0.4))); }
 }
-return { streak: streak, best: best, activeDays: active.length, acts: acts, tasks: tasks, early: early, earnAll: earnAll, earnWk: earnWk, score: score, score7: score7 };
+if (!req) return;
+const x = { req: req, done: done, st: st, pts: pts };
+(wks[T.id] = wks[T.id] || {})[w] = x;
+if (done >= req) got.push(x);
+});
+got.forEach((x) => { P[x.st] = Math.min(770, (P[x.st] || 0) + 7 * x.pts); });
+if (w + 6 <= t0 - 7) Object.keys(P).forEach((k) => { score7[k] = Math.floor(P[k] / 7); });
+}
+Object.keys(P).forEach((k) => { const v = Math.min(770, P[k]); score[k] = Math.floor(v / 7); part[k] = score[k] >= 110 ? 0 : Math.floor(v % 7); });
+const fillOf = (id, iso) => { const x = (wks[id] || {})[wkOf(dnum(iso))]; return x ? Math.min(1, x.done / x.req) : 0; };
+return { streak: streak, best: best, activeDays: active.length, acts: acts, tasks: tasks, early: early, earnAll: earnAll, earnWk: earnWk, score: score, score7: score7, part: part, fillOf: fillOf };
 }
 hist(day, idx) { if (this.fresh()) return false; return day === -3 ? idx % 4 === 3 : ((((day * 7 + idx * 3) % 5) + 5) % 5) !== 0; }
 swKey(e) { const k = e.getAttribute('data-sw').split('.'); if (k[1] === '@') k[1] = this.store().txt.cur || 'studio'; return k; }
@@ -1032,7 +1090,7 @@ o.dateTxt = (day === today ? 'Today, ' : (day === -1 ? 'Yesterday, ' : (day === 
 o.wkTxt = this.weekLabel(day); o.canPrev = base - 7 >= this.monOff(RG[0]); o.canNext = base + 7 <= RG[1];
 this.ddInit();
 const acts = [], dOk = (a, d) => !!(a.days || [1, 1, 1, 1, 1, 1, 1])[(this.dayDate(d).getDay() + 6) % 7];
-this.allIds().forEach((id) => this.ddOf(id).acts.forEach((a) => acts.push({ id: a.id, dream: id, short: a.t || 'Daily action', time: a.time || '', len: +a.len || 0, days: a.days, made: !!a.made, s: a.s || '' })));
+this.allIds().forEach((id) => this.ddOf(id).acts.forEach((a) => acts.push({ id: a.id, dream: id, short: a.t || 'Daily action', time: a.time || '', len: +a.len || 0, days: a.days, made: !!a.made, from: a.from || '', s: a.s || '' })));
 acts.sort((x, y) => { const mx = this.mins(x.time), my = this.mins(y.time); return (mx === null ? 9999 : mx) - (my === null ? 9999 : my); });
 const ad = this.known(s.ch.adream) ? s.ch.adream : (this.allIds()[0] || 'tri');
 o.caStart = s.txt.caTime || ''; o.caLen = s.num.caLen || 0; o.ctStart = s.txt.ctTime || ''; o.ctLen = s.num.ctLen || 0;
@@ -1048,13 +1106,13 @@ o.wheelT = this.wheelFor() !== 'theme' ? 'Dream colour' : 'Theme colour'; o.whee
 o.themeTxt = s.txt.themeHex ? s.txt.themeHex.toUpperCase() : ({ sunset: 'Sunset', gold: 'Gold', mint: 'Mint', ocean: 'Ocean', violet: 'Violet', mono: 'Mono' })[s.ch.theme] || 'Sunset';
 o.modeTxt = ({ dark: 'Dark', amoled: 'AMOLED' })[s.ch.mode] || 'Dark'; o.hexTxt = s.ch.hex || 'Filled';
 o.adream = ad;
-const on = (a, i, d) => d === today ? !!s.done[a.id] : (d > today ? false : this.pastOn(d, a.id, i, a.made));
+const on = (a, i, d) => d === today ? !!s.done[a.id] : (d > today ? !!(this.dayLog(d) || {})[a.id] : this.pastOn(d, a.id, i, a.made));
 acts.forEach((a, i) => { a.now = !!s.done[a.id]; a.done = on(a, i, day); o['d_' + a.id] = a.done; });
-const visAll = acts.filter((a) => f[a.dream] && dOk(a, day)), vis = visAll.filter((a) => !a.made || day >= today), dn = vis.filter((a) => a.done).length, nxt = vis.filter((a) => !a.done)[0], dn0 = visAll.filter((a) => a.now).length;
+const visAll = acts.filter((a) => f[a.dream] && dOk(a, day)), vis = visAll.filter((a) => day < today || day >= this.fromOff(a)), dn = vis.filter((a) => a.done).length, nxt = vis.filter((a) => !a.done)[0], dn0 = visAll.filter((a) => a.now).length;
 o.sum1 = !vis.length ? 'No dream is in focus.' : (day > today ? vis.length + ' planned.' : dn + ' of ' + vis.length + ' done.');
 o.sum2 = !vis.length ? 'Switch focus on for a dream to see its actions.' : (day < today ? (vis.length - dn ? (vis.length - dn) + ' missed that day.' : 'A full day.') : (day > today ? 'Nothing to tick yet.' : (nxt ? nxt.short + (nxt.time ? ' at ' + nxt.time : '') + ' is next.' : 'Everything is done for today.')));
 let fn = 0;
-ids.forEach((d) => { const a = acts.filter((x) => x.dream === d && dOk(x, day) && (!x.made || day >= today)); o['c_' + d] = a.filter((x) => x.done).length + '/' + a.length; o['f_' + d] = !!f[d]; if (f[d]) fn++; });
+ids.forEach((d) => { const a = acts.filter((x) => x.dream === d && dOk(x, day) && (day < today || day >= this.fromOff(x))); o['c_' + d] = a.filter((x) => x.done).length + '/' + a.length; o['f_' + d] = !!f[d]; if (f[d]) fn++; });
 s.dreams.forEach((d) => { o['f_' + d.id] = !!f[d.id]; if (f[d.id]) fn++; });
 o.focusN = fn + (fn === 1 ? ' dream' : ' dreams');
 const allIds = ids.concat(s.dreams.map((d) => d.id)), tracked = allIds.filter((id) => f[id]);
@@ -1066,7 +1124,7 @@ o.hasAct = false; o.custAct = '';
 // tab bubbles: what's still open today, and whether any of it is already past its start time
 { const now = new Date(), nm = now.getHours() * 60 + now.getMinutes(), wd = (now.getDay() + 6) % 7, late = (t) => { const m = this.mins(t || ''); return m !== null && m < nm; };
 const openA = acts.filter((a) => f[a.dream] && (a.days || [1, 1, 1, 1, 1, 1, 1])[wd] && !s.done[a.id]);
-const openT = (s.tasks || []).filter((t) => !s.done[t.id]);
+const openT = (s.tasks || []).filter((t) => (t.days || [1, 1, 1, 1, 1, 1, 1])[wd] && !s.done[t.id]);
 let due = 0; this.allIds().forEach((id) => this.ddOf(id).goals.forEach((g) => { const nx = this.ckNext(g); if (nx && nx.due) due++; }));
 o.nb = { today: openA.length, todayLate: openA.some((a) => late(a.time)), stats: openT.length, statsLate: openT.some((t) => late(t.time)), hive: due, hiveLate: due > 0 }; }
 const gT = (id, lb) => { const R = this.ddOf(id), L = this.lbOf(R, lb); return L ? '\u25CF ' + L.t : this.dreamName(id); }, lbCol = (id, lb) => { const L = this.lbOf(this.ddOf(id), lb); return L ? L.c : 'var(--sec, #8E8E93)'; };
@@ -1096,23 +1154,24 @@ o.L_tdays.push({ d: String(d), act: 'dayo:' + d, n: String(this.dayDate(d).getDa
 }
 const FR = this.fresh(), base0 = FR ? { PHY: 0, SPD: 0, STA: 0, DSC: 0, PUR: 0, INT: 0 } : { PHY: 65, SPD: 70, STA: 75, DSC: 60, PUR: 80, INT: 67 }, earn = { PHY: 0, SPD: 0, STA: 0, DSC: 0, PUR: 0, INT: 0 }, wkd = FR ? { PHY: 0, SPD: 0, STA: 0, DSC: 0, PUR: 0, INT: 0 } : { PHY: 4, SPD: 0, STA: 3, DSC: -4, PUR: 5, INT: -2 };
 const cstat = s.ch.cstat || 'PHY', cpts = s.num.cpts ?? 5;
-const tasks = s.tasks.map((t) => ({ id: t.id, stat: this.statDef()[t.stat] ? t.stat : 'PHY', pts: Math.max(1, +t.pts || 1), t: t.t || 'Stat task', time: t.time || '', len: +t.len || 0, made: !!t.made }));
+const tasks = s.tasks.map((t) => ({ id: t.id, stat: this.statDef()[t.stat] ? t.stat : 'PHY', pts: Math.max(1, +t.pts || 1), t: t.t || 'Stat task', time: t.time || '', len: +t.len || 0, made: !!t.made, from: t.from || '', days: t.days || [1, 1, 1, 1, 1, 1, 1] }));
 let tot = 0, got = 0, top = 'PHY', low = 'PHY';
 const HX = this.history(); if (FR) Object.keys(HX.score).forEach((k) => { earn[k] = HX.score[k]; }); if (FR) Object.keys(HX.score).forEach((k) => { wkd[k] = (HX.score7[k] || 0) - HX.score[k]; });
 o.hx = HX; o.streakN = FR ? HX.streak : 12; o.bestN = FR ? HX.best : 31; o.streakTxt = o.streakN + ' day streak'; o.bestTxt = 'Best streak ' + o.bestN + (o.bestN === 1 ? ' day' : ' days');
-tasks.forEach((t, i) => { if (s.done[t.id]) { if (!FR) earn[t.stat] += t.pts; got += t.pts; } t.done = day === today ? !!s.done[t.id] : (day > today ? false : this.pastOn(day, t.id, i + 7, t.made)); o['d_' + t.id] = t.done; });
+tasks.forEach((t, i) => { if (s.done[t.id]) { if (!FR) earn[t.stat] += t.pts; got += t.pts; } t.done = day === today ? !!s.done[t.id] : (day > today ? !!(this.dayLog(day) || {})[t.id] : this.pastOn(day, t.id, i + 7, t.made)); o['d_' + t.id] = t.done; });
 Object.keys(base0).forEach((k) => { const v = Math.min(110, base0[k] + earn[k]); o['v_' + k] = v; tot += v; const w = wkd[k] + earn[k]; o['w_' + k] = (w > 0 ? '+' : '') + w; if (v > o['v_' + top]) top = k; if (v < o['v_' + low]) low = k; });
 o.vals = ['PHY', 'SPD', 'STA', 'DSC', 'PUR', 'INT'].map((k) => o['v_' + k]);
+o.parts = ['PHY', 'SPD', 'STA', 'DSC', 'PUR', 'INT'].map((k) => (o['v_' + k] >= 110 ? 0 : (HX.part[k] || 0)));
 o.prevVals = ['PHY', 'SPD', 'STA', 'DSC', 'PUR', 'INT'].map((k) => base0[k] - wkd[k]);
 o.total = tot; o.earned = '+' + got; o.top = names[top] + ' ' + o['v_' + top]; o.low = names[low] + ' ' + o['v_' + low];
-const tv = tasks.filter((t) => !t.made || day >= today), tdn = tv.filter((t) => t.done).length, tdn0 = tasks.filter((t) => s.done[t.id]).length;
-o.tDone = day > today ? tv.length + ' planned' : tdn + ' of ' + tv.length + ' done';
+const wdv = (dD.getDay() + 6) % 7, tv = tasks.filter((t) => (day < today || day >= this.fromOff(t)) && !!t.days[wdv]), tdn = tv.filter((t) => t.done).length, tdn0 = tasks.filter((t) => s.done[t.id]).length;
+o.tDone = tdn + ' of ' + tv.length + ' done';
 o.cstat = cstat; o.cpts = cpts; o.cstatCode = this.statOf(cstat).code;
 o.noTasks = !tv.length;
-o.L_tasks = tv.map((t) => { const st = this.statOf(t.stat); return { id: t.id, tick: 'tick:' + t.id, edit: 'tedit:' + t.id, time: t.time, len: String(t.len), t: t.t, code: st.code, sub: '+' + t.pts + ' ' + st.code, col: st.col, grad: st.grad, deep: st.deep }; });
+o.L_tasks = tv.map((t) => { const st = this.statOf(t.stat), fl = HX.fillOf(t.id, this.dayIso(day)); return { id: t.id, gdisp: fl >= 1 ? 'flex' : 'none', body: this.isLight() ? this.mixRgb(st.col, '#FFFFFF', 0.86) : this.mixRgb(st.col, '#1C1A24', 0.74), clip: 'inset(0 0 ' + (fl * 100).toFixed(1) + '% 0)', tick: 'tick:' + t.id, edit: 'tedit:' + t.id, time: t.time, len: String(t.len), t: t.t, code: st.code, sub: '+' + t.pts + ' ' + st.code, col: st.col, grad: st.grad, deep: st.deep }; });
 o.L_stats = this.statKeys().map((k) => { const st = this.statOf(k); return { k: k, ch: 'cstat:' + k, sedit: 'statedit:' + k, tst: 'tstat:' + k, code: st.code, name: st.name, col: st.col, tint: st.tint, ck: cstat === k ? 'flex' : 'none', on: cstat === k ? 'true' : 'false' }; });
 const te = s.tasks.filter((t) => t.id === s.txt.tCur)[0];
-if (te) { o.teStat = te.stat; o.tePts = Math.max(1, +te.pts || 1); o.teLen = +te.len || 0; o.teHead = te.t || 'Stat task'; o.teLine = 'Done adds ' + o.tePts + ' to ' + names[te.stat] + '.'; }
+if (te) { o.teStat = te.stat; o.tePts = Math.max(1, +te.pts || 1); o.teLen = +te.len || 0; o.teHead = te.t || 'Stat task'; o.teLine = 'A full week adds ' + o.tePts + ' to ' + names[te.stat] + '.'; }
 const sk = this.statDef()[s.txt.stCur] ? s.txt.stCur : 'PHY', so = this.statOf(sk);
 o.seHead = so.name; o.seCode = so.code;
 o.cstatName = names[cstat];
@@ -1125,7 +1184,7 @@ const k = d > 0 ? 0 : tasks.filter((t, i) => !t.made && tOn(t, i, d)).length, n 
 o.L_sdays.push({ d: String(d), act: 'dayo:' + d, n: String(this.dayDate(d).getDate()), w: wl[(d - sm) % 7], snap: (d - sm) % 7 ? 'none' : 'start', mk: d > 0 ? 'transparent' : (k === n ? 'var(--tx, #F2F2F3)' : (k ? 'var(--sec, #8E8E93)' : 'rgba(255, 255, 255, 0.16)')), tc: d === 0 ? this.theme().accent : '', td: d === 0 ? 'true' : 'false' });
 }
 ['PHY', 'SPD', 'STA', 'DSC', 'PUR', 'INT'].forEach((k) => { o['cs_' + k] = cstat === k; });
-o.ptsLine = 'Done adds ' + cpts + ' to ' + names[cstat] + '. A missed day takes ' + Math.max(1, Math.round(cpts * 0.4)) + ' away.';
+o.ptsLine = '7 days in a row adds ' + cpts + ' to ' + names[cstat] + '. A missed day takes ' + Math.max(1, Math.round(cpts * 0.4)) + ' away and starts the week over.';
 // ranks: every stat runs 0 to 110; the total is their average, ranked on the same scale
 const T = this.RANKS(), avg = Math.round(tot / 6), ri = this.rankIdx(avg);
 this.statKeys().forEach((k) => { o['rk_' + k] = T[this.rankIdx(o['v_' + k])][0]; });
@@ -1137,7 +1196,7 @@ const all = s.ch.lb === 'all', lb = all ? [1310, 1179 + got, 1104, 962, 480] : [
 lb.forEach((v, i) => { o['lb' + (i + 1)] = '+' + v; });
 const pos = 1 + [47, 36, 29, 12].filter((v) => v > 36 + got).length;
 o.lbPos = ['1st', '2nd', '3rd', '4th', '5th'][pos - 1] + ' this week';
-o.title = s.ch.title || (this.fresh() ? 'No title yet' : 'The Consistent');
+o.title = s.ch.title || (this.fresh() ? 'No title yet' : 'Elite');
 if (this.fresh()) { o.lb1 = '+' + got; o.lbPos = 'Just you so far'; }
 o.L_rems = s.rem.map((r, i) => ({ act: 'rem:open:' + i, sw: 'remsw:' + i, t: r.t || 'Reminder', sub: (r.time || '09:00') + ' · ' + this.remDays(r.days) + ' · ' + this.remAbout(r.about), on: r.on ? 'true' : 'false', swbg: r.on ? this.theme().grad : 'rgba(255, 255, 255, 0.15)', swj: r.on ? 'flex-end' : 'flex-start', op: r.on ? '1' : '0.55' }));
 o.remN = s.rem.filter((r) => r.on).length + ' of ' + s.rem.length + ' on';
@@ -1152,7 +1211,7 @@ o.canLock = RN > 0 && RN > this.ringsNeeded() && !this.cells().some((c) => this.
 const at = this.addType();
 o.isAct = at === 'act'; o.isTask = at === 'task'; o.timed = at === 'act' || at === 'task'; o.isDream = at === 'dream'; o.isGoal = at === 'goal'; o.forDream = o.isAct || o.isGoal;
 o.addHead = ({ dream: 'Add dream', task: 'Add stat task', goal: 'Add tangible goal', act: 'Add daily action' })[at];
-o.addSub = at === 'dream' ? 'Hive' : (at === 'goal' ? this.dreamName(ad) : 'Today');
+{ const cdv = this.cDate(); o.cdate = cdv; o.addSub = at === 'dream' ? 'Hive' : (at === 'goal' ? this.dreamName(ad) : (cdv === this.dayIso(0) ? 'Today' : (cdv > this.dayIso(0) ? 'From ' : 'From ') + this.dOf(cdv).toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' }))); }
 o.actsDone = this.fresh() ? o.hx.acts : 146 + acts.filter((a) => a.now).length; o.tasksDone = this.fresh() ? o.hx.tasks : 61 + tdn0;
 const cur = this.curId(), cd = this.custom(cur), isNew = !!cd;
 o.isNew = isNew; o.cur = cur;
@@ -1268,6 +1327,7 @@ return o;
 hydrate() {
 const root = this._root;
 if (!root) return;
+this.pkPrep();
 { const s0 = this.store(); if (s0.ch && s0.ch.hex === 'Plain') { s0.ch.hex = 'Filled'; s0.ch.dots = '0'; this.save(); } }
 const s = this.store(), c = this.calc(), q = (sel) => Array.prototype.slice.call(root.querySelectorAll(sel));
 this.lists(c);
@@ -1292,6 +1352,9 @@ this.stripLabel(st);
 q('[data-mark]').forEach((e) => { const m = c['mk' + e.getAttribute('data-mark')]; e.style.background = m === 2 ? this.theme().grad : (m === 1 ? 'var(--sec, #8E8E93)' : (m === 3 ? 'transparent' : 'rgba(255, 255, 255, 0.16)')); });
 q('[data-bind]').forEach((e) => { const v = c[e.getAttribute('data-bind')]; if (v !== undefined) e.textContent = v; });
 q('[data-bgv]').forEach((e) => { const v = c[e.getAttribute('data-bgv')]; if (v !== undefined) e.style.background = v; });
+{ const cd = this.cDays(), tc = (s.tasks || []).find((t) => t.id === s.txt.tCur), td = tc ? (tc.days || [1, 1, 1, 1, 1, 1, 1]) : null;
+q('[data-cday]').forEach((e) => { const on = !!cd[+e.getAttribute('data-cday')]; e.setAttribute('aria-pressed', on ? 'true' : 'false'); e.style.background = on ? this.theme().grad : 'var(--card, rgba(255, 255, 255, 0.08))'; e.style.color = on ? '#0B0B12' : 'var(--tx, #F2F2F3)'; });
+if (td) q('[data-tday]').forEach((e) => { const on = !!td[+e.getAttribute('data-tday')]; e.setAttribute('aria-pressed', on ? 'true' : 'false'); e.style.background = on ? this.theme().grad : 'var(--card, rgba(255, 255, 255, 0.08))'; e.style.color = on ? '#0B0B12' : 'var(--tx, #F2F2F3)'; }); }
 q('[data-ptsin]').forEach((e) => { const v = String(e.getAttribute('data-ptsin') === 'c' ? c.cpts : (c.tePts ?? '')); if (document.activeElement !== e && e.value !== v) e.value = v; });
 q('[data-colv]').forEach((e) => { const v = c[e.getAttribute('data-colv')]; if (v !== undefined) e.style.color = v; });
 q('[data-show]').forEach((e) => {
@@ -1354,11 +1417,11 @@ const sp = e.firstElementChild; if (sp) { sp.style.fontSize = big ? '15px' : '11
 });
 // the radar charts and the total badge
 q('[data-radar2]').forEach((h) => {
-const mode = h.getAttribute('data-radar2'), names = ['PHY', 'SPD', 'STA', 'DSC', 'PUR', 'INT'].map((k) => this.statOf(k).name), sig = JSON.stringify([mode, c.vals, c.ranks, names, s.ch.hex, s.ch.dots, this.theme().accent, this.statCol()]);
+const mode = h.getAttribute('data-radar2'), names = ['PHY', 'SPD', 'STA', 'DSC', 'PUR', 'INT'].map((k) => this.statOf(k).name), sig = JSON.stringify([mode, c.vals, c.parts, c.ranks, names, s.ch.hex, s.ch.dots, this.theme().accent, this.statCol()]);
 if (h._sig === sig) return;
 h._sig = sig;
-const opts = { ranks: c.ranks, names: names, cols: ['PHY', 'SPD', 'STA', 'DSC', 'PUR', 'INT'].map((k) => this.statOf(k).col), mode: mode, style: s.ch.hex || 'Filled', dots: s.ch.dots !== '0', acc: this.theme().accent };
-const draw = (vals) => { h.innerHTML = this.radarSVG(Object.assign({}, opts, { vals: vals })); if (mode === 'full' && (this._pullP ?? 0) < 0) this.pullSet(this._pullP, false); };
+const opts = { ranks: c.ranks, parts: c.parts, names: names, cols: ['PHY', 'SPD', 'STA', 'DSC', 'PUR', 'INT'].map((k) => this.statOf(k).col), mode: mode, style: s.ch.hex || 'Filled', dots: s.ch.dots !== '0', acc: this.theme().accent };
+const draw = (vals) => { h.innerHTML = this.radarSVG(Object.assign({}, opts, { vals: vals, ranks: vals.map((x) => this.rankOf(x)) })); if (mode === 'full' && (this._pullP ?? 0) < 0) this.pullSet(this._pullP, false); };
 // where the chart was last time: this visit's last frame, or for the main chart what was on screen when you last looked
 const seen = mode === 'full' ? String(s.txt.vSeen || '').split(',').filter((x) => x !== '').map(Number) : [];
 const from = h._vals || (seen.length === 6 ? seen : null), to = c.vals.slice();
@@ -1366,7 +1429,7 @@ const rk0 = h._ranks || (mode === 'full' && s.txt.rkSeen ? String(s.txt.rkSeen).
 h._vals = to; h._ranks = c.ranks.slice();
 if (mode === 'full' && (s.txt.vSeen !== to.join(',') || s.txt.rkSeen !== c.ranks.join(','))) { s.txt.vSeen = to.join(','); s.txt.rkSeen = c.ranks.join(','); this.save(); }
 const still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const ranksAfter = () => { if (mode === 'full' && rk0 && !still) this.rankFx(h, rk0, c.ranks); };
+const ranksAfter = () => { if (mode === 'full' && rk0 && !still) this.rankFx(h, rk0, c.ranks); if (mode === 'full' && from && !still) this.numFx(h, from, to); };
 cancelAnimationFrame(h._raf);
 if (!from || still || from.every((v, i) => Math.abs(v - to[i]) < 0.01)) { draw(to); ranksAfter(); return; }
 const t0 = performance.now(), D = 650, ease = (x) => 1 - Math.pow(1 - x, 3);
@@ -1374,12 +1437,18 @@ const step = (now) => { const k = Math.min(1, (now - t0) / D), e = ease(k); draw
 h._raf = requestAnimationFrame(step);
 });
 q('[data-total2]').forEach((h) => {
-const ac = this.theme().accent, sig = c.total + c.rank + h.getAttribute('data-total2') + ac;
+// the total badge counts from where it was to the new total, its letter stepping through the ranks on the way
+const ac = this.theme().accent, w = +h.getAttribute('data-total2') || 58, sig = c.total + c.rank + w + ac;
 if (h._sig === sig) return;
-const prev = h._rk || s.txt.rkTotSeen || null;
-h._sig = sig; h._rk = c.rank; if (s.txt.rkTotSeen !== c.rank) { s.txt.rkTotSeen = c.rank; this.save(); }
-h.innerHTML = this.totalSVG(c.total, c.rank, +h.getAttribute('data-total2') || 58, ac);
-if (prev && prev !== c.rank) { const T = this.RANKS().map((r) => r[0]), up = T.indexOf(c.rank) > T.indexOf(prev), g = h.querySelector('[data-rkt]'); setTimeout(() => this.rankPulse(g, up, ac, null), 450); }
+const prev = h._tot != null ? h._tot : (s.txt.totSeen != null && s.txt.totSeen !== '' ? +s.txt.totSeen : null), to = +c.total || 0;
+h._sig = sig; h._tot = to;
+if (String(s.txt.totSeen) !== String(to)) { s.txt.totSeen = to; this.save(); }
+cancelAnimationFrame(h._raf);
+const still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (prev == null || prev === to || still) { h.innerHTML = this.totalSVG(to, c.rank, w, ac); return; }
+const t0 = performance.now(), D = 650, ease = (x) => 1 - Math.pow(1 - x, 3);
+const step = (now) => { const k = Math.min(1, (now - t0) / D), v = k < 1 ? prev + (to - prev) * ease(k) : to; h.innerHTML = this.totalSVG(Math.round(v), k < 1 ? this.rankOf(v) : c.rank, w, ac); if (k < 1) h._raf = requestAnimationFrame(step); };
+h._raf = requestAnimationFrame(step);
 });
 q('[data-meicon]').forEach((e) => { e.style.display = s.me.photo ? 'none' : 'flex'; });
 q('[data-mef]').forEach((e) => { const v = s.me[e.getAttribute('data-mef')] || ''; if (document.activeElement !== e && e.value !== v) e.value = v; });
@@ -1420,6 +1489,7 @@ q('[data-ch]').forEach((e) => { const p = e.getAttribute('data-ch').split(':'), 
 q('[data-ms]').forEach((e) => { const p = e.getAttribute('data-ms').split(':'), cur = s.ch[p[0] + '_' + p[1]]; look(e, cur === undefined ? e.hasAttribute('data-d') : !!cur); });
 q('[data-theme]').forEach((e) => look(e, !s.txt.themeHex && (s.ch.theme || 'sunset') === e.getAttribute('data-theme')));
 q('[data-in]').forEach((e) => { const v = s.txt[e.getAttribute('data-in')]; if (v !== undefined && document.activeElement !== e && e.value !== v) e.value = v; });
+q('[data-in="cdate"]').forEach((e) => { if (document.activeElement !== e && e.value !== c.cdate) e.value = c.cdate; });
 q('[data-ic]').forEach((e) => { const k = c[e.getAttribute('data-ic')]; if (e._ic !== k) { e.innerHTML = this.iconBody(k); e._ic = k; } });
 if (!this._wh) this.paintWheel();
 q('[data-bg]').forEach((e) => {
@@ -1454,6 +1524,92 @@ ci.setAttribute('fill', outl ? ac : '#FFFFFF'); ci.setAttribute('stroke', ac); c
 q('[data-target]').forEach((e) => { e.style.display = s.ch.hex === 'Target' ? '' : 'none'; });
 if (this.hiveSync) this.hiveSync(c, s);
 this.paintTimer();
+// a stat task's hexagon rises to its new level instead of jumping
+this._capF = this._capF || {};
+q('[data-capt]').forEach((e) => { const r = e.closest('[data-row]'), id = r && r.getAttribute('data-row'), now = e.style.clipPath; if (!id) return; const was = this._capF[id]; if (!e._capA) { e._capA = 1; if (was && was !== now) { e.style.transition = 'none'; e.style.clipPath = was; void e.offsetWidth; e.style.transition = 'clip-path 0.5s ease'; e.style.clipPath = now; } } this._capF[id] = now; });
+this.pkSync();
+}
+// time and date are picked in the app's own sheet, never the phone's pop-up
+pkInit(root) {
+if (!document.getElementById('hxpk')) { const st = document.createElement('style'); st.id = 'hxpk'; st.textContent = '[data-pkw]::-webkit-scrollbar{display:none}[data-root]:has([data-pkov]) [data-homeguard]{display:none}[data-pk]{cursor:pointer;caret-color:transparent;-webkit-user-select:none;user-select:none}[data-pk]::selection{background:transparent}'; (document.head || document.documentElement).appendChild(st); }
+const find = (t) => { if (!t || !t.closest || t.closest('[data-pkov]')) return null; const d = t.closest('[data-pk]'); if (d) return d; if (t.closest('button, select, a, textarea, [data-act]')) return null; const lb = t.closest('label'); return lb ? lb.querySelector('[data-pk]') : null; };
+root.addEventListener('mousedown', (e) => { if (e.target && e.target.closest && e.target.closest('[data-pk]')) e.preventDefault(); }, true);
+root.addEventListener('focusin', (e) => { const t = e.target; if (t && t.hasAttribute && t.hasAttribute('data-pk')) { try { t.blur(); } catch (err) {} } }, true);
+root.addEventListener('click', (e) => { const i = find(e.target); if (!i) return; if (i.offsetParent === null || i.closest('[data-view]')) return; e.preventDefault(); e.stopPropagation(); this.pkOpen(i); }, true);
+}
+pkPrep() {
+const root = this._root; if (!root) return;
+Array.prototype.slice.call(root.querySelectorAll('input[type="time"], input[type="date"]')).forEach((e) => {
+const k = e.type, v = e.value;
+e.setAttribute('data-pk', k);
+try { e.type = 'text'; } catch (err) {}
+e.value = v; e.readOnly = true; e.setAttribute('inputmode', 'none'); e.setAttribute('autocomplete', 'off'); e.tabIndex = -1;
+if (k === 'time') { e.placeholder = '--:--'; if (e.hasAttribute('data-tchip')) { e.style.width = '50px'; } else { e.style.width = '80px'; e.style.textAlign = 'center'; } }
+else if (e.style.opacity !== '0') {
+const w = document.createElement('span'); w.style.cssText = 'position: relative; display: inline-flex; flex: none';
+e.parentNode.insertBefore(w, e); w.appendChild(e);
+const d = document.createElement('span'); d.style.cssText = 'position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none; font-size: 13.5px; font-weight: 600; color: var(--tx, #F2F2F3); white-space: nowrap';
+w.appendChild(d); e.style.color = 'transparent'; e.style.width = '128px'; e._pkShow = d;
+}
+});
+}
+pkSync() {
+const root = this._root; if (!root) return;
+Array.prototype.slice.call(root.querySelectorAll('[data-pk="date"]')).forEach((e) => { if (e._pkShow) e._pkShow.textContent = e.value ? this.dOf(e.value).toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' }) : 'Date'; });
+}
+pkOpen(inp) {
+const root = this._root; if (!root) return;
+const old = root.querySelector('[data-pkov]'); if (old) old.remove();
+const kind = inp.getAttribute('data-pk'), AC = this.theme().accent, MONO = "font-family: 'Source Code Pro', ui-monospace, monospace", P2 = (n) => (n < 10 ? '0' : '') + n;
+const BTN = 'height: 32px; padding: 0 12px; border-radius: 16px; border: 0; font-family: inherit; font-size: 13px; font-weight: 600; ';
+const ov = document.createElement('div');
+ov.setAttribute('data-pkov', kind);
+ov.style.cssText = 'position: absolute; left: 0; top: 0; width: 390px; height: var(--appH, 844px); z-index: 200; display: flex; flex-direction: column; justify-content: flex-end; background: rgba(0, 0, 0, 0); transition: background 0.22s ease; font-family: inherit; color: var(--tx, #F2F2F3)';
+const pn = document.createElement('div');
+pn.style.cssText = 'margin: 0 10px 26px; padding: 12px 14px 14px; border-radius: 24px; background: var(--sheet, #1A1A22); box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35); transform: translateY(115%); transition: transform 0.26s cubic-bezier(0.2, 0.8, 0.2, 1)';
+ov.appendChild(pn); root.appendChild(ov);
+const close = () => { ov.style.background = 'rgba(0, 0, 0, 0)'; pn.style.transform = 'translateY(115%)'; setTimeout(() => ov.remove(), 230); };
+const put = (v) => { inp.value = v; inp.dispatchEvent(new Event('input', { bubbles: true })); this.pkSync(); close(); };
+const lbl = String(inp.getAttribute('aria-label') || '').replace(/[&<>"]/g, (c) => '&#' + c.charCodeAt(0) + ';');
+if (kind === 'time') {
+// an empty end time opens on the start time beside it; anything else empty opens on 00:00
+let sv = inp.value || '';
+if (!sv) { const PAIR = [['data-in', 'cend', 'ctime'], ['data-af', 'end', 'time'], ['data-taskf', 'end', 'time']], box = inp.closest('[data-sheet]') || root; PAIR.forEach((pp) => { if (!sv && inp.getAttribute(pp[0]) === pp[1]) { const st0 = box.querySelector('[' + pp[0] + '="' + pp[2] + '"]'); if (st0 && st0.value) sv = st0.value; } }); }
+const ROW = 34, m0 = /^(\d\d):(\d\d)/.exec(sv), h = m0 ? +m0[1] : 0, mi = m0 ? +m0[2] : 0;
+const wheel = (n, k) => '<div data-pkw="' + k + '" style="position: relative; z-index: 1; width: 64px; height: ' + ROW * 5 + 'px; overflow-y: scroll; scroll-snap-type: y mandatory; scrollbar-width: none; overscroll-behavior: contain; touch-action: pan-y; -webkit-mask-image: linear-gradient(transparent, #000 38%, #000 62%, transparent); mask-image: linear-gradient(transparent, #000 38%, #000 62%, transparent)">'
++ '<div style="height: ' + ROW * 2 + 'px"></div>' + Array.from({ length: n * 7 }, (x, i) => '<div data-pki="' + i + '" style="height: ' + ROW + 'px; display: flex; align-items: center; justify-content: center; scroll-snap-align: center; ' + MONO + '; font-size: 20px; font-weight: 600; color: var(--sec, #8E8E93)">' + P2(i % n) + '</div>').join('') + '<div style="height: ' + ROW * 2 + 'px"></div></div>';
+pn.innerHTML = '<div style="display: flex; align-items: center; gap: 6px; height: 34px"><span style="flex: 1; font-size: 13px; font-weight: 600; color: var(--sec, #8E8E93)">' + lbl + '</span>'
++ '<button type="button" data-pkc="1" style="' + BTN + 'background: transparent; color: var(--sec, #8E8E93)">Clear</button>'
++ '<button type="button" data-pkok="1" style="' + BTN + 'background: ' + AC + '; color: #0B0B12">Done</button></div>'
++ '<div style="position: relative; display: flex; justify-content: center; align-items: center; gap: 4px; margin-top: 6px">'
++ '<div style="position: absolute; left: 0; right: 0; top: ' + ROW * 2 + 'px; height: ' + ROW + 'px; border-radius: 10px; background: var(--card2, rgba(255, 255, 255, 0.08))"></div>'
++ wheel(24, 'h') + '<span style="position: relative; z-index: 1; ' + MONO + '; font-size: 20px; font-weight: 600">:</span>' + wheel(60, 'm') + '</div>';
+// each wheel is seven laps of the same numbers and slides back to the middle lap once it stops, so it turns round forever
+const ws = pn.querySelectorAll('[data-pkw]'), N = (w) => (w.getAttribute('data-pkw') === 'h' ? 24 : 60), raw = (w) => Math.round(w.scrollTop / ROW), at = (w) => ((raw(w) % N(w)) + N(w)) % N(w);
+const paint = (w) => { const i = raw(w); Array.prototype.forEach.call(w.querySelectorAll('[data-pki]'), (x, j) => { x.style.color = j === i ? 'var(--tx, #F2F2F3)' : 'var(--sec, #8E8E93)'; }); };
+Array.prototype.forEach.call(ws, (w, k) => { const n = N(w); w.scrollTop = (3 * n + (k ? mi : h)) * ROW; paint(w); let fr = 0, st = 0; w.addEventListener('scroll', () => { if (!fr) fr = requestAnimationFrame(() => { fr = 0; paint(w); }); clearTimeout(st); st = setTimeout(() => { const r = raw(w); if (r < 2 * n || r >= 5 * n) { w.scrollTop = (3 * n + at(w)) * ROW; paint(w); } }, 160); }, { passive: true }); w.addEventListener('click', (e) => { const x = e.target.closest('[data-pki]'); if (x) w.scrollTo({ top: +x.getAttribute('data-pki') * ROW, behavior: 'smooth' }); }); });
+pn.querySelector('[data-pkok]').addEventListener('click', () => put(P2(at(ws[0])) + ':' + P2(at(ws[1]))));
+pn.querySelector('[data-pkc]').addEventListener('click', () => put(''));
+} else {
+const iso = (d) => d.getFullYear() + '-' + P2(d.getMonth() + 1) + '-' + P2(d.getDate()), today = this.dayIso(0), cur = inp.value || today, c0 = this.dOf(cur);
+let ym = new Date(c0.getFullYear(), c0.getMonth(), 1);
+const draw = () => {
+const y = ym.getFullYear(), m = ym.getMonth(), off = (new Date(y, m, 1).getDay() + 6) % 7, n = new Date(y, m + 1, 0).getDate(), ARW = (d) => '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="' + d + '"></path></svg>';
+let cells = '';
+for (let i = 0; i < 42; i++) { const d = i - off + 1; if (d < 1 || d > n) { cells += '<span></span>'; continue; } const s = iso(new Date(y, m, d)), sel = s === cur, td = s === today;
+cells += '<button type="button" data-pkd="' + s + '" style="height: 36px; border: 0; padding: 0; border-radius: 18px; font-family: inherit; font-size: 13px; font-weight: ' + (sel ? 700 : 600) + '; background: ' + (sel ? AC : 'transparent') + '; color: ' + (sel ? '#0B0B12' : 'var(--tx, #F2F2F3)') + (td && !sel ? '; box-shadow: inset 0 0 0 1.5px ' + AC : '') + '">' + d + '</button>'; }
+pn.innerHTML = '<div style="display: flex; align-items: center; gap: 4px; height: 34px">'
++ '<button type="button" data-pkm="-1" aria-label="Previous month" style="' + BTN + 'width: 32px; padding: 0; display: flex; align-items: center; justify-content: center; background: transparent; color: var(--sec, #8E8E93)">' + ARW('M15 6l-6 6l6 6') + '</button>'
++ '<span style="min-width: 128px; text-align: center; font-size: 13.5px; font-weight: 700">' + ym.toLocaleDateString('en-GB', { month: 'long', year: 'numeric' }) + '</span>'
++ '<button type="button" data-pkm="1" aria-label="Next month" style="' + BTN + 'width: 32px; padding: 0; display: flex; align-items: center; justify-content: center; background: transparent; color: var(--sec, #8E8E93)">' + ARW('M9 6l6 6l-6 6') + '</button>'
++ '<span style="flex: 1"></span><button type="button" data-pkd="' + today + '" style="' + BTN + 'background: var(--card2, rgba(255, 255, 255, 0.08)); color: var(--tx, #F2F2F3)">Today</button></div>'
++ '<div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; margin-top: 8px">' + ['M', 'T', 'W', 'T', 'F', 'S', 'S'].map((x) => '<span style="height: 22px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; color: var(--sec, #8E8E93)">' + x + '</span>').join('') + cells + '</div>';
+};
+draw();
+pn.addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; if (b.hasAttribute('data-pkm')) { ym = new Date(ym.getFullYear(), ym.getMonth() + +b.getAttribute('data-pkm'), 1); draw(); } else if (b.hasAttribute('data-pkd')) put(b.getAttribute('data-pkd')); });
+}
+ov.addEventListener('click', (e) => { e.stopPropagation(); if (e.target === ov) close(); });
+requestAnimationFrame(() => requestAnimationFrame(() => { ov.style.background = 'rgba(0, 0, 0, 0.45)'; pn.style.transform = 'translateY(0)'; }));
 }
 sheetView(name) { this._sv = name; this.sheet(name, true); }
 viewFit(el) {
@@ -1519,10 +1675,10 @@ commitAdd() {
 const s = this.store(), t = this.addType();
 if (t === 'dream') this.newDream();
 if (t === 'goal') { const id = this.known(s.ch.adream) ? s.ch.adream : this.curId(), R = this.ddOf(id); R.goals.push({ id: this.uid('g'), t: (s.txt.gn || '').trim() || 'New goal', ig: '', kind: 'num', start: 0, target: '', cur: 0, unit: '', done: 0, since: this.dayIso(0), checks: {} }); s.txt.gn = ''; this.wipe('gn'); }
-if (t === 'act') { const id = this.known(s.ch.adream) ? s.ch.adream : this.curId(); this.ddInit(); this.ddOf(id).acts.push({ id: this.uid('a'), t: (s.txt.an || '').trim() || 'New daily action', time: s.txt.ctime || '', len: this.cLen(), end: s.txt.ctime && s.txt.cend ? s.txt.cend : '', endOn: s.txt.ctime && s.txt.cend ? 1 : 0, days: [1, 1, 1, 1, 1, 1, 1], s: '', made: 1 }); s.txt.an = ''; this.wipe('an'); }
-if (t === 'task') s.tasks.push({ id: 't' + Date.now().toString(36), t: (s.txt.tn || '').trim() || 'New stat task', stat: s.ch.cstat || 'PHY', pts: s.num.cpts ?? 5, time: s.txt.ctime || '', len: this.cLen(), end: s.txt.ctime && s.txt.cend ? s.txt.cend : '', endOn: s.txt.ctime && s.txt.cend ? 1 : 0, made: 1 });
+if (t === 'act') { const id = this.known(s.ch.adream) ? s.ch.adream : this.curId(); this.ddInit(); this.ddOf(id).acts.push({ id: this.uid('a'), t: (s.txt.an || '').trim() || 'New daily action', time: s.txt.ctime || '', len: this.cLen(), end: s.txt.ctime && s.txt.cend ? s.txt.cend : '', endOn: s.txt.ctime && s.txt.cend ? 1 : 0, days: this.cDays(), from: this.cDate(), s: '', made: 1 }); s.txt.an = ''; this.wipe('an'); }
+if (t === 'task') s.tasks.push({ id: 't' + Date.now().toString(36), t: (s.txt.tn || '').trim() || 'New stat task', stat: s.ch.cstat || 'PHY', pts: s.num.cpts ?? 5, time: s.txt.ctime || '', len: this.cLen(), end: s.txt.ctime && s.txt.cend ? s.txt.cend : '', endOn: s.txt.ctime && s.txt.cend ? 1 : 0, days: this.cDays(), from: this.cDate(), made: 1 });
 if (t === 'task') { s.txt.tn = ''; this.wipe('tn'); }
-if (t === 'act' || t === 'task') { delete s.txt.ctime; delete s.txt.cend; delete s.ch.clen; this.wipe('ctime'); this.wipe('cend'); }
+if (t === 'act' || t === 'task') { delete s.txt.ctime; delete s.txt.cend; delete s.ch.clen; delete s.txt.cdays; delete s.txt.cdate; this.wipe('ctime'); this.wipe('cend'); }
 this.save();
 this.hydrate();
 this.closeSheets();
@@ -1581,12 +1737,12 @@ if (sh) { if (sh === 'timer') this.timer('close'); else this.sheet(sh, false); r
 const t = e.target && e.target.closest ? e.target.closest('[data-act]') : null;
 if (!t || !this._root || !this._root.contains(t)) return;
 const a = t.getAttribute('data-act').split(':'), s = this.store();
-if (a[0] === 'sheet' && a[1] === 'edit') { e.preventDefault(); const el = t.closest('[data-sheet]'); if (el) { el.removeAttribute('data-view'); this.viewFit(el); const f = el.querySelector('input[type="text"], textarea'); if (f) { try { f.focus({ preventScroll: true }); } catch (err) {} } } return; }
+if (a[0] === 'sheet' && a[1] === 'edit') { e.preventDefault(); const el = t.closest('[data-sheet]'); if (el) { el.removeAttribute('data-view'); this.viewFit(el); const f = el.querySelector('input[type="text"]:not([data-pk]), textarea'); if (f) { try { f.focus({ preventScroll: true }); } catch (err) {} } } return; }
 if (a[0] === 'sheet') { e.preventDefault(); if (a[1] === 'close') this.closeTop(); else if (a[1] === 'act' || a[1] === 'task' || a[1] === 'dream' || a[1] === 'goal') { if (a[1] === 'goal') s.ch.adream = this.curGoal().id; this.openAdd(a[1]); } else this.sheet(a[1], true); return; }
 if (a[0] === 'addtype') { s.ch.addType = a[1]; this.save(); this.hydrate(); this.focusAdd(); return; }
 if (a[0] === 'addsave') { this.commitAdd(); return; }
 if (a[0] === 'tm') { if (a[1] === 'open' && (s.num.doff ?? 0) !== 0) return; this.timer(a[1], a[2], t); return; }
-if (a[0] === 'tick') { if ((s.num.doff ?? 0) !== 0) return; s.done[a[1]] = s.done[a[1]] ? 0 : 1; if (s.done[a[1]]) this.pop('[data-row="' + a[1] + '"]'); }
+if (a[0] === 'tick') { const dv = s.num.doff ?? 0, isT = s.tasks.some((x) => x.id === a[1]), pv = () => (isT ? (this.history().fillOf(a[1], this.dayIso(dv)) >= 1 ? 'full' : 's') : '1'); if (dv !== 0) { const k2 = this.dayIso(dv); s.log[k2] = Object.assign({}, s.log[k2] || {}); s.log[k2][a[1]] = s.log[k2][a[1]] ? 0 : 1; if (s.log[k2][a[1]]) this.pop('[data-row="' + a[1] + '"]', pv()); } else { s.done[a[1]] = s.done[a[1]] ? 0 : 1; if (s.done[a[1]]) this.pop('[data-row="' + a[1] + '"]', pv()); } }
 if (a[0] === 'sw') { const k = this.swKey(t); s[k[0]][k[1]] = s[k[0]][k[1]] ? 0 : 1; }
 if (a[0] === 'open') s.txt.cur = a[1];
 const RG = this.dayRange(), cl = (d) => Math.max(RG[0], Math.min(RG[1], d));
@@ -1610,6 +1766,8 @@ if (tcur && a[0] === 'tstat') tcur.stat = a[1];
 if (tcur && a[0] === 'tpts') tcur.pts = Math.max(1, Math.round((+tcur.pts || 1) + (+a[1])));
 if (tcur && a[0] === 'tlen') tcur.len = +a[1];
 if (tcur && a[0] === 'tend') { tcur.endOn = tcur.endOn ? 0 : 1; if (tcur.endOn && !tcur.end) tcur.end = this.hhmm((this.mins(tcur.time) ?? 540) + (+tcur.len || 30)); if (tcur.endOn && !tcur.time) tcur.time = this.hhmm(this.mins(tcur.end) - (+tcur.len || 30)); if (!tcur.endOn) tcur.end = ''; this.endSync(tcur); }
+if (a[0] === 'cday') { const d = this.cDays(); d[+a[1]] = d[+a[1]] ? 0 : 1; if (!d.some((x) => x)) d[+a[1]] = 1; s.txt.cdays = d.join(''); this.save(); this.hydrate(); return; }
+if (tcur && a[0] === 'tday') { const d = (tcur.days || [1, 1, 1, 1, 1, 1, 1]).slice(); d[+a[1]] = d[+a[1]] ? 0 : 1; if (!d.some((x) => x)) d[+a[1]] = 1; tcur.days = d; this.save(); this.hydrate(); return; }
 if (tcur && a[0] === 'tdel') { s.tasks.splice(s.tasks.indexOf(tcur), 1); delete s.done[tcur.id]; this.save(); this.closeSheets(); this.hydrate(); return; }
 if (a[0] === 'stcol') { const k = s.txt.stCur || 'PHY'; s.stats[k] = Object.assign({}, s.stats[k], { col: t.getAttribute('data-stsw') }); this.save(); this.hydrate(); this.paintWheel(); return; }
 if (a[0] === 'streset') { delete s.stats[s.txt.stCur || 'PHY']; this.save(); this.hydrate(); this.paintWheel(); return; }
@@ -1680,7 +1838,8 @@ for (let i = 0; i < hd.length; i++) { hd[i].style.transition = anim ? 'opacity 0
 const mv = this._root.querySelectorAll('[data-pullmove]');
 for (let i = 0; i < mv.length; i++) { const e = mv[i], f = lo < 0 ? Math.max(0, Math.min(1, p / lo)) : 0, top = +e.getAttribute('data-pullmove') || 0, H = this._root.clientHeight || 844, want = (110 + (H - 166)) / 2 - top, z = 1 + 1.2 * f * Math.min(1, (H - 276) / 568); e.style.transform = 'translateY(' + (want * f).toFixed(1) + 'px) scale(' + z.toFixed(3) + ')';
 // pulled down: only the chart itself, so the ring and its labels fade away as it zooms in
-e.querySelectorAll('[data-ring]').forEach((g) => { g.style.transition = anim ? 'opacity 0.4s ease' : 'none'; g.style.opacity = String(Math.max(0, 1 - f * 1.6)); }); }
+e.querySelectorAll('[data-ring]').forEach((g) => { g.style.transition = anim ? 'opacity 0.4s ease' : 'none'; g.style.opacity = String(Math.max(0, 1 - f * 1.6)); });
+e.querySelectorAll('[data-spin]').forEach((g) => { g.style.transition = anim ? 'transform ' + CV : 'none'; g.style.transform = 'rotate(' + (f * 150).toFixed(1) + 'deg)'; }); }
 }
 pullDrag(p) {
 // while a finger moves: remember where the panel should be now, and paint it once per frame
@@ -2054,6 +2213,7 @@ this.pullInit(root);
 this.navInit(root);
 this.faqInit(root);
 this.viewCSS();
+this.pkInit(root);
 // the strip behind the tab bar, where the iPhone's home swipe starts, takes no touches on any screen (the tabs themselves still work)
 this.homeGuard(root);
 root.addEventListener('click', (e) => { const t0 = e.target && e.target.closest ? e.target.closest('[data-trackpill]') : null, t = t0 ? t0.querySelector('[data-trkdot]') : null; if (t && t.animate) t.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.12)' }, { transform: 'scale(1)' }], { duration: 220, easing: 'ease-out' }); });
